@@ -1,0 +1,205 @@
+$black-color: (
+    "#0F0F0F",
+    "#1A1A1A",
+    "#242424",
+    "#2B2B2B",
+    "#3A3A3A",
+    "#525252",
+    "#6B6B6B",
+    "#8C8C8C",
+    "#B5B5B5"
+);
+
+$blue-gray-color: (
+    "#2F3F45",
+    "#435A61",
+    "#5A747C",
+    "#72909A",
+    "#8FAEB8",
+    "#A8C3CC",
+    "#C3D5DC",
+    "#D7E4E9",
+    "#ECF3F6"
+);
+
+$light-blue-color: (
+    "#355E6B",
+    "#4E7C8A",
+    "#689AA8",
+    "#83B8C6",
+    "#9FD6E4",
+    "#B9E3ED",
+    "#D6EAF2",
+    "#E7F2F7",
+    "#F3F9FB"
+);
+
+$beige-color: (
+    "#5A4A36",
+    "#7A6348",
+    "#9A7D5C",
+    "#B89A74",
+    "#D3B58D",
+    "#E5CFAF",
+    "#F2E8DA",
+    "#F7F1E8",
+    "#FBF8F3"
+);
+
+$white-color: (
+    "#BDBDBB",
+    "#D0D0CE",
+    "#E1E1DF",
+    "#ECECEA",
+    "#F2F2F0",
+    "#F5F5F3",
+    "#F8F8F6",
+    "#FBFBFA",
+    "#FFFFFF"
+);
+
+$red-color: (
+    "#3A0F0F", 
+    "#5A1A1A", 
+    "#7A2424", 
+    "#9A2B2B", 
+    "#B53A3A", 
+    "#C95252", 
+    "#D86B6B", 
+    "#E8A0A0", 
+    "#F4D6D6"  
+);
+
+
+
+$font-sizes: (
+    10px,
+    12px,
+    14px,
+    16px,
+    18px,
+    20px,
+    24px,
+    28px,
+    32px,
+    40px,
+    48px
+);
+
+$font-weights: (
+    100,
+    200,
+    300,
+    400,
+    500,
+    600,
+    700,
+    800,
+    900
+);
+
+
+$margin-sizes: (
+    0px,
+    2px,
+    4px,
+    6px,
+    8px,
+    12px,
+    16px,
+    20px,
+    24px,
+    32px,
+    40px,
+    48px,
+    64px
+);
+
+$padding-sizes: (
+    0px,
+    2px,
+    4px,
+    6px,
+    8px,
+    12px,
+    16px,
+    20px,
+    24px,
+    32px,
+    40px,
+    48px,
+    64px
+);
+
+$gap-sizes: (
+    0px,
+    2px,
+    4px,
+    6px,
+    8px,
+    12px,
+    16px,
+    20px,
+    24px,
+    32px
+);
+
+$width-sizes: (
+    0px,
+    50px,
+    100px,
+    150px,
+    200px,
+    250px,
+    300px,
+    400px,
+    500px,
+    600px,
+    800px,
+    1000px,
+    50%,
+    100%,
+    100vw,
+    100vh
+);
+
+$height-sizes: (
+    0px,
+    50px,
+    100px,
+    150px,
+    200px,
+    250px,
+    300px,
+    400px,
+    500px,
+    600px,
+    800px,
+    1000px,
+    50%,
+    100%,
+    100vw,
+    100vh
+);
+
+$border-radius-sizes: (
+    0px,
+    2px,
+    4px,
+    6px,
+    8px,
+    12px,
+    16px,
+    20px,
+    24px,
+    32px
+);
+
+$shadows: (
+    0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 25px 50px -12px rgba(0, 0, 0, 0.25)
+);

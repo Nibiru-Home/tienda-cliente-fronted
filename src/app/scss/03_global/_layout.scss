@@ -1,0 +1,23 @@
+.l-flex {
+  display: flex;
+}
+
+.l-flex__direction--column {
+  flex-direction: column;
+}
+
+.l-flex__align-items--center {
+  align-items: center;
+}
+
+.l-flex__align-items--flex-start {
+  align-items: flex-start;
+}
+
+.l-flex__justify-content--space-between {
+  justify-content: space-between;
+}
+
+.l-flex__gap--md {
+  gap: var(--cyb-sys-padding-7);
+}

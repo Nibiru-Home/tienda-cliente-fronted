@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --cyb-sys-font-family-body: 'Nunito', sans-serif;
+  --cyb-sys-font-family-ui: 'Raleway', sans-serif;
+  --cyb-sys-font-family-display: var(--cyb-sys-font-family-ui);
+}
+
+body {
+  margin: var(--cyb-sys-margin-1);
+  padding: var(--cyb-sys-padding-1);
+  font-family: var(--cyb-sys-font-family-body);
+  font-size: var(--cyb-sys-font-size-4);
+  font-weight: var(--cyb-sys-font-weight-5);
+  color: var(--cyb-sys-color-black-2);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--cyb-sys-font-family-display);
+  color: var(--cyb-sys-color-black-2);
+  line-height: 1.15;
+}
+
+h1 {
+  font-size: var(--cyb-sys-font-size-10);
+  font-weight: var(--cyb-sys-font-weight-8);
+}
+
+h2 {
+  font-size: var(--cyb-sys-font-size-7);
+  font-weight: var(--cyb-sys-font-weight-8);
+}
+
+h3 {
+  font-size: var(--cyb-sys-font-size-5);
+  font-weight: var(--cyb-sys-font-weight-7);
+}
+
+h4 {
+  font-size: var(--cyb-sys-font-size-4);
+  font-weight: var(--cyb-sys-font-weight-7);
+}
+
+h5 {
+  font-size: var(--cyb-sys-font-size-3);
+  font-weight: var(--cyb-sys-font-weight-7);
+}
+
+h6 {
+  font-size: var(--cyb-sys-font-size-2);
+  font-weight: var(--cyb-sys-font-weight-7);
+}
+
+button {
+  font-family: var(--cyb-sys-font-family-ui);
+}
