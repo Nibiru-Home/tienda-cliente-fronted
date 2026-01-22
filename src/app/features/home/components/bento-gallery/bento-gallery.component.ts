@@ -1,0 +1,67 @@
+import { AfterViewInit, Component, ElementRef, OnDestroy, inject } from '@angular/core';
+import { gsap } from 'gsap';
+import { Flip } from 'gsap/Flip';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+@Component({
+  selector: 'app-bento-gallery',
+  standalone: true,
+  templateUrl: './bento-gallery.component.html',
+  styleUrl: './bento-gallery.component.scss'
+})
+export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
+  private readonly elementRef = inject<ElementRef<HTMLElement>>(ElementRef);
+  private flipCtx?: gsap.Context;
+
+  private readonly handleResize = () => {
+    this.createTween();
+  };
+
+  ngAfterViewInit(): void {
+    gsap.registerPlugin(ScrollTrigger, Flip);
+    this.createTween();
+    window.addEventListener('resize', this.handleResize);
+  }
+
+  ngOnDestroy(): void {
+    window.removeEventListener('resize', this.handleResize);
+    this.flipCtx?.revert();
+  }
+
+  private createTween(): void {
+    const galleryElement = this.elementRef.nativeElement.querySelector<HTMLElement>('#gallery-8');
+    if (!galleryElement) {
+      return;
+    }
+
+    const galleryItems = galleryElement.querySelectorAll('.gallery__item');
+
+    this.flipCtx?.revert();
+    galleryElement.classList.remove('gallery--final');
+
+    this.flipCtx = gsap.context(() => {
+      galleryElement.classList.add('gallery--final');
+      const flipState = Flip.getState(galleryItems);
+      galleryElement.classList.remove('gallery--final');
+
+      const flip = Flip.to(flipState, {
+        simple: true,
+        ease: 'expoScale(1, 5)'
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: galleryElement,
+          start: 'center center',
+          end: '+=100%',
+          scrub: true,
+          pin: galleryElement.parentElement ?? undefined
+        }
+      });
+
+      tl.add(flip);
+      ScrollTrigger.refresh();
+      return () => gsap.set(galleryItems, { clearProps: 'all' });
+    }, this.elementRef.nativeElement);
+  }
+}

@@ -12,6 +12,15 @@
     "isolatedModules": true,
     "experimentalDecorators": true,
     "importHelpers": true,
+    "baseUrl": ".",
+    "paths": {
+      "gsap/Flip": [
+        "node_modules/gsap/types/flip.d.ts"
+      ],
+      "gsap/ScrollTrigger": [
+        "node_modules/gsap/types/scroll-trigger.d.ts"
+      ]
+    },
     "target": "ES2022",
     "module": "preserve"
   },
