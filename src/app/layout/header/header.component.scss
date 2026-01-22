@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+.layout-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2000;
+  background: #ffffff;
+  color: #0e100f;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.layout-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 2rem;
+}
+
+.layout-header__brand {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.layout-header__nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.layout-header__link {
+  text-decoration: none;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .layout-header__inner {
+    flex-direction: column;
+  }
+
+  .layout-header__nav {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}

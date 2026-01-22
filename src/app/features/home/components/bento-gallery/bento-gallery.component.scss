@@ -10,13 +10,14 @@ $text-color: unquote(list.nth(vars.$black-color, 6));
 
 p {
   font-size: $font-size-body;
+  margin-top: 0;
   margin-bottom: $paragraph-margin;
   color: $text-color;
 }
 
 .gallery-wrap {
   position: relative;
-  width: list.nth(vars.$width-sizes, 14);
+  width: list.nth(vars.$width-sizes, 15);
   height: list.nth(vars.$height-sizes, 16);
   display: flex;
   align-items: center;
@@ -26,7 +27,8 @@ p {
 
 .gallery {
   position: relative;
-  width: list.nth(vars.$width-sizes, 14);
+  width: list.nth(vars.$width-sizes, 15);
+  max-width: none;
   height: list.nth(vars.$height-sizes, 14);
   flex: none;
 }
@@ -46,10 +48,11 @@ p {
 }
 
 .gallery--bento {
+  --bento-gap: max(1vh, #{$gallery-gap});
   display: grid;
-  gap: max(1vh, #{$gallery-gap});
-  grid-template-columns: repeat(3, 32.5vw);
-  grid-template-rows: repeat(4, 23vh);
+  gap: var(--bento-gap);
+  grid-template-columns: repeat(3, calc((100vw - (2 * var(--bento-gap))) / 3));
+  grid-template-rows: repeat(4, calc((100vh - (3 * var(--bento-gap))) / 4));
   justify-content: center;
   align-content: center;
 }
@@ -57,7 +60,7 @@ p {
 .gallery--final.gallery--bento {
   grid-template-columns: repeat(3, 100vw);
   grid-template-rows: repeat(4, 49.5vh);
-  gap: max(1vh, #{$gallery-gap});
+  gap: var(--bento-gap);
 }
 
 .gallery--bento .gallery__item:nth-child(1) {
@@ -93,10 +96,16 @@ p {
 }
 
 .section {
-  padding: $section-padding-y $section-padding-x;
+  padding: 0 $section-padding-x 0;
+  margin: 0;
 }
 
 .section h2 {
+  margin-top: 0;
   margin-bottom: list.nth(vars.$margin-sizes, 8);
   color: $text-color;
+}
+
+.section p:last-child {
+  margin-bottom: 0;
 }
