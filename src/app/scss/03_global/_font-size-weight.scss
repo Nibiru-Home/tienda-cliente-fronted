@@ -1,5 +1,5 @@
 @use "sass:list";
-@use "../01_utilies/variables" as utilities;
+@use "../01_utilities/variables" as utilities;
 
 :root {
     @for $i from 1 through list.length(utilities.$font-sizes) {
