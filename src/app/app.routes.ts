@@ -1,9 +1,7 @@
 import { Routes } from '@angular/router';
+import { HomePage } from './transitions/features/pages/home.page';
 
 export const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./features/home/home.routes').then((m) => m.homeRoutes)
-  },
+  { path: '', component: HomePage },
   { path: '**', redirectTo: '' }
 ];

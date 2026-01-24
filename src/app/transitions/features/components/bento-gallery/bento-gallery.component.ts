@@ -36,14 +36,24 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
 
     const galleryItems = galleryElement.querySelectorAll('.gallery__item');
     const header = document.querySelector<HTMLElement>('.layout-header');
+    const categoriesTitle = this.elementRef.nativeElement.querySelector<HTMLElement>('.categories-title');
 
     this.flipCtx?.revert();
     galleryElement.classList.remove('gallery--final');
+    categoriesTitle?.classList.remove('is-visible');
 
     this.flipCtx = gsap.context(() => {
       if (header) {
         gsap.set(header, { yPercent: -100, autoAlpha: 0, pointerEvents: 'none' });
       }
+
+      const showCategoriesTitle = () => {
+        categoriesTitle?.classList.add('is-visible');
+      };
+
+      const hideCategoriesTitle = () => {
+        categoriesTitle?.classList.remove('is-visible');
+      };
 
       galleryElement.classList.add('gallery--final');
       const flipState = Flip.getState(galleryItems);
@@ -62,41 +72,46 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
           scrub: true,
           pin: galleryElement.parentElement ?? undefined,
           onLeave: () => {
-            if (!header) {
-              return;
+            if (header) {
+              gsap.to(header, {
+                yPercent: 0,
+                autoAlpha: 1,
+                duration: 0.35,
+                ease: 'power2.out',
+                overwrite: 'auto',
+                onStart: () => {
+                  gsap.set(header, { pointerEvents: 'auto' });
+                }
+              });
             }
 
-            gsap.to(header, {
-              yPercent: 0,
-              autoAlpha: 1,
-              duration: 0.35,
-              ease: 'power2.out',
-              overwrite: 'auto',
-              onStart: () => {
-                gsap.set(header, { pointerEvents: 'auto' });
-              }
-            });
+            showCategoriesTitle();
           },
           onEnterBack: () => {
-            if (!header) {
-              return;
+            if (header) {
+              gsap.to(header, {
+                yPercent: -100,
+                autoAlpha: 0,
+                duration: 0.25,
+                ease: 'power2.in',
+                overwrite: 'auto',
+                onComplete: () => {
+                  gsap.set(header, { pointerEvents: 'none' });
+                }
+              });
             }
 
-            gsap.to(header, {
-              yPercent: -100,
-              autoAlpha: 0,
-              duration: 0.25,
-              ease: 'power2.in',
-              overwrite: 'auto',
-              onComplete: () => {
-                gsap.set(header, { pointerEvents: 'none' });
-              }
-            });
+            hideCategoriesTitle();
           }
         }
       });
 
-      tl.add(flip);
+      // Filter out the central item (index 2)
+      const otherItems = Array.from(galleryItems).filter((_, index) => index !== 2);
+
+      tl.add(flip)
+        .to(otherItems, { opacity: 0, duration: 0.5 }, '<');
+
       ScrollTrigger.refresh();
       return () => gsap.set(galleryItems, { clearProps: 'all' });
     }, this.elementRef.nativeElement);

@@ -1,0 +1,19 @@
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--cyb-sys-color-white-7);
+}
+
+.form-group {
+    margin-bottom: var(--cyb-sys-margin-6);
+}
+
+.error-message {
+    color: var(--cyb-sys-color-red-5);
+    font-size: var(--cyb-sys-font-size-3);
+    margin-bottom: var(--cyb-sys-margin-4);
+    text-align: center;
+    font-family: var(--cyb-sys-font-family-body);
+}
