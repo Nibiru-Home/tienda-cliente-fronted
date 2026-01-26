@@ -1,7 +1,7 @@
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+    gap: 4rem;
     padding: 2rem;
     padding-top: 120px;
 }
