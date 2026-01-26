@@ -1,4 +1,4 @@
-import { User } from './user.model';
+/*import { User } from './user.model';
 
 export interface AuthResponse {
     token: string;
@@ -15,4 +15,4 @@ export interface RegisterRequest {
     name: string;
     username: string;
     password: string;
-}
+}*/

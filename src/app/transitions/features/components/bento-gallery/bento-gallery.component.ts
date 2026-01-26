@@ -36,7 +36,7 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
 
     const galleryItems = galleryElement.querySelectorAll('.gallery__item');
     const header = document.querySelector<HTMLElement>('.layout-header');
-    const categoriesTitle = this.elementRef.nativeElement.querySelector<HTMLElement>('.categories-title');
+    const categoriesTitle = document.querySelector<HTMLElement>('.categories-title');
 
     this.flipCtx?.revert();
     galleryElement.classList.remove('gallery--final');
