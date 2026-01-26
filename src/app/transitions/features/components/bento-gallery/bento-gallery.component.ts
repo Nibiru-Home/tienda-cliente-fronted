@@ -106,7 +106,6 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
         }
       });
 
-      // Filter out the central item (index 2)
       const otherItems = Array.from(galleryItems).filter((_, index) => index !== 2);
 
       tl.add(flip)

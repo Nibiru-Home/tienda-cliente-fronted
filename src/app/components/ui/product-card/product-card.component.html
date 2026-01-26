@@ -1,0 +1,16 @@
+<div class="product-card" (click)="onView()">
+    <div class="product-image-container">
+        <img [src]="imageUrl" [alt]="product.name" class="product-image"
+            onerror="this.src='https://via.placeholder.com/300?text=Product'">
+    </div>
+    <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="product-footer">
+            <span class="product-price">{{ product.price | number:'1.2-2' }} €</span>
+            <button class="add-to-cart-btn" (click)="$event.stopPropagation()" title="Añadir al carrito">
+                <img src="icons/add-to-cart.png" alt="Añadir al carrito" class="cart-icon">
+            </button>
+        </div>
+    </div>
+</div>

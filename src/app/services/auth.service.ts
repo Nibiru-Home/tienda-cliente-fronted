@@ -1,4 +1,4 @@
-/*import { Injectable } from '@angular/core'
+import { Injectable, Inject } from '@angular/core'
 import { Observable } from 'rxjs'
 import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model'
 import { User } from '../models/user.model'
@@ -10,7 +10,7 @@ import { HTTPService } from './http.service'
 export class AuthService {
   private readonly authRoute: string = '/user'
 
-  constructor(private httpService: HTTPService) { }
+  constructor(@Inject(HTTPService) private httpService: HTTPService) { }
 
   register(request: RegisterRequest): Observable<AuthResponse> {
     return this.httpService.post<AuthResponse>(`${this.authRoute}/register`, request)
@@ -52,4 +52,4 @@ export class AuthService {
   getUsers(): Observable<User[]> {
     return this.httpService.getAll<User>(this.authRoute)
   }
-}*/
+}
