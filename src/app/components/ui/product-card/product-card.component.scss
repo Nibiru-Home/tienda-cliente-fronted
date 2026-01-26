@@ -1,0 +1,78 @@
+@use '../../../scss/01_utilities/variables' as vars;
+
+.product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.product-image-container {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--cyb-sys-color-white-6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--cyb-sys-border-radius-4);
+
+    .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.product-info {
+    padding: var(--cyb-sys-padding-8) 0 0 0;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--cyb-sys-gap-2);
+}
+
+.product-name {
+    font-size: var(--cyb-sys-font-size-5);
+    font-weight: var(--cyb-sys-font-weight-6);
+    color: var(--cyb-sys-color-black-3);
+    margin: 0 0 var(--cyb-sys-padding-4) 0;
+}
+
+.product-description {
+    font-size: var(--cyb-sys-font-size-3);
+    color: var(--cyb-sys-color-black-7);
+    margin: 0;
+    flex-grow: 1;
+}
+
+.product-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.product-price {
+    font-size: var(--cyb-sys-font-size-6);
+    font-weight: var(--cyb-sys-font-weight-7);
+    color: var(--cyb-sys-color-black-2);
+}
+
+.add-to-cart-btn {
+    padding: var(--cyb-sys-padding-2);
+    background-color: var(--cyb-sys-color-light-blue-5);
+    border: 1px solid var(--cyb-sys-color-light-blue-5);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+
+    .cart-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
