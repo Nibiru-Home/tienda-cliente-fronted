@@ -74,7 +74,7 @@
 }
 
 .armario-features-section {
-  padding: var(--cyb-sys-padding-11) var(--cyb-sys-padding-13);
+  padding: 0 var(--cyb-sys-padding-13) var(--cyb-sys-padding-11);
   background: var(--cyb-sys-color-white-9);
 }
 
@@ -164,11 +164,13 @@
 }
 
 .recommended-products__title {
-  margin: 0;
-  font-size: var(--cyb-sys-font-size-9);
-  font-family: var(--cyb-sys-font-family-body);
+  margin: var(--cyb-sys-margin-1);
+  text-align: center;
+  font-size: var(--cyb-sys-font-size-11);
   font-weight: var(--cyb-sys-font-weight-6);
   color: var(--cyb-sys-color-black-6);
+  font-family: var(--cyb-sys-font-family-body);
+  width: 100%;
 }
 
 .recommended-products__grid {
