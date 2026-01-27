@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { BentoGalleryComponent } from '../../../transitions/features/components/bento-gallery/bento-gallery';
-import { IndexCardsComponent } from '../../ui/index-cards/index-cards';
+import { IndexCardsComponent } from '../../ui/c-index-cards/c-index-cards';
 import { ArmarioGsapComponent } from '../../../transitions/features/components/armario-gsap/armario-gsap';
-import { StoryCardComponent } from '../../ui/story-card/story-card';
+import { StoryCardComponent } from '../../ui/c-story-card/c-story-card';
 import { LayoutFooterComponent } from '../../layout/footer/footer';
 
 @Component({

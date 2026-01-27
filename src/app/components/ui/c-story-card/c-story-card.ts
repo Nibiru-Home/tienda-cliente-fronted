@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-story-card',
   standalone: true,
-  templateUrl: './story-card.component.html',
-  styleUrl: './story-card.component.scss'
+  templateUrl: './c-story-card.html',
+  styleUrl: './c-story-card.scss'
 })
 export class StoryCardComponent {}

@@ -6,8 +6,8 @@ import { Product } from '../../../models/product.model';
     selector: 'app-product-card',
     standalone: true,
     imports: [CommonModule],
-    templateUrl: './product-card.component.html',
-    styleUrls: ['./product-card.component.scss']
+    templateUrl: './c-product-card.html',
+    styleUrls: ['./c-product-card.scss']
 })
 export class ProductCardComponent {
     @Input({ required: true }) product!: Product;

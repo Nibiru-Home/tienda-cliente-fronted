@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { InspirationCardComponent } from '../inspiration-card/inspiration-card';
+import { InspirationCardComponent } from '../c-inspiration-card/c-inspiration-card';
 
 @Component({
   selector: 'app-index-cards',
   standalone: true,
   imports: [InspirationCardComponent],
-  templateUrl: './index-cards.component.html',
-  styleUrl: './index-cards.component.scss'
+  templateUrl: './c-index-cards.html',
+  styleUrl: './c-index-cards.scss'
 })
 export class IndexCardsComponent {}
