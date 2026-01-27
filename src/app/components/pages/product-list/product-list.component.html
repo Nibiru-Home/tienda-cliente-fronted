@@ -2,4 +2,12 @@
     <app-product-card *ngFor="let product of products" [product]="product"
         class="product-card-wrapper"></app-product-card>
 </div>
+<div class="product-pagination" *ngIf="totalPages > 1">
+    <c-pagination
+        [currentPage]="currentPage"
+        [totalPages]="totalPages"
+        [size]="pageSize"
+        [route]="paginationRoute">
+    </c-pagination>
+</div>
 <app-layout-footer></app-layout-footer>
