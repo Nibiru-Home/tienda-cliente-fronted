@@ -1,10 +1,9 @@
 import { Routes } from '@angular/router';
-import { HomePage } from './transitions/features/pages/home.page';
-
-import { ProductListComponent } from './components/pages/product-list/product-list.component';
+import { IndexPage } from './components/pages/index/index';
+import { ProductListComponent } from './components/pages/product-list/product-list';
 
 export const routes: Routes = [
-  { path: '', component: HomePage },
+  { path: '', component: IndexPage },
   { path: 'products', component: ProductListComponent },
   { path: '**', redirectTo: '' }
 ];
