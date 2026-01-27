@@ -91,7 +91,7 @@
       @for (product of products; track product.id) {
       <app-inspiration-card [eyebrow]="product.category[0]?.name || 'Producto'" [title]="product.name"
         [description]="product.description" [imageSrc]="'/images/products/' + product.image" [alt]="product.name"
-        href="#" />
+        [href]="'/products/' + product.id" />
       }
     </div>
   </div>

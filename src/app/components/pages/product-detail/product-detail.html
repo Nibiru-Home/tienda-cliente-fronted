@@ -1,7 +1,7 @@
 <section class="product-detail">
   <div class="product-detail__gallery">
     <div class="product-detail__media">
-      <img src="/images/products/7.jpg" alt="Lampara de techo moderna" />
+      <img [src]="'/images/products/' + product.image" [alt]="product.name" />
     </div>
     <div class="product-detail__thumbs">
       <button class="product-detail__thumb" type="button" aria-label="Vista principal">
@@ -16,11 +16,10 @@
     </div>
   </div>
   <div class="product-detail__content">
-    <h1 class="product-detail__title">Lampara de techo</h1>
-    <p class="product-detail__price">30€</p>
+    <h1 class="product-detail__title">{{ product.name }}</h1>
+    <p class="product-detail__price">{{ product.price }}€</p>
     <p class="product-detail__description">
-      Lampara de techo LED de diseño moderno con doble rectangulo entrelazado, acabado en negro y luz blanca
-      y amarilla. Ideal para espacios modernos.
+      {{ product.description }}
     </p>
     <ul class="product-detail__benefits">
       <li class="product-detail__benefit">

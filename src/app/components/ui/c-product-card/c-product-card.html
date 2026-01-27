@@ -1,4 +1,4 @@
-<div class="product-card" (click)="onView()">
+<div class="product-card" [routerLink]="['/products', product.id]">
     <div class="product-image-container">
         <img [src]="imageUrl" [alt]="product.name" class="product-image"
             onerror="this.src='https://via.placeholder.com/300?text=Product'">

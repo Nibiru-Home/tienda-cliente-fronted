@@ -10,6 +10,6 @@ export const routes: Routes = [
   { path: 'products', component: ProductListComponent },
   { path: 'login', component: Login },
   { path: 'register', component: Register },
-  { path: 'product', component: ProductDetailPage },
+  { path: 'products/:id', component: ProductDetailPage },
   { path: '**', redirectTo: '' }
 ];
