@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
-import { ProductCardComponent } from '../../ui/product-card/product-card.component';
+import { ProductCardComponent } from '../../ui/product-card/product-card';
 
 @Component({
     selector: 'app-product-list',
