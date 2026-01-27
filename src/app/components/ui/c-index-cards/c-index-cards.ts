@@ -8,4 +8,4 @@ import { InspirationCardComponent } from '../c-inspiration-card/c-inspiration-ca
   templateUrl: './c-index-cards.html',
   styleUrl: './c-index-cards.scss'
 })
-export class IndexCardsComponent {}
+export class IndexCardsComponent { }

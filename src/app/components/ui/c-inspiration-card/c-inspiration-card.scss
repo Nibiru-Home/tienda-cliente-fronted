@@ -38,6 +38,15 @@
   gap: var(--cyb-sys-padding-5);
 }
 
+.inspiration-card__eyebrow {
+  margin: 0;
+  font-size: var(--cyb-sys-font-size-2);
+  font-weight: var(--cyb-sys-font-weight-6);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--cyb-sys-color-blue-gray-3);
+}
+
 .inspiration-card__title {
   margin: 0;
   font-size: var(--cyb-sys-font-size-5);
@@ -49,4 +58,46 @@
   font-size: var(--cyb-sys-font-size-3);
   line-height: 1.6;
   color: var(--cyb-sys-color-blue-gray-3);
+}
+
+.recommended-products-section {
+  padding: var(--cyb-sys-padding-11) var(--cyb-sys-padding-13);
+  background: var(--cyb-sys-color-white-9);
+}
+
+.recommended-products {
+  width: var(--cyb-sys-width-14);
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--cyb-sys-padding-9);
+}
+
+.recommended-products__title {
+  margin: var(--cyb-sys-margin-1);
+  text-align: center;
+  font-size: var(--cyb-sys-font-size-11);
+  font-weight: var(--cyb-sys-font-weight-6);
+  color: var(--cyb-sys-color-black-6);
+  font-family: var(--cyb-sys-font-family-body);
+  width: 100%;
+}
+
+.recommended-products__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--cyb-sys-padding-9);
+}
+
+@media (max-width: 980px) {
+  .recommended-products__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .recommended-products__grid {
+    grid-template-columns: 1fr;
+  }
 }
