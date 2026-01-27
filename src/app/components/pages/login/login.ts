@@ -23,27 +23,20 @@ export class Login {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         if (response.token) {
-          console.log('Login response:', response);
           const role = response.user?.role?.toUpperCase()?.trim();
-          console.log('Normalized User role:', role);
 
-          if (role === 'ADMIN' || role === 'ROLE_ADMIN' || role === 'USER' || role === 'CLIENT') {
+          if (role === 'ADMIN' || role === 'ROLE_ADMIN' || role === 'USER' || role === 'CLIENT' || role === 'CUSTOMER') {
             this.authService.saveToken(response.token);
             this.authService.saveUser(response.user.name);
             this.router.navigate(['/'], { queryParams: { skipIntro: 'true' } });
           } else {
-            console.warn('Access denied. Normalized role:', role);
             this.errorMessage = 'Acceso denegado: Rol no autorizado';
           }
         }
       },
       error: (error) => {
-        console.error('Login error', error);
         this.errorMessage = 'Credenciales inválidas o error de conexión';
       }
     });
-    console.log(this.email, this.password);
-    console.log(this.errorMessage);
-
   }
 }

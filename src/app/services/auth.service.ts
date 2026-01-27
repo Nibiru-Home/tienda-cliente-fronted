@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(@Inject(HTTPService) private httpService: HTTPService) { }
 
-  register(request: RegisterRequest): Observable<AuthResponse> {
-    return this.httpService.post<AuthResponse>(`${this.authRoute}/register`, request)
+  register(request: RegisterRequest): Observable<any> {
+    return this.httpService.post<any>(`${this.authRoute}/register`, request)
   }
 
   login(request: LoginRequest): Observable<AuthResponse> {

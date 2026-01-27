@@ -22,6 +22,10 @@ export class HTTPService {
         return this.http.post<T>(this.getFullUrl(url), body);
     }
 
+    postText(url: string, body: any): Observable<string> {
+        return this.http.post(this.getFullUrl(url), body, { responseType: 'text' });
+    }
+
     put<T>(url: string, body: any): Observable<T> {
         return this.http.put<T>(this.getFullUrl(url), body);
     }

@@ -36,8 +36,9 @@ export class Register {
                 this.router.navigate(['/login']);
             },
             error: (error) => {
-                console.error('Register error', error);
-                this.errorMessage = 'Error al registrar usuario. Inténtalo de nuevo.';
+                // Backend returns a JSON object with a 'message' field in the 'error' property of the HttpErrorResponse
+                const serverMessage = error.error?.message || error.message || 'Error desconocido';
+                this.errorMessage = `Error: ${serverMessage}`;
             }
         });
     }
