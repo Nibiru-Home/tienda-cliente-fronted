@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
 import { ProductCardComponent } from '../../ui/product-card/product-card';
+import { LayoutFooterComponent } from '../../layout/footer/footer';
 
 @Component({
     selector: 'app-product-list',
     standalone: true,
-    imports: [CommonModule, ProductCardComponent],
+    imports: [CommonModule, ProductCardComponent, LayoutFooterComponent],
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss']
 })

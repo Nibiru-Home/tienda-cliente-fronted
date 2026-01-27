@@ -4,6 +4,8 @@
     align-items: center;
     min-height: 100vh;
     background-color: var(--cyb-sys-color-white-7);
+    padding-top: 150px;
+    padding-bottom: 100px;
 }
 
 .form-group {
@@ -26,10 +28,9 @@
     color: var(--cyb-sys-color-black-5);
 
     .form-link {
-        color: var(--cyb-sys-color-blue-gray-5);
+        color: var(--cyb-sys-color-blue-gray-6);
         text-decoration: none;
         font-weight: var(--cyb-sys-font-weight-6);
-        cursor: pointer;
 
         &:hover {
             text-decoration: underline;

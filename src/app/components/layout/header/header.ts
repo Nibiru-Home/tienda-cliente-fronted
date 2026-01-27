@@ -1,17 +1,20 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { AuthService } from '../../../services/auth.service'; // Import AuthService
 
 @Component({
   selector: 'app-layout-header',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule], // Add CommonModule to imports
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class LayoutHeaderComponent {
   private readonly router = inject(Router);
+  readonly authService = inject(AuthService); // Inject AuthService and make it public for template
 
   constructor() {
     gsap.registerPlugin(ScrollTrigger);
@@ -25,6 +28,16 @@ export class LayoutHeaderComponent {
 
     navigatePromise.then(() => {
       this.scrollToBentoEnd();
+    });
+  }
+
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/']).then(() => {
+      window.scrollTo(0, 0); // Reset scroll position
+      setTimeout(() => {
+        ScrollTrigger.refresh(); // Force GSAP to recalculate positions
+      }, 100);
     });
   }
 

@@ -1,13 +1,13 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterLink],
   templateUrl: './login.html',
   styleUrls: ['./login.scss']
 })
@@ -27,13 +27,13 @@ export class Login {
           const role = response.user?.role?.toUpperCase()?.trim();
           console.log('Normalized User role:', role);
 
-          if (role === 'ADMIN' || role === 'ROLE_ADMIN') {
+          if (role === 'ADMIN' || role === 'ROLE_ADMIN' || role === 'USER' || role === 'CLIENT') {
             this.authService.saveToken(response.token);
             this.authService.saveUser(response.user.name);
-            this.router.navigate(['/admin']);
+            this.router.navigate(['/'], { queryParams: { skipIntro: 'true' } });
           } else {
             console.warn('Access denied. Normalized role:', role);
-            this.errorMessage = 'Acceso denegado: No tienes permisos de administrador';
+            this.errorMessage = 'Acceso denegado: Rol no autorizado';
           }
         }
       },

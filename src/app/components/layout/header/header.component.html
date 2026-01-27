@@ -4,7 +4,13 @@
     <nav class="layout-header__nav">
       <a class="layout-header__link" href="/" (click)="onHomeClick($event)">Inicio</a>
       <a class="layout-header__link" routerLink="/products">Productos</a>
-      <a class="layout-header__link" routerLink="/login">Login</a>
+      <a *ngIf="!authService.isAuthenticated()" class="layout-header__link" routerLink="/login">Login</a>
+      <div *ngIf="authService.isAuthenticated()" class="layout-header__user-container">
+        <span class="layout-header__link layout-header__username">{{ authService.getUserName() }}</span>
+        <button class="layout-header__logout-btn" (click)="logout()" title="Cerrar sesión">
+          <img src="/images/logout.png" alt="Logout" class="layout-header__logout-icon">
+        </button>
+      </div>
     </nav>
   </div>
 </header>
