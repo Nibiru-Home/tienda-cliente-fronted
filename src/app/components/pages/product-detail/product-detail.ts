@@ -23,6 +23,7 @@ export class ProductDetailPage implements OnInit {
     price: 0,
     stock: 0,
     image: '',
+    images: [],
     category: [],
     styles: []
   };

@@ -3,15 +3,10 @@
     <div class="product-detail__media">
       <img [src]="'/images/products/' + product.image" [alt]="product.name" />
     </div>
-    <div class="product-detail__thumbs">
-      <button class="product-detail__thumb" type="button" aria-label="Vista principal">
-        <img src="/images/products/7.jpg" alt="Lampara de techo en sala" />
-      </button>
-      <button class="product-detail__thumb" type="button" aria-label="Vista alternativa 1">
-        <img src="/images/products/11.jpg" alt="Lampara de techo en pasillo" />
-      </button>
-      <button class="product-detail__thumb" type="button" aria-label="Vista alternativa 2">
-        <img src="/images/products/12.jpg" alt="Lampara de techo en comedor" />
+    <div class="product-detail__thumbs" *ngIf="product.images && product.images.length > 0">
+      <button class="product-detail__thumb" type="button" *ngFor="let img of product.images; let i = index"
+        [attr.aria-label]="'Vista alternativa ' + (i + 1)" (click)="product.image = img">
+        <img [src]="'/images/products/' + img" [alt]="product.name" />
       </button>
     </div>
   </div>
