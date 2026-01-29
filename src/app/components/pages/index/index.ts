@@ -1,4 +1,5 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { BentoGalleryComponent } from '../../../transitions/features/components/bento-gallery/bento-gallery';
 import { IndexCardsComponent } from '../../ui/c-index-cards/c-index-cards';
 import { ArmarioGsapComponent } from '../../../transitions/features/components/armario-gsap/armario-gsap';
@@ -18,7 +19,8 @@ import { buildProductImageUrl } from '../../../utils/product-image';
     ArmarioGsapComponent,
     StoryCardComponent,
     LayoutFooterComponent,
-    InspirationCardComponent
+    InspirationCardComponent,
+    RouterLink
   ],
   templateUrl: './index.html',
   styleUrl: './index.scss'
