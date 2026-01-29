@@ -43,47 +43,19 @@
   </div>
 </section>
 
-<section class="product-recommended">
+<section class="product-recommended" *ngIf="relatedProducts.length">
   <h3 class="product-recommended__title">Productos relacionados</h3>
   <div class="product-recommended__grid">
-    <article class="product-recommended__card">
+    <article class="product-recommended__card" *ngFor="let related of relatedProducts">
       <div class="product-recommended__media">
-        <img src="/images/products/2.jpg" alt="Lampara de mesa Aura" />
+        <img [src]="'/images/products/' + related.image" [alt]="related.name" />
       </div>
       <div class="product-recommended__body">
-        <p class="product-recommended__eyebrow">Iluminacion</p>
-        <h4 class="product-recommended__name">Lampara de mesa Aura</h4>
-        <p class="product-recommended__price">24€</p>
-      </div>
-    </article>
-    <article class="product-recommended__card">
-      <div class="product-recommended__media">
-        <img src="/images/products/3.jpg" alt="Aplique mural Lino" />
-      </div>
-      <div class="product-recommended__body">
-        <p class="product-recommended__eyebrow">Iluminacion</p>
-        <h4 class="product-recommended__name">Aplique mural Lino</h4>
-        <p class="product-recommended__price">18€</p>
-      </div>
-    </article>
-    <article class="product-recommended__card">
-      <div class="product-recommended__media">
-        <img src="/images/products/8.jpg" alt="Set de jarrones Terra" />
-      </div>
-      <div class="product-recommended__body">
-        <p class="product-recommended__eyebrow">Decoracion</p>
-        <h4 class="product-recommended__name">Set de jarrones Terra</h4>
-        <p class="product-recommended__price">32€</p>
-      </div>
-    </article>
-    <article class="product-recommended__card">
-      <div class="product-recommended__media">
-        <img src="/images/products/9.jpg" alt="Textil Nube" />
-      </div>
-      <div class="product-recommended__body">
-        <p class="product-recommended__eyebrow">Textiles</p>
-        <h4 class="product-recommended__name">Textil Nube</h4>
-        <p class="product-recommended__price">29€</p>
+        <p class="product-recommended__eyebrow">
+          {{ related.category?.[0]?.name || 'Sin categoria' }}
+        </p>
+        <h4 class="product-recommended__name">{{ related.name }}</h4>
+        <p class="product-recommended__price">{{ related.price }}€</p>
       </div>
     </article>
   </div>

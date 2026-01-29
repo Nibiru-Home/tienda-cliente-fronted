@@ -2,7 +2,7 @@ import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
-import { Product } from '../../../models/product.model';
+import { Product, Category } from '../../../models/product.model';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -27,6 +27,8 @@ export class ProductDetailPage implements OnInit {
     category: [],
     styles: []
   };
+  relatedProducts: Product[] = [];
+  private allProducts: Product[] = [];
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
@@ -40,6 +42,8 @@ export class ProductDetailPage implements OnInit {
         console.error('ProductDetail: Invalid ID');
       }
     });
+
+    this.loadAllProducts();
   }
 
   fetchProduct(id: number) {
@@ -48,9 +52,51 @@ export class ProductDetailPage implements OnInit {
       next: (data) => {
         console.log('ProductDetail: Data received:', data);
         this.product = data;
-        this.cd.markForCheck(); // Ensure view update
+        this.updateRelatedProducts();
+        this.cd.markForCheck(); 
       },
-      error: (err) => console.error('Error fetching product:', err)
+      
     });
+  }
+
+  private loadAllProducts() {
+    this.productService.getAllProducts().subscribe({
+      next: (data) => {
+        this.allProducts = data ?? [];
+        this.updateRelatedProducts();
+        this.cd.markForCheck();
+      },
+      
+    });
+  }
+
+  private updateRelatedProducts() {
+   
+
+    const currentCategories = this.product.category ?? [];
+    if (!currentCategories.length) {
+      this.relatedProducts = [];
+      return;
+    }
+
+    const related = this.allProducts.filter((item) => {
+      if (item.id === this.product.id) {
+        return false;
+      }
+      return this.hasSharedCategory(item.category ?? [], currentCategories);
+    });
+
+    this.relatedProducts = [...related]
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 4);
+  }
+
+  private hasSharedCategory(categories: Category[], currentCategories: Category[]) {
+    return categories.some((category) =>
+      currentCategories.some((current) =>
+        (current.id && current.id === category.id) ||
+        (current.name && current.name === category.name)
+      )
+    );
   }
 }
