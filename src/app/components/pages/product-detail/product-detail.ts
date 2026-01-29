@@ -26,7 +26,8 @@ export class ProductDetailPage implements OnInit {
     image: '',
     images: [],
     category: [],
-    styles: []
+    styles: [],
+    rooms: []
   };
   relatedProducts: Product[] = [];
   private allProducts: Product[] = [];

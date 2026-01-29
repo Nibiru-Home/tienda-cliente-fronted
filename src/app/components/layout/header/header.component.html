@@ -28,5 +28,5 @@
   <app-header-menu menuId="header-categories" [open]="showCategories" [items]="productMenu"
     (select)="onProductMenuSelect($event)"></app-header-menu>
   <app-header-menu menuId="header-estancias" [open]="showEstancias" [items]="estanciasMenu"
-    (select)="onEstanciasMenuSelect()"></app-header-menu>
+    (select)="onEstanciasMenuSelect($event)"></app-header-menu>
 </header>

@@ -15,4 +15,5 @@ export interface Product {
     images: string[];
     category: Category[];
     styles: Style[];
+    rooms: string[];
 }

@@ -18,6 +18,7 @@ export class ProductListComponent implements OnInit {
     products: Product[] = [];
     private allProducts: Product[] = [];
     private selectedCategory = '';
+    private selectedRoom = '';
     filteredTotal = 0;
     currentPage = 1;
     pageSize = 12;
@@ -35,10 +36,12 @@ export class ProductListComponent implements OnInit {
             const pageParam = Number(params.get('page'));
             const sizeParam = Number(params.get('size'));
             const categoryParam = params.get('category');
+            const roomParam = params.get('room');
 
             this.currentPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
             this.pageSize = Number.isFinite(sizeParam) && sizeParam > 0 ? sizeParam : 12;
             this.selectedCategory = categoryParam?.trim() ?? '';
+            this.selectedRoom = roomParam?.trim() ?? '';
             this.applyPagination();
         });
 
@@ -63,7 +66,10 @@ export class ProductListComponent implements OnInit {
             return;
         }
 
-        const filteredProducts = this.filterProductsByCategory(this.allProducts, this.selectedCategory);
+        const filteredProducts = this.filterProductsByRoom(
+            this.filterProductsByCategory(this.allProducts, this.selectedCategory),
+            this.selectedRoom
+        );
         this.filteredTotal = filteredProducts.length;
 
         this.totalPages = Math.max(1, Math.ceil(filteredProducts.length / this.pageSize));
@@ -73,32 +79,74 @@ export class ProductListComponent implements OnInit {
     }
 
     get categoryTitle(): string {
-        return this.selectedCategory ? this.selectedCategory : 'Todos los productos';
+        if (this.selectedCategory) {
+            return this.selectedCategory;
+        }
+        if (this.selectedRoom) {
+            return this.getRoomLabel();
+        }
+        return 'Todos los productos';
     }
 
     get categoryChip(): string {
-        return this.selectedCategory ? 'Categoría' : 'Catálogo';
+        if (this.selectedCategory) {
+            return 'Categoría';
+        }
+        if (this.selectedRoom) {
+            return 'Estancia';
+        }
+        return 'Catálogo';
     }
 
     get categorySubtitle(): string {
         if (this.selectedCategory) {
             return `Descubre lo mejor en ${this.selectedCategory.toLowerCase()}.`;
         }
+        if (this.selectedRoom) {
+            return `Encuentra lo ideal para ${this.getRoomLabel().toLowerCase()}.`;
+        }
         return 'Explora toda nuestra selección de productos para tu hogar.';
     }
 
     private filterProductsByCategory(products: Product[], category: string): Product[] {
-        const normalizedFilter = this.normalizeCategory(category);
+        const normalizedFilter = this.normalizeFilter(category);
         if (!normalizedFilter) {
             return products;
         }
 
         return products.filter((product) =>
-            (product.category ?? []).some((cat) => this.normalizeCategory(cat?.name) === normalizedFilter)
+            (product.category ?? []).some((cat) => this.normalizeFilter(cat?.name) === normalizedFilter)
         );
     }
 
-    private normalizeCategory(value?: string | null): string {
+    private filterProductsByRoom(products: Product[], room: string): Product[] {
+        const normalizedFilter = this.normalizeFilter(room);
+        if (!normalizedFilter) {
+            return products;
+        }
+
+        return products.filter((product) =>
+            (product.rooms ?? []).some((roomName) => this.normalizeFilter(roomName) === normalizedFilter)
+        );
+    }
+
+    private getRoomLabel(): string {
+        const normalized = this.normalizeFilter(this.selectedRoom);
+        if (!normalized) {
+            return '';
+        }
+
+        const labels: Record<string, string> = {
+            cocina: 'Cocina',
+            dormitorio: 'Dormitorio',
+            salon: 'Salón',
+            bano: 'Baño'
+        };
+
+        return labels[normalized] ?? this.selectedRoom;
+    }
+
+    private normalizeFilter(value?: string | null): string {
         if (!value) {
             return '';
         }

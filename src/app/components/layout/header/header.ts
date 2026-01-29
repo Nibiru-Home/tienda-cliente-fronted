@@ -31,10 +31,10 @@ export class LayoutHeaderComponent {
     { label: 'Exterior', route: '/products', queryParams: { category: 'Exterior', page: 1 } }
   ];
   readonly estanciasMenu: HeaderMenuItem[] = [
-    { label: 'Cocina' },
-    { label: 'Dormitorio' },
-    { label: 'Salon' },
-    { label: 'Baño' }
+    { label: 'Cocina', route: '/products', queryParams: { room: 'cocina', page: 1 } },
+    { label: 'Dormitorio', route: '/products', queryParams: { room: 'dormitorio', page: 1 } },
+    { label: 'Salon', route: '/products', queryParams: { room: 'salon', page: 1 } },
+    { label: 'Baño', route: '/products', queryParams: { room: 'bano', page: 1 } }
   ];
 
   constructor() {
@@ -83,7 +83,10 @@ export class LayoutHeaderComponent {
     this.closeCategories();
   }
 
-  onEstanciasMenuSelect(): void {
+  onEstanciasMenuSelect(item: HeaderMenuItem): void {
+    if (item.route) {
+      this.router.navigate([item.route], { queryParams: item.queryParams ?? {} });
+    }
     this.closeCategories();
   }
 

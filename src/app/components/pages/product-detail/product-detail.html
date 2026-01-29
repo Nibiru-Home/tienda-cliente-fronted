@@ -4,10 +4,12 @@
       <img [src]="productImageUrl(product)" [alt]="product.name" />
     </div>
     <div class="product-detail__thumbs" [hidden]="displayImages.length === 0">
-      <button class="product-detail__thumb" type="button" *ngFor="let img of displayImages; let i = index"
-        [attr.aria-label]="'Vista alternativa ' + (i + 1)" (click)="product.image = img">
+      @for (img of displayImages; track $index) {
+      <button class="product-detail__thumb" type="button"
+        [attr.aria-label]="'Vista alternativa ' + ($index + 1)" (click)="product.image = img">
         <img [src]="productImageUrl(product, img)" [alt]="product.name" />
       </button>
+      }
     </div>
   </div>
   <div class="product-detail__content">
@@ -46,8 +48,8 @@
 <section class="product-recommended" [hidden]="relatedProducts.length === 0">
   <h3 class="product-recommended__title">Productos relacionados</h3>
   <div class="product-recommended__grid">
-    <article class="product-recommended__card" *ngFor="let related of relatedProducts"
-      [routerLink]="['/products', related.id]">
+    @for (related of relatedProducts; track related.id) {
+    <article class="product-recommended__card" [routerLink]="['/products', related.id]">
       <div class="product-recommended__media">
           <img [src]="productImageUrl(related)" [alt]="related.name" />
       </div>
@@ -59,5 +61,6 @@
         <p class="product-recommended__price">{{ related.price }}€</p>
       </div>
     </article>
+    }
   </div>
 </section>
