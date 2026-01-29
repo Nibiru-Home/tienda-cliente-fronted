@@ -1,20 +1,41 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Import CommonModule
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AuthService } from '../../../services/auth.service'; // Import AuthService
+import { HeaderMenuComponent, HeaderMenuItem } from '../../ui/c-header-menu/c-header-menu';
 
 @Component({
   selector: 'app-layout-header',
   standalone: true,
-  imports: [RouterLink, CommonModule], // Add CommonModule to imports
+  imports: [RouterLink, CommonModule, HeaderMenuComponent], // Add CommonModule to imports
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
 export class LayoutHeaderComponent {
   private readonly router = inject(Router);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   readonly authService = inject(AuthService); // Inject AuthService and make it public for template
+  showCategories = false;
+  showEstancias = false;
+  readonly productMenu: HeaderMenuItem[] = [
+    { label: 'Ver todos', route: '/products' },
+    { label: 'Muebles', route: '/products' },
+    { label: 'Iluminación', route: '/products' },
+    { label: 'Decoración', route: '/products' },
+    { label: 'Textiles', route: '/products' },
+    { label: 'Organizadores', route: '/products' },
+    { label: 'Aromas', route: '/products' },
+    { label: 'Bebes', route: '/products' },
+    { label: 'Exterior', route: '/products' }
+  ];
+  readonly estanciasMenu: HeaderMenuItem[] = [
+    { label: 'Cocina' },
+    { label: 'Dormitorio' },
+    { label: 'Salon' },
+    { label: 'Baño' }
+  ];
 
   constructor() {
     gsap.registerPlugin(ScrollTrigger);
@@ -22,6 +43,8 @@ export class LayoutHeaderComponent {
 
   onHomeClick(event: MouseEvent): void {
     event.preventDefault();
+    this.showCategories = false;
+    this.showEstancias = false;
 
     const navigatePromise =
       this.router.url === '/' ? Promise.resolve(true) : this.router.navigate(['/']);
@@ -32,6 +55,8 @@ export class LayoutHeaderComponent {
   }
 
   logout(): void {
+    this.showCategories = false;
+    this.showEstancias = false;
     this.authService.logout();
     this.router.navigate(['/']).then(() => {
       window.scrollTo(0, 0); // Reset scroll position
@@ -39,6 +64,49 @@ export class LayoutHeaderComponent {
         ScrollTrigger.refresh(); // Force GSAP to recalculate positions
       }, 100);
     });
+  }
+
+  onProductsClick(): void {
+    this.showEstancias = false;
+    this.showCategories = !this.showCategories;
+  }
+
+  closeCategories(): void {
+    this.showCategories = false;
+    this.showEstancias = false;
+  }
+
+  onProductMenuSelect(item: HeaderMenuItem): void {
+    if (item.route) {
+      this.router.navigate([item.route]);
+    }
+    this.closeCategories();
+  }
+
+  onEstanciasMenuSelect(): void {
+    this.closeCategories();
+  }
+
+  onEstanciasClick(): void {
+    this.showCategories = false;
+    this.showEstancias = !this.showEstancias;
+  }
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.showCategories && !this.showEstancias) {
+      return;
+    }
+
+    const target = event.target as Node | null;
+    if (!target) {
+      return;
+    }
+
+    if (!this.elementRef.nativeElement.contains(target)) {
+      this.showCategories = false;
+      this.showEstancias = false;
+    }
   }
 
   private scrollToBentoEnd(attempt = 0): void {

@@ -3,9 +3,19 @@
     <img src="/images/logoHeader.png" alt="Logo">
     <nav class="layout-header__nav">
       <a class="layout-header__link" href="/" (click)="onHomeClick($event)">Inicio</a>
-      <a class="layout-header__link" routerLink="/products">Productos</a>
-      <a *ngIf="!authService.isAuthenticated()" class="layout-header__link" routerLink="/login">Login</a>
-      <div *ngIf="authService.isAuthenticated()" class="layout-header__user-container">
+      <button class="layout-header__link layout-header__link--button" type="button"
+        (click)="onProductsClick()" [attr.aria-expanded]="showCategories" aria-controls="header-categories">
+        Productos
+      </button>
+      <button class="layout-header__link layout-header__link--button" type="button"
+        (click)="onEstanciasClick()" [attr.aria-expanded]="showEstancias" aria-controls="header-estancias">
+        Estancias
+      </button>
+      <a class="layout-header__link" routerLink="/login" (click)="closeCategories()"
+        [class.is-hidden]="authService.isAuthenticated()">
+        Login
+      </a>
+      <div class="layout-header__user-container" [class.is-hidden]="!authService.isAuthenticated()">
         <span class="layout-header__link layout-header__username">{{ authService.getUserName() }}</span>
         <button class="layout-header__logout-btn" (click)="logout()" title="Cerrar sesión">
           <img src="/images/logout.png" alt="Logout" class="layout-header__logout-icon">
@@ -13,4 +23,8 @@
       </div>
     </nav>
   </div>
+  <app-header-menu menuId="header-categories" [open]="showCategories" [items]="productMenu"
+    (select)="onProductMenuSelect($event)"></app-header-menu>
+  <app-header-menu menuId="header-estancias" [open]="showEstancias" [items]="estanciasMenu"
+    (select)="onEstanciasMenuSelect()"></app-header-menu>
 </header>

@@ -22,7 +22,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 1.5rem;
-  padding: 1.5rem 3rem;
+  padding: 0 3rem;
+  height: 100%;
 }
 
 .layout-header__inner img {
@@ -39,12 +40,33 @@
 .layout-header__nav {
   display: flex;
   gap: 1.25rem;
+  align-items: center;
+  margin-left: auto;
+  justify-content: flex-end;
+  text-align: right;
 }
 
 .layout-header__link {
   text-decoration: none;
   color: inherit;
   font-size: 1.1rem;
+}
+
+.layout-header__link--button {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  line-height: inherit;
+  text-decoration: none;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.is-hidden {
+  display: none !important;
 }
 
 @media (max-width: 720px) {
@@ -55,6 +77,8 @@
   .layout-header__nav {
     flex-wrap: wrap;
     justify-content: center;
+    margin-left: 0;
+    text-align: center;
   }
 }
 
