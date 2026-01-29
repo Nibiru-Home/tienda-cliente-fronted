@@ -33,7 +33,7 @@
                     [(ngModel)]="password" name="password" required>
             </div>
 
-            <div *ngIf="errorMessage" class="error-message">
+            <div [hidden]="!errorMessage" class="error-message">
                 {{ errorMessage }}
             </div>
 

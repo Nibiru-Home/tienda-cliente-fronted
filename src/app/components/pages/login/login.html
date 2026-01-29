@@ -12,7 +12,7 @@
                 <input type="password" id="password" class="form__input" placeholder="Ingresa tu contraseña"
                     [(ngModel)]="password" name="password">
             </div>
-            <div *ngIf="errorMessage" class="error-message">
+            <div [hidden]="!errorMessage" class="error-message">
                 {{ errorMessage }}
             </div>
             <button type="submit" class="form__button">Ingresar</button>

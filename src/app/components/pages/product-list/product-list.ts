@@ -18,6 +18,7 @@ export class ProductListComponent implements OnInit {
     products: Product[] = [];
     private allProducts: Product[] = [];
     private selectedCategory = '';
+    filteredTotal = 0;
     currentPage = 1;
     pageSize = 12;
     totalPages = 1;
@@ -58,10 +59,12 @@ export class ProductListComponent implements OnInit {
         if (!this.allProducts.length) {
             this.products = [];
             this.totalPages = 1;
+            this.filteredTotal = 0;
             return;
         }
 
         const filteredProducts = this.filterProductsByCategory(this.allProducts, this.selectedCategory);
+        this.filteredTotal = filteredProducts.length;
 
         this.totalPages = Math.max(1, Math.ceil(filteredProducts.length / this.pageSize));
         this.currentPage = Math.min(Math.max(this.currentPage, 1), this.totalPages);
@@ -71,6 +74,17 @@ export class ProductListComponent implements OnInit {
 
     get categoryTitle(): string {
         return this.selectedCategory ? this.selectedCategory : 'Todos los productos';
+    }
+
+    get categoryChip(): string {
+        return this.selectedCategory ? 'Categoría' : 'Catálogo';
+    }
+
+    get categorySubtitle(): string {
+        if (this.selectedCategory) {
+            return `Descubre lo mejor en ${this.selectedCategory.toLowerCase()}.`;
+        }
+        return 'Explora toda nuestra selección de productos para tu hogar.';
     }
 
     private filterProductsByCategory(products: Product[], category: string): Product[] {

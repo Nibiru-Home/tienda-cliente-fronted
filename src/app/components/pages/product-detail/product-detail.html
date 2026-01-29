@@ -3,7 +3,7 @@
     <div class="product-detail__media">
       <img [src]="productImageUrl(product)" [alt]="product.name" />
     </div>
-    <div class="product-detail__thumbs" *ngIf="displayImages.length > 0">
+    <div class="product-detail__thumbs" [hidden]="displayImages.length === 0">
       <button class="product-detail__thumb" type="button" *ngFor="let img of displayImages; let i = index"
         [attr.aria-label]="'Vista alternativa ' + (i + 1)" (click)="product.image = img">
         <img [src]="productImageUrl(product, img)" [alt]="product.name" />
@@ -43,7 +43,7 @@
   </div>
 </section>
 
-<section class="product-recommended" *ngIf="relatedProducts.length">
+<section class="product-recommended" [hidden]="relatedProducts.length === 0">
   <h3 class="product-recommended__title">Productos relacionados</h3>
   <div class="product-recommended__grid">
     <article class="product-recommended__card" *ngFor="let related of relatedProducts">
