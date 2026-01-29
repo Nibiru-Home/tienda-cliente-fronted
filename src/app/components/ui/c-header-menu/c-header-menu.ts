@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 export interface HeaderMenuItem {
   label: string;
   route?: string;
+  queryParams?: Record<string, string | number | boolean>;
 }
 
 @Component({

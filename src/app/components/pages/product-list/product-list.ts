@@ -17,6 +17,7 @@ import { LayoutFooterComponent } from '../../layout/footer/footer';
 export class ProductListComponent implements OnInit {
     products: Product[] = [];
     private allProducts: Product[] = [];
+    private selectedCategory = '';
     currentPage = 1;
     pageSize = 12;
     totalPages = 1;
@@ -32,9 +33,11 @@ export class ProductListComponent implements OnInit {
         this.route.queryParamMap.subscribe((params) => {
             const pageParam = Number(params.get('page'));
             const sizeParam = Number(params.get('size'));
+            const categoryParam = params.get('category');
 
             this.currentPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
             this.pageSize = Number.isFinite(sizeParam) && sizeParam > 0 ? sizeParam : 12;
+            this.selectedCategory = categoryParam?.trim() ?? '';
             this.applyPagination();
         });
 
@@ -58,9 +61,38 @@ export class ProductListComponent implements OnInit {
             return;
         }
 
-        this.totalPages = Math.max(1, Math.ceil(this.allProducts.length / this.pageSize));
+        const filteredProducts = this.filterProductsByCategory(this.allProducts, this.selectedCategory);
+
+        this.totalPages = Math.max(1, Math.ceil(filteredProducts.length / this.pageSize));
         this.currentPage = Math.min(Math.max(this.currentPage, 1), this.totalPages);
         const start = (this.currentPage - 1) * this.pageSize;
-        this.products = this.allProducts.slice(start, start + this.pageSize);
+        this.products = filteredProducts.slice(start, start + this.pageSize);
+    }
+
+    get categoryTitle(): string {
+        return this.selectedCategory ? this.selectedCategory : 'Todos los productos';
+    }
+
+    private filterProductsByCategory(products: Product[], category: string): Product[] {
+        const normalizedFilter = this.normalizeCategory(category);
+        if (!normalizedFilter) {
+            return products;
+        }
+
+        return products.filter((product) =>
+            (product.category ?? []).some((cat) => this.normalizeCategory(cat?.name) === normalizedFilter)
+        );
+    }
+
+    private normalizeCategory(value?: string | null): string {
+        if (!value) {
+            return '';
+        }
+
+        return value
+            .normalize('NFD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .trim()
+            .toLowerCase();
     }
 }

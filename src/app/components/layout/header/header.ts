@@ -21,14 +21,14 @@ export class LayoutHeaderComponent {
   showEstancias = false;
   readonly productMenu: HeaderMenuItem[] = [
     { label: 'Ver todos', route: '/products' },
-    { label: 'Muebles', route: '/products' },
-    { label: 'Iluminación', route: '/products' },
-    { label: 'Decoración', route: '/products' },
-    { label: 'Textiles', route: '/products' },
-    { label: 'Organizadores', route: '/products' },
-    { label: 'Aromas', route: '/products' },
-    { label: 'Bebes', route: '/products' },
-    { label: 'Exterior', route: '/products' }
+    { label: 'Muebles', route: '/products', queryParams: { category: 'Muebles', page: 1 } },
+    { label: 'Iluminación', route: '/products', queryParams: { category: 'Iluminacion', page: 1 } },
+    { label: 'Decoración', route: '/products', queryParams: { category: 'Decoracion', page: 1 } },
+    { label: 'Textiles', route: '/products', queryParams: { category: 'Textiles', page: 1 } },
+    { label: 'Organizadores', route: '/products', queryParams: { category: 'Organizadores', page: 1 } },
+    { label: 'Aromas', route: '/products', queryParams: { category: 'Aromas', page: 1 } },
+    { label: 'Bebes', route: '/products', queryParams: { category: 'Bebes', page: 1 } },
+    { label: 'Exterior', route: '/products', queryParams: { category: 'Exterior', page: 1 } }
   ];
   readonly estanciasMenu: HeaderMenuItem[] = [
     { label: 'Cocina' },
@@ -78,7 +78,7 @@ export class LayoutHeaderComponent {
 
   onProductMenuSelect(item: HeaderMenuItem): void {
     if (item.route) {
-      this.router.navigate([item.route]);
+      this.router.navigate([item.route], { queryParams: item.queryParams ?? {} });
     }
     this.closeCategories();
   }

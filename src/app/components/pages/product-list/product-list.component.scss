@@ -1,9 +1,27 @@
+.product-list {
+    padding: 120px 2rem 0;
+}
+
+.product-list__header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 2rem;
+}
+
+.product-list__title {
+    margin: 0;
+    font-size: 2.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--cyb-sys-color-black-6);
+    font-family: var(--cyb-sys-font-family-body);
+}
+
 .product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 4rem;
-    padding: 2rem;
-    padding-top: 120px;
 }
 
 .product-pagination {

@@ -1,7 +1,12 @@
-<div class="product-grid">
-    <app-product-card *ngFor="let product of products" [product]="product"
-        class="product-card-wrapper"></app-product-card>
-</div>
+<section class="product-list">
+    <div class="product-list__header">
+        <h2 class="product-list__title">{{ categoryTitle }}</h2>
+    </div>
+    <div class="product-grid">
+        <app-product-card *ngFor="let product of products" [product]="product"
+            class="product-card-wrapper"></app-product-card>
+    </div>
+</section>
 <div class="product-pagination" *ngIf="totalPages > 1">
     <c-pagination
         [currentPage]="currentPage"
