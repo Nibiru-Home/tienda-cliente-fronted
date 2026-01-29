@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { Product, Category } from '../../../models/product.model';
 import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/product-image';
@@ -8,7 +8,7 @@ import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/
 @Component({
   selector: 'app-product-detail-page',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './product-detail.html',
   styleUrl: './product-detail.scss'
 })

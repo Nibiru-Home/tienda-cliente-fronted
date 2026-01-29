@@ -46,7 +46,8 @@
 <section class="product-recommended" [hidden]="relatedProducts.length === 0">
   <h3 class="product-recommended__title">Productos relacionados</h3>
   <div class="product-recommended__grid">
-    <article class="product-recommended__card" *ngFor="let related of relatedProducts">
+    <article class="product-recommended__card" *ngFor="let related of relatedProducts"
+      [routerLink]="['/products', related.id]">
       <div class="product-recommended__media">
           <img [src]="productImageUrl(related)" [alt]="related.name" />
       </div>
