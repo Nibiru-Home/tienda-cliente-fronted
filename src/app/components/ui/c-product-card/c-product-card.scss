@@ -56,22 +56,3 @@
     font-weight: var(--cyb-sys-font-weight-7);
     color: var(--cyb-sys-color-black-2);
 }
-
-.add-to-cart-btn {
-    padding: var(--cyb-sys-padding-2);
-    background-color: var(--cyb-sys-color-light-blue-5);
-    border: 1px solid var(--cyb-sys-color-light-blue-5);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-
-
-    .cart-icon {
-        width: 20px;
-        height: 20px;
-    }
-}

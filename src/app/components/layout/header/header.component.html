@@ -1,6 +1,8 @@
 <header class="layout-header">
   <div class="layout-header__inner">
-    <img src="/images/logoHeader.png" alt="Logo">
+    <a class="layout-header__logo" href="/" (click)="onHomeClick($event)">
+      <img src="/images/logoHeader.png" alt="Logo">
+    </a>
     <nav class="layout-header__nav">
       <a class="layout-header__link" href="/" (click)="onHomeClick($event)">Inicio</a>
       <button class="layout-header__link layout-header__link--button" type="button"

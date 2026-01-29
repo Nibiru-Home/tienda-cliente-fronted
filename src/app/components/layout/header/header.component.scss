@@ -31,6 +31,12 @@
   width: auto;
 }
 
+.layout-header__logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
 .layout-header__brand {
   font-size: 1.35rem;
   letter-spacing: 0.08em;
