@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { Product, Category } from '../../../models/product.model';
+import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/product-image';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -29,6 +30,23 @@ export class ProductDetailPage implements OnInit {
   };
   relatedProducts: Product[] = [];
   private allProducts: Product[] = [];
+
+  get displayImages(): string[] {
+    if (this.product?.images?.length) {
+      return this.product.images;
+    }
+
+    if (this.product?.id) {
+      return buildProductImageVariants(this.product.id);
+    }
+
+    return [];
+  }
+
+  productImageUrl(product: Product, image?: string): string {
+    const fallbackImage = image ?? product?.image ?? (product?.id ? buildProductImageVariants(product.id)[0] : undefined);
+    return buildProductImageUrl(product?.name, fallbackImage, product?.id);
+  }
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {

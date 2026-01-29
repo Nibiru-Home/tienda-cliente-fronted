@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Product } from '../../../models/product.model';
+import { buildProductImageUrl } from '../../../utils/product-image';
 
 @Component({
     selector: 'app-product-card',
@@ -16,16 +17,8 @@ export class ProductCardComponent {
     @Output() edit = new EventEmitter<number>();
     @Output() delete = new EventEmitter<number>();
 
-    private readonly baseUrl = 'images/products/';
-
     get imageUrl(): string {
-        if (!this.product.image) {
-            return 'assets/images/error-404.svg';
-        }
-        if (this.product.image.startsWith('http') || this.product.image.startsWith('/') || this.product.image.startsWith('assets')) {
-            return this.product.image;
-        }
-        return `${this.baseUrl}${this.product.image}`;
+        return buildProductImageUrl(this.product?.name, this.product?.image, this.product?.id);
     }
 
     onView() {

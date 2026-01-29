@@ -7,6 +7,7 @@ import { LayoutFooterComponent } from '../../layout/footer/footer';
 import { InspirationCardComponent } from '../../ui/c-inspiration-card/c-inspiration-card';
 import { ProductService } from '../../../services/product.service';
 import { Product } from '../../../models/product.model';
+import { buildProductImageUrl } from '../../../utils/product-image';
 
 @Component({
   selector: 'app-index-page',
@@ -26,6 +27,10 @@ export class IndexPage implements OnInit {
   productService = inject(ProductService);
   cd = inject(ChangeDetectorRef);
   products: Product[] = [];
+
+  productImageUrl(product: Product): string {
+    return buildProductImageUrl(product?.name, product?.image, product?.id);
+  }
 
   ngOnInit() {
     this.productService.getAllProducts().subscribe({

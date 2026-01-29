@@ -1,12 +1,12 @@
 <section class="product-detail">
   <div class="product-detail__gallery">
     <div class="product-detail__media">
-      <img [src]="'/images/products/' + product.image" [alt]="product.name" />
+      <img [src]="productImageUrl(product)" [alt]="product.name" />
     </div>
-    <div class="product-detail__thumbs" *ngIf="product.images && product.images.length > 0">
-      <button class="product-detail__thumb" type="button" *ngFor="let img of product.images; let i = index"
+    <div class="product-detail__thumbs" *ngIf="displayImages.length > 0">
+      <button class="product-detail__thumb" type="button" *ngFor="let img of displayImages; let i = index"
         [attr.aria-label]="'Vista alternativa ' + (i + 1)" (click)="product.image = img">
-        <img [src]="'/images/products/' + img" [alt]="product.name" />
+        <img [src]="productImageUrl(product, img)" [alt]="product.name" />
       </button>
     </div>
   </div>
@@ -48,7 +48,7 @@
   <div class="product-recommended__grid">
     <article class="product-recommended__card" *ngFor="let related of relatedProducts">
       <div class="product-recommended__media">
-        <img [src]="'/images/products/' + related.image" [alt]="related.name" />
+          <img [src]="productImageUrl(related)" [alt]="related.name" />
       </div>
       <div class="product-recommended__body">
         <p class="product-recommended__eyebrow">
