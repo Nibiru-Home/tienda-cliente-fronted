@@ -1,25 +1,28 @@
-import { Component, ElementRef, HostListener, inject } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { AuthService } from '../../../services/auth.service'; // Import AuthService
+import { AuthService } from '../../../services/auth.service';
+import { CategoryService } from '../../../services/category.service';
 import { HeaderMenuComponent, HeaderMenuItem } from '../../ui/c-header-menu/c-header-menu';
 
 @Component({
   selector: 'app-layout-header',
   standalone: true,
-  imports: [RouterLink, CommonModule, HeaderMenuComponent], // Add CommonModule to imports
+  imports: [RouterLink, CommonModule, HeaderMenuComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class LayoutHeaderComponent {
+export class LayoutHeaderComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
-  readonly authService = inject(AuthService); // Inject AuthService and make it public for template
+  private readonly categoryService = inject(CategoryService);
+  readonly authService = inject(AuthService);
   showCategories = false;
   showEstancias = false;
-  readonly productMenu: HeaderMenuItem[] = [
+
+  private readonly fallbackProductMenu: HeaderMenuItem[] = [
     { label: 'Ver todos', route: '/products' },
     { label: 'Muebles', route: '/products', queryParams: { category: 'Muebles', page: 1 } },
     { label: 'Iluminación', route: '/products', queryParams: { category: 'Iluminacion', page: 1 } },
@@ -30,6 +33,7 @@ export class LayoutHeaderComponent {
     { label: 'Bebes', route: '/products', queryParams: { category: 'Bebes', page: 1 } },
     { label: 'Exterior', route: '/products', queryParams: { category: 'Exterior', page: 1 } }
   ];
+  productMenu: HeaderMenuItem[] = [...this.fallbackProductMenu];
   readonly estanciasMenu: HeaderMenuItem[] = [
     { label: 'Cocina', route: '/products', queryParams: { room: 'cocina', page: 1 } },
     { label: 'Dormitorio', route: '/products', queryParams: { room: 'dormitorio', page: 1 } },
@@ -39,6 +43,10 @@ export class LayoutHeaderComponent {
 
   constructor() {
     gsap.registerPlugin(ScrollTrigger);
+  }
+
+  ngOnInit(): void {
+    this.loadCategories();
   }
 
   onHomeClick(event: MouseEvent): void {
@@ -59,9 +67,9 @@ export class LayoutHeaderComponent {
     this.showEstancias = false;
     this.authService.logout();
     this.router.navigate(['/']).then(() => {
-      window.scrollTo(0, 0); // Reset scroll position
+      window.scrollTo(0, 0);
       setTimeout(() => {
-        ScrollTrigger.refresh(); // Force GSAP to recalculate positions
+        ScrollTrigger.refresh();
       }, 100);
     });
   }
@@ -110,6 +118,30 @@ export class LayoutHeaderComponent {
       this.showCategories = false;
       this.showEstancias = false;
     }
+  }
+
+  private loadCategories(): void {
+    this.categoryService.getAllCategories().subscribe({
+      next: (categories) => {
+        const items = (categories ?? [])
+          .map((category) => ({
+            name: (category?.name ?? '').trim()
+          }))
+          .filter((category) => category.name);
+
+        this.productMenu = [
+          { label: 'Ver todos', route: '/products' },
+          ...items.map((category) => ({
+            label: category.name,
+            route: '/products',
+            queryParams: { category: category.name, page: 1 }
+          }))
+        ];
+      },
+      error: (err) => {
+        console.error('Error fetching categories', err);
+      }
+    });
   }
 
   private scrollToBentoEnd(attempt = 0): void {

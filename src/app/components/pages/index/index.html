@@ -3,54 +3,14 @@
 <div class="section" id="gallery-end">
   <p class="categories-title">Explora nuestras categorías</p>
   <div class="categories-nav">
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Muebles', page: 1 }">
+    @for (category of categoryCards; track category.name) {
+    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: category.name, page: 1 }">
       <div class="category-img">
-        <img src="/images/gsap/imagencentro.jpeg" alt="Muebles" />
+        <img [src]="category.image" [alt]="category.name" />
       </div>
-      <span class="category-label">Muebles</span>
+      <span class="category-label">{{ category.name }}</span>
     </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Iluminación', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/iluminacionBoton.jpeg" alt="Iluminación" />
-      </div>
-      <span class="category-label">Iluminación</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Decoración', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/decoracionBoton.jpeg" alt="Decoración" />
-      </div>
-      <span class="category-label">Decoración</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Textiles', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/textil.png" alt="Textiles" />
-      </div>
-      <span class="category-label">Textiles</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Organizadores', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/organizadores.png" alt="Organizadores" />
-      </div>
-      <span class="category-label">Organizadores</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Aromas', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/aromas.png" alt="Aromas" />
-      </div>
-      <span class="category-label">Aromas</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Bebes', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/bebes.png" alt="Bebes" />
-      </div>
-      <span class="category-label">Bebes</span>
-    </a>
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: 'Exterior', page: 1 }">
-      <div class="category-img">
-        <img src="/images/gsap/exterior.png" alt="Exterior" />
-      </div>
-      <span class="category-label">Exterior</span>
-    </a>
+    }
   </div>
   <app-story-card />
   <app-index-cards />
