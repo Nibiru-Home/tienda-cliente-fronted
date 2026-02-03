@@ -1,16 +1,17 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from '../../../models/product.model';
 import { ProductService } from '../../../services/product.service';
 import { ProductCardComponent } from '../../ui/c-product-card/c-product-card';
 import { CPagination } from '../../ui/c-pagination/c-pagination';
 import { LayoutFooterComponent } from '../../layout/footer/footer';
+import { RoomFiltersComponent, FilterState } from '../../ui/room-filters/room-filters';
 
 @Component({
     selector: 'app-product-list',
     standalone: true,
-    imports: [CommonModule, ProductCardComponent, CPagination, LayoutFooterComponent],
+    imports: [CommonModule, ProductCardComponent, CPagination, LayoutFooterComponent, RoomFiltersComponent],
     templateUrl: './product-list.component.html',
     styleUrls: ['./product-list.component.scss']
 })
@@ -18,17 +19,23 @@ export class ProductListComponent implements OnInit {
     products: Product[] = [];
     private allProducts: Product[] = [];
     private selectedCategory = '';
-    private selectedRoom = '';
+    selectedRoom = '';
     filteredTotal = 0;
     currentPage = 1;
     pageSize = 12;
     totalPages = 1;
     paginationRoute = '/products';
 
+    // Filters
+    selectedStyle = '';
+    selectedBudget = '';
+    selectedFilterCategory = '';
+
     constructor(
         private productService: ProductService,
         private cd: ChangeDetectorRef,
-        private route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngOnInit(): void {
@@ -38,10 +45,24 @@ export class ProductListComponent implements OnInit {
             const categoryParam = params.get('category');
             const roomParam = params.get('room');
 
+            // New Filter Params
+            const styleParam = params.get('style');
+            const budgetParam = params.get('budget');
+            const filterCategoryParam = params.get('filterCategory');
+
             this.currentPage = Number.isFinite(pageParam) && pageParam > 0 ? pageParam : 1;
             this.pageSize = Number.isFinite(sizeParam) && sizeParam > 0 ? sizeParam : 12;
             this.selectedCategory = categoryParam?.trim() ?? '';
             this.selectedRoom = roomParam?.trim() ?? '';
+
+            // Initialize new filters
+            this.selectedStyle = styleParam?.trim() ?? '';
+            this.selectedBudget = budgetParam?.trim() ?? '';
+            this.selectedFilterCategory = filterCategoryParam?.trim() ?? '';
+
+            // We don't reset filters here anymore because we want them to persist from URL
+            // this.resetFilters(); 
+
             this.applyPagination();
         });
 
@@ -58,6 +79,34 @@ export class ProductListComponent implements OnInit {
         });
     }
 
+    onFilterChange(filters: FilterState) {
+        this.selectedStyle = filters.style;
+        this.selectedBudget = filters.budget;
+        this.selectedFilterCategory = filters.category;
+
+        // Update URL with new filters, resetting page to 1
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: {
+                style: this.selectedStyle || null,
+                budget: this.selectedBudget || null,
+                filterCategory: this.selectedFilterCategory || null,
+                page: 1
+            },
+            queryParamsHandling: 'merge'
+        });
+    }
+
+    get shouldShowFilters(): boolean {
+        return !!this.selectedRoom;
+    }
+
+    private resetFilters() {
+        this.selectedStyle = '';
+        this.selectedBudget = '';
+        this.selectedFilterCategory = '';
+    }
+
     private applyPagination(): void {
         if (!this.allProducts.length) {
             this.products = [];
@@ -66,16 +115,43 @@ export class ProductListComponent implements OnInit {
             return;
         }
 
-        const filteredProducts = this.filterProductsByRoom(
-            this.filterProductsByCategory(this.allProducts, this.selectedCategory),
-            this.selectedRoom
-        );
-        this.filteredTotal = filteredProducts.length;
+        // Apply Room Filter first
+        let filtered = this.filterProductsByRoom(this.allProducts, this.selectedRoom);
 
-        this.totalPages = Math.max(1, Math.ceil(filteredProducts.length / this.pageSize));
+        // Apply Main Category Filter (from URL)
+        filtered = this.filterProductsByCategory(filtered, this.selectedCategory);
+
+        // Apply Extra Filters (Style, Budget, Category)
+        if (this.selectedStyle) {
+            const normalizedStyle = this.normalizeFilter(this.selectedStyle);
+            filtered = filtered.filter(p => (p.styles ?? []).some(s => this.normalizeFilter(s) === normalizedStyle));
+        }
+
+        if (this.selectedFilterCategory) {
+            const normalizedCat = this.normalizeFilter(this.selectedFilterCategory);
+            filtered = filtered.filter(p => (p.category ?? []).some(c => this.normalizeFilter(c.name) === normalizedCat));
+        }
+
+        if (this.selectedBudget) {
+            filtered = filtered.filter(p => this.checkBudget(p.price, this.selectedBudget));
+        }
+
+        this.filteredTotal = filtered.length;
+
+        this.totalPages = Math.max(1, Math.ceil(filtered.length / this.pageSize));
         this.currentPage = Math.min(Math.max(this.currentPage, 1), this.totalPages);
         const start = (this.currentPage - 1) * this.pageSize;
-        this.products = filteredProducts.slice(start, start + this.pageSize);
+        this.products = filtered.slice(start, start + this.pageSize);
+    }
+
+    private checkBudget(price: number, budgetType: string): boolean {
+        switch (budgetType) {
+            case 'low': return price < 30;
+            case 'medium': return price >= 30 && price <= 60;
+            case 'high': return price > 60 && price <= 100;
+            case 'premium': return price > 100;
+            default: return true;
+        }
     }
 
     get categoryTitle(): string {

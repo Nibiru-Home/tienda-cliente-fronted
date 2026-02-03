@@ -1,0 +1,123 @@
+.filters-container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    /* Align left or center as preferred, usually left for pills */
+    padding: 1rem 0;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 20;
+    /* Ensure above product grid */
+}
+
+.filter-group {
+    position: relative;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: white;
+    border: 1px solid #E5E7EB;
+    border-radius: 9999px;
+    /* Full pill shape */
+    color: #374151;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.filter-pill:hover {
+    background: #F9FAFB;
+    border-color: #D1D5DB;
+}
+
+/* Active state (filter selected) */
+.filter-pill.active {
+    background: #F3F4F6;
+    border-color: #9CA3AF;
+    color: #111827;
+}
+
+/* Open state */
+.filter-pill.open {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 2px #BFDBFE;
+}
+
+.chevron {
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+}
+
+.filter-pill.open .chevron {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    border: 1px solid #E5E7EB;
+    min-width: 200px;
+    z-index: 50;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    animation: fadeIn 0.15s ease-out;
+}
+
+.dropdown-item {
+    text-align: left;
+    padding: 0.5rem 0.75rem;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: #4B5563;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.dropdown-item:hover {
+    background: #F3F4F6;
+    color: #111827;
+}
+
+.dropdown-item.selected {
+    background: #EFF6FF;
+    color: #2563EB;
+    font-weight: 500;
+}
+
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    /* Below dropdown (50) and pill (parent z-index 20 + context) but above page content */
+    background: transparent;
+    cursor: default;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -12,6 +12,11 @@
             </div>
         </div>
     </header>
+
+    @if (shouldShowFilters) {
+        <app-room-filters (filterChange)="onFilterChange($event)"></app-room-filters>
+    }
+
     <div class="product-grid">
         @for (product of products; track product.id) {
         <app-product-card [product]="product" class="product-card-wrapper"></app-product-card>
