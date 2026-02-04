@@ -35,6 +35,10 @@ export class HTTPService {
         return this.http.delete<T>(this.getFullUrl(url));
     }
 
+    buildUrl(url: string): string {
+        return this.getFullUrl(url);
+    }
+
     private getFullUrl(url: string): string {
         if (url.startsWith('http')) {
             return url;

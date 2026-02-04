@@ -1,0 +1,77 @@
+<div class="chat-widget" [class.is-open]="isOpen">
+  <button
+    class="chat-widget__fab"
+    type="button"
+    (click)="toggleOpen()"
+    [attr.aria-expanded]="isOpen"
+    aria-label="Abrir chat"
+  >
+    <span class="chat-widget__fab-icon" aria-hidden="true">?</span>
+    <span class="chat-widget__fab-text">Chat</span>
+  </button>
+
+  <section
+    class="chat-widget__panel"
+    role="dialog"
+    [attr.aria-hidden]="!isOpen"
+    aria-label="Asistente de Nibiru"
+  >
+    <header class="chat-widget__header">
+      <div class="chat-widget__brand">
+        <span class="chat-widget__badge">Nibiru</span>
+        <div>
+          <p class="chat-widget__title">Asistente</p>
+          <p class="chat-widget__subtitle">Ideas con estilo</p>
+        </div>
+      </div>
+      <div class="chat-widget__actions">
+        <button class="chat-widget__action" type="button" (click)="clear()">
+          Limpiar
+        </button>
+        <button class="chat-widget__close" type="button" (click)="close()" aria-label="Cerrar chat">
+          x
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-widget__messages" #scrollContainer role="log" aria-live="polite">
+      <div
+        class="chat-widget__bubble"
+        *ngFor="let message of messages"
+        [class.is-user]="message.role === 'user'"
+      >
+        <p class="chat-widget__text">{{ message.content }}</p>
+      </div>
+    </div>
+
+    <div class="chat-widget__options" *ngIf="options.length">
+      <button
+        class="chat-widget__option"
+        type="button"
+        *ngFor="let option of options"
+        (click)="onOptionSelect(option)"
+      >
+        {{ option.label }}
+      </button>
+    </div>
+
+    <form class="chat-widget__composer" (submit)="onSubmit($event)">
+      <textarea
+        class="chat-widget__input"
+        name="message"
+        rows="2"
+        [placeholder]="inputPlaceholder"
+        [(ngModel)]="input"
+        (keydown)="onInputKeydown($event)"
+        [disabled]="!isInputEnabled"
+      ></textarea>
+      <button
+        class="chat-widget__send"
+        type="submit"
+        [disabled]="!isInputEnabled || !input.trim()"
+      >
+        Enviar
+      </button>
+    </form>
+  </section>
+</div>
