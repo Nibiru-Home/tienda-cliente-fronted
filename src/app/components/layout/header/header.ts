@@ -160,9 +160,15 @@ export class LayoutHeaderComponent implements OnInit {
       return;
     }
 
+
     const fallback = document.querySelector('#gallery-end');
     if (fallback) {
       fallback.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  getUserInitial(): string {
+    const name = this.authService.getUserName();
+    return name ? name.charAt(0).toUpperCase() : '';
   }
 }

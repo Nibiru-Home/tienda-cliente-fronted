@@ -8,6 +8,9 @@
         <p class="product-description">{{ product.description }}</p>
         <div class="product-footer">
             <span class="product-price">{{ product.price | number:'1.2-2' }} €</span>
+            <button class="add-to-cart-btn" (click)="$event.stopPropagation(); $event.preventDefault()">
+                <img src="/icons/add-to-cart.png" alt="Añadir al carrito">
+            </button>
         </div>
     </div>
 </div>
