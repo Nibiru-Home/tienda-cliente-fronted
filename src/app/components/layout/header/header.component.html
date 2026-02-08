@@ -20,6 +20,9 @@
       <a class="layout-header__cart-btn" routerLink="/cart" title="Carrito de compras"
         [class.is-hidden]="!authService.isAuthenticated()">
         <img src="/icons/carro-de-la-compra.png" alt="Carrito" class="layout-header__cart-icon">
+        <span class="layout-header__cart-badge" *ngIf="(cartItemsCount$ | async) as cartCount">
+          {{ cartCount > 99 ? '99+' : cartCount }}
+        </span>
       </a>
       <div class="layout-header__user-container" [class.is-hidden]="!authService.isAuthenticated()">
         <div class="layout-header__user-chip">

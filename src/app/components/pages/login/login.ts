@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { CartService } from '../../../services/cart.service';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,8 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class Login {
   authService = inject(AuthService);
+  private cartService = inject(CartService);
+  private route = inject(ActivatedRoute);
   router = inject(Router);
 
   email = '';
@@ -23,20 +26,28 @@ export class Login {
     this.authService.login({ email: this.email, password: this.password }).subscribe({
       next: (response) => {
         if (response.token) {
-          const role = response.user?.role?.toUpperCase()?.trim();
+          this.authService.saveToken(response.token);
+          this.authService.saveUser(response.user.name);
+          this.authService.saveUserId(response.user.id);
+          this.cartService.loadCart();
 
-          if (role === 'ADMIN' || role === 'ROLE_ADMIN' || role === 'USER' || role === 'CLIENT' || role === 'CUSTOMER') {
-            this.authService.saveToken(response.token);
-            this.authService.saveUser(response.user.name);
-            this.router.navigate(['/'], { queryParams: { skipIntro: 'true' } });
+          const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+          if (this.isValidReturnUrl(returnUrl)) {
+            this.router.navigateByUrl(returnUrl);
           } else {
-            this.errorMessage = 'Acceso denegado: Rol no autorizado';
+            this.router.navigate(['/'], { queryParams: { skipIntro: 'true' } });
           }
+        } else {
+          this.errorMessage = 'Acceso denegado: Rol no autorizado';
         }
       },
-      error: (error) => {
+      error: (error: any) => {
         this.errorMessage = 'Credenciales inválidas o error de conexión';
       }
     });
+  }
+
+  private isValidReturnUrl(url: string | null): url is string {
+    return !!url && url.startsWith('/') && !url.startsWith('/login');
   }
 }

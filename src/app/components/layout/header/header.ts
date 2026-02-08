@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AuthService } from '../../../services/auth.service';
+import { CartService } from '../../../services/cart.service';
 import { CategoryService } from '../../../services/category.service';
 import { HeaderMenuComponent, HeaderMenuItem } from '../../ui/c-header-menu/c-header-menu';
 
@@ -18,7 +19,9 @@ export class LayoutHeaderComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly categoryService = inject(CategoryService);
+  private readonly cartService = inject(CartService);
   readonly authService = inject(AuthService);
+  readonly cartItemsCount$ = this.cartService.getTotalItems();
   showCategories = false;
   showEstancias = false;
 

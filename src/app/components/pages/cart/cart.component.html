@@ -1,0 +1,71 @@
+<div class="cart-page">
+    <div class="cart-grid">
+        <!-- Left Column: Cart Items -->
+        <div class="cart-items-section">
+            <h1 class="page-title">Carrito</h1>
+
+            <div class="cart-item" *ngFor="let item of cartItems$ | async">
+                <div class="item-image">
+                    <img [src]="getImageUrl(item)" [alt]="item.product.name">
+                </div>
+
+                <div class="item-details">
+                    <div class="item-header">
+                        <h3 class="item-name">{{ item.product.name }}</h3>
+                        <span class="item-price">{{ item.product.price }}€</span>
+                    </div>
+                    <p class="item-description">{{ item.product.description }}</p>
+
+                    <div class="item-controls">
+                        <div class="quantity-selector">
+                            <button class="qty-btn" (click)="decreaseQuantity(item)">-</button>
+                            <span class="qty-value">{{ item.quantity }}</span>
+                            <button class="qty-btn" (click)="increaseQuantity(item)">+</button>
+                        </div>
+                        <button class="delete-btn" title="Eliminar" (click)="removeItem(item.id)">
+                            <!-- Trash Icon SVG -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <polyline points="3 6 5 6 21 6"></polyline>
+                                <path
+                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Divider Line (Visual separation) -->
+        <div class="vertical-divider"></div>
+
+        <!-- Right Column: Summary -->
+        <div class="cart-summary-section">
+            <h2 class="summary-title">Resumen</h2>
+
+            <div class="summary-row">
+                <span>Productos</span>
+                <span>{{ totalAmount$ | async }}€</span>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-row total-row">
+                <span>Total (con iva)</span>
+                <span>{{ totalAmount$ | async }}€</span>
+            </div>
+
+            <button class="continue-btn">
+                Continuar
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="arrow-icon">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+            </button>
+        </div>
+    </div>
+</div>

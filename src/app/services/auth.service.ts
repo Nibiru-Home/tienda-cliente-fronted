@@ -28,6 +28,10 @@ export class AuthService {
     localStorage.setItem('auth_name', name)
   }
 
+  saveUserId(id: string): void {
+    localStorage.setItem('auth_id', id)
+  }
+
   getToken(): string | null {
     return localStorage.getItem('auth_token')
   }
@@ -36,13 +40,18 @@ export class AuthService {
     return localStorage.getItem('auth_name')
   }
 
+  getUserId(): string | null {
+    return localStorage.getItem('auth_id')
+  }
+
   logout(): void {
     localStorage.removeItem('auth_token')
     localStorage.removeItem('auth_name')
+    localStorage.removeItem('auth_id')
   }
 
   isAuthenticated(): boolean {
-    return this.getToken() !== null
+    return this.getToken() !== null && this.getUserId() !== null
   }
 
   getUsersCount(): Observable<number> {

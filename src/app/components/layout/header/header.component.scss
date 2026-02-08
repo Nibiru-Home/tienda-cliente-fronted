@@ -89,6 +89,7 @@
 }
 
 .layout-header__cart-btn {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,6 +105,23 @@
     width: auto;
     transform: scaleX(-1);
   }
+}
+
+.layout-header__cart-badge {
+  position: absolute;
+  top: 2px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background-color: var(--cyb-sys-color-blue-gray-2);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  line-height: 18px;
+  text-align: center;
+  box-sizing: border-box;
 }
 
 .layout-header__user-container {

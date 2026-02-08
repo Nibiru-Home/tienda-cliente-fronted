@@ -2,6 +2,7 @@ import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
+import { CartService } from '../../../services/cart.service';
 import { Product, Category } from '../../../models/product.model';
 import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/product-image';
 
@@ -15,6 +16,7 @@ import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/
 export class ProductDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
   private productService = inject(ProductService);
+  private cartService = inject(CartService);
   private cd = inject(ChangeDetectorRef);
 
   product: Product = {
@@ -117,5 +119,13 @@ export class ProductDetailPage implements OnInit {
         (current.name && current.name === category.name)
       )
     );
+  }
+
+  onAddToCart(): void {
+    if (!this.product?.id) {
+      return;
+    }
+
+    this.cartService.addToCart(this.product);
   }
 }
