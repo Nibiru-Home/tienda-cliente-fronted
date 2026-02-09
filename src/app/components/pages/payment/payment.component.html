@@ -1,0 +1,103 @@
+<div class="payment-page">
+    <ng-container *ngIf="!paymentSuccessful; else successState">
+        <div class="payment-layout">
+            <section class="payment-form-section">
+                <h1 class="payment-title">Pago seguro</h1>
+                <p class="payment-subtitle">Introduce tus datos del banco para completar la compra.</p>
+
+                <div class="payment-alert payment-alert--error" *ngIf="errorMessage">
+                    {{ errorMessage }}
+                </div>
+
+                <div class="payment-alert payment-alert--info" *ngIf="(cartItemsCount$ | async) === 0">
+                    Tu carrito esta vacio. Anade productos para poder pagar.
+                </div>
+
+                <form class="payment-form" #paymentForm="ngForm" (ngSubmit)="pay()">
+                    <h2 class="section-title">Tarjeta</h2>
+                    <div class="form-grid">
+                        <label class="field">
+                            Titular
+                            <input
+                                type="text"
+                                name="cardHolder"
+                                [(ngModel)]="form.cardHolder"
+                                required />
+                        </label>
+
+                        <label class="field field--full">
+                            Numero tarjeta
+                            <input
+                                type="text"
+                                name="cardNumber"
+                                [ngModel]="form.cardNumber"
+                                (ngModelChange)="onCardNumberInput($event)"
+                                inputmode="numeric"
+                                maxlength="19"
+                                required />
+                        </label>
+
+                        <label class="field">
+                            Caducidad
+                            <input
+                                type="month"
+                                name="expirationMonth"
+                                [(ngModel)]="form.expirationMonth"
+                                required />
+                        </label>
+
+                        <label class="field">
+                            CVV
+                            <input
+                                type="text"
+                                name="cvv"
+                                [ngModel]="form.cvv"
+                                (ngModelChange)="onCvvInput($event)"
+                                inputmode="numeric"
+                                maxlength="3"
+                                required />
+                        </label>
+                    </div>
+
+                    <button
+                        class="pay-button"
+                        type="submit"
+                        [disabled]="paymentForm.invalid || isSubmitting || (cartItemsCount$ | async) === 0">
+                        {{ isSubmitting ? 'Procesando pago...' : 'Pagar ahora' }}
+                    </button>
+                </form>
+            </section>
+
+            <aside class="payment-summary" *ngIf="(cartItems$ | async) as items">
+                <h2 class="summary-title">Resumen de compra</h2>
+
+                <p class="summary-empty" *ngIf="items.length === 0">No hay productos en el carrito.</p>
+
+                <div class="summary-item" *ngFor="let item of items">
+                    <img [src]="getImageUrl(item)" [alt]="item.product.name" class="summary-item__image" />
+                    <div class="summary-item__meta">
+                        <strong>{{ item.product.name }}</strong>
+                        <span>{{ item.quantity }} x {{ item.product.price }}€</span>
+                    </div>
+                    <span class="summary-item__total">{{ item.quantity * item.product.price }}€</span>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <strong>{{ totalAmount$ | async | number: '1.2-2' }}€</strong>
+                </div>
+            </aside>
+        </div>
+    </ng-container>
+
+    <ng-template #successState>
+        <section class="payment-success">
+            <h1>Pago completado</h1>
+            <p>Se ha procesado correctamente un pago de {{ paidAmount | number: '1.2-2' }}€.</p>
+            <div class="payment-success__actions">
+                <a routerLink="/products" class="success-link">Seguir comprando</a>
+                <a routerLink="/cart" class="success-link success-link--secondary">Ver carrito</a>
+            </div>
+        </section>
+    </ng-template>
+</div>

@@ -213,6 +213,11 @@
             background-color: #333;
         }
 
+        &:disabled {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
         .arrow-icon {
             width: 20px;
             height: 20px;

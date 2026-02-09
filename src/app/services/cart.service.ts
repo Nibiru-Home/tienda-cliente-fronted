@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, EMPTY, Observable, of } from 'rxjs';
+import { BehaviorSubject, EMPTY, Observable, forkJoin, of, throwError } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model';
@@ -143,6 +143,27 @@ export class CartService {
             next: () => this.loadCart(), // Reload to get updated totals
             error: (err) => console.error('Error updating quantity', err)
         });
+    }
+
+    clearCart(): Observable<void> {
+        return this.ensureActiveCart().pipe(
+            switchMap((cart) => {
+                const items = cart?.items ?? [];
+                if (items.length === 0) {
+                    return of(void 0);
+                }
+
+                const deleteRequests = items.map((item) => this.http.delete<void>(`/api/cart-products/${item.id}`));
+                return forkJoin(deleteRequests).pipe(
+                    switchMap(() => this.fetchActiveCart()),
+                    map(() => void 0)
+                );
+            }),
+            catchError((err) => {
+                console.error('Error clearing cart', err);
+                return throwError(() => err);
+            })
+        );
     }
 
     getTotal(): Observable<number> {

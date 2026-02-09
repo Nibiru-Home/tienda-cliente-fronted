@@ -5,6 +5,7 @@ import { Login } from './components/pages/login/login';
 import { ProductDetailPage } from './components/pages/product-detail/product-detail';
 import { Register } from './components/pages/register/register';
 import { CartComponent } from './components/pages/cart/cart.component';
+import { PaymentComponent } from './components/pages/payment/payment.component';
 
 export const routes: Routes = [
   { path: '', component: IndexPage },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'register', component: Register },
   { path: 'products/:id', component: ProductDetailPage },
   { path: 'cart', component: CartComponent },
+  { path: 'checkout/payment', component: PaymentComponent },
   { path: '**', redirectTo: '' }
 ];
