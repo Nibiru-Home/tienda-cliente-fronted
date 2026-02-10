@@ -77,9 +77,19 @@
                     <img [src]="getImageUrl(item)" [alt]="item.product.name" class="summary-item__image" />
                     <div class="summary-item__meta">
                         <strong>{{ item.product.name }}</strong>
-                        <span>{{ item.quantity }} x {{ item.product.price }}€</span>
+                        <span>{{ item.quantity }} x {{ item.product.price | number: '1.2-2' }}€</span>
                     </div>
-                    <span class="summary-item__total">{{ item.quantity * item.product.price }}€</span>
+                    <span class="summary-item__total">{{ item.quantity * item.product.price | number: '1.2-2' }}€</span>
+                </div>
+
+                <div class="summary-line">
+                    <span>Subtotal</span>
+                    <strong>{{ subtotalAmount$ | async | number: '1.2-2' }}€</strong>
+                </div>
+
+                <div class="summary-line" [hidden]="items.length === 0">
+                    <span>Envío</span>
+                    <strong>{{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number: '1.2-2') + '€' }}</strong>
                 </div>
 
                 <div class="summary-total">

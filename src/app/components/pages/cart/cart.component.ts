@@ -19,7 +19,9 @@ export class CartComponent {
     private router = inject(Router);
 
     cartItems$ = this.cartService.cartItems$;
-    totalAmount$ = this.cartService.getTotal();
+    subtotalAmount$ = this.cartService.getTotal();
+    shippingCost$ = this.cartService.getShippingCost();
+    totalAmount$ = this.cartService.getTotalWithShipping();
 
     getImageUrl(item: CartProduct): string {
         return buildProductImageUrl(item.product.name, item.product.image, item.product.id);

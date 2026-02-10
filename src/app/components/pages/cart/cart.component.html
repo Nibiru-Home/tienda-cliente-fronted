@@ -61,16 +61,17 @@
 
         <aside class="cart-summary-section">
             <h2 class="summary-title">Resumen</h2>
-            <p class="summary-caption">Revisa tu pedido antes de continuar</p>
 
             <div class="summary-row">
                 <span>Productos ({{ ((cartItems$ | async)?.length ?? 0) }})</span>
-                <strong>{{ totalAmount$ | async | number:'1.2-2' }}€</strong>
+                <strong>{{ subtotalAmount$ | async | number:'1.2-2' }}€</strong>
             </div>
 
-            <div class="summary-row">
+            <div class="summary-row" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
                 <span>Envío</span>
-                <span class="summary-free">Gratis</span>
+                <span class="summary-free">
+                    {{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number:'1.2-2') + '€' }}
+                </span>
             </div>
 
             <div class="summary-divider"></div>

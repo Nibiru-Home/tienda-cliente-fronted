@@ -32,7 +32,9 @@ export class PaymentComponent implements OnInit {
 
     readonly cartItems$ = this.cartService.cartItems$;
     readonly cartItemsCount$ = this.cartService.getTotalItems();
-    readonly totalAmount$ = this.cartService.getTotal();
+    readonly subtotalAmount$ = this.cartService.getTotal();
+    readonly shippingCost$ = this.cartService.getShippingCost();
+    readonly totalAmount$ = this.cartService.getTotalWithShipping();
 
     readonly form: PaymentFormModel = {
         cardNumber: '',

@@ -186,6 +186,15 @@
     color: #111;
 }
 
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.75rem;
+    color: #222;
+    font-size: 0.95rem;
+}
+
 .summary-total {
     display: flex;
     justify-content: space-between;

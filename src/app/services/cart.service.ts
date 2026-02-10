@@ -11,6 +11,9 @@ import { Cart } from '../models/cart.model';
     providedIn: 'root'
 })
 export class CartService {
+    readonly freeShippingThreshold = 80;
+    readonly shippingFee = 6.99;
+
     private cartSubject = new BehaviorSubject<Cart | null>(null);
     cart$ = this.cartSubject.asObservable();
 
@@ -169,6 +172,21 @@ export class CartService {
     getTotal(): Observable<number> {
         return this.cart$.pipe(
             map((cart) => (cart?.items ?? []).reduce((acc, item) => acc + (item.product.price * item.quantity), 0))
+        );
+    }
+
+    getShippingCost(): Observable<number> {
+        return this.getTotal().pipe(
+            map((subtotal) => (subtotal > 0 && subtotal < this.freeShippingThreshold ? this.shippingFee : 0))
+        );
+    }
+
+    getTotalWithShipping(): Observable<number> {
+        return this.getTotal().pipe(
+            map((subtotal) => {
+                const shipping = subtotal > 0 && subtotal < this.freeShippingThreshold ? this.shippingFee : 0;
+                return Number((subtotal + shipping).toFixed(2));
+            })
         );
     }
 
