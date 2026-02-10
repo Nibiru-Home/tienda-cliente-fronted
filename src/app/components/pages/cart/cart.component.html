@@ -1,75 +1,99 @@
 <div class="cart-page">
+    <header class="cart-hero">
+        <h1 class="page-title">Carrito</h1>
+    </header>
+
     <div class="cart-grid">
-        <!-- Left Column: Cart Items -->
-        <div class="cart-items-section">
-            <h1 class="page-title">Carrito</h1>
-
-            <div class="cart-item" *ngFor="let item of cartItems$ | async">
-                <div class="item-image">
-                    <img [src]="getImageUrl(item)" [alt]="item.product.name">
-                </div>
-
-                <div class="item-details">
-                    <div class="item-header">
-                        <h3 class="item-name">{{ item.product.name }}</h3>
-                        <span class="item-price">{{ item.product.price }}€</span>
-                    </div>
-                    <p class="item-description">{{ item.product.description }}</p>
-
-                    <div class="item-controls">
-                        <div class="quantity-selector">
-                            <button class="qty-btn" (click)="decreaseQuantity(item)">-</button>
-                            <span class="qty-value">{{ item.quantity }}</span>
-                            <button class="qty-btn" (click)="increaseQuantity(item)">+</button>
-                        </div>
-                        <button class="delete-btn" title="Eliminar" (click)="removeItem(item.id)">
-                            <!-- Trash Icon SVG -->
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <polyline points="3 6 5 6 21 6"></polyline>
-                                <path
-                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                </path>
-                            </svg>
-                        </button>
-                    </div>
-                </div>
+        <section class="cart-items-section">
+            <div class="section-header">
+                <h2 class="section-title">Productos</h2>
+                <span class="items-count">
+                    {{ ((cartItems$ | async)?.length ?? 0) }} artículo{{ ((cartItems$ | async)?.length ?? 0) === 1 ? '' : 's' }}
+                </span>
             </div>
-        </div>
 
-        <!-- Vertical Divider Line (Visual separation) -->
-        <div class="vertical-divider"></div>
+            <div class="cart-items-list" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
+                <article class="cart-item" *ngFor="let item of (cartItems$ | async) ?? []; trackBy: trackByCartItem">
+                    <div class="item-image">
+                        <img [src]="getImageUrl(item)" [alt]="item.product.name">
+                    </div>
 
-        <!-- Right Column: Summary -->
-        <div class="cart-summary-section">
+                    <div class="item-content">
+                        <div class="item-header">
+                            <h3 class="item-name">{{ item.product.name }}</h3>
+                            <strong class="item-subtotal">{{ item.product.price * item.quantity | number:'1.2-2' }}€</strong>
+                        </div>
+
+                        <p class="item-description">{{ item.product.description }}</p>
+
+                        <div class="item-footer">
+                            <div class="quantity-selector" aria-label="Selector de cantidad">
+                                <button class="qty-btn" type="button" (click)="decreaseQuantity(item)" aria-label="Reducir cantidad">−</button>
+                                <span class="qty-value">{{ item.quantity }}</span>
+                                <button class="qty-btn" type="button" (click)="increaseQuantity(item)" aria-label="Aumentar cantidad">+</button>
+                            </div>
+
+                            <span class="item-unit-price">{{ item.product.price | number:'1.2-2' }}€ / unidad</span>
+
+                            <button class="delete-btn" type="button" title="Eliminar" (click)="removeItem(item.id)">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" aria-hidden="true">
+                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                    <path
+                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                    </path>
+                                </svg>
+                                <span>Eliminar</span>
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="cart-empty" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) > 0">
+                <p class="empty-title">Tu carrito está vacío</p>
+                <p class="empty-text">Descubre nuevas piezas para crear un espacio con personalidad.</p>
+                <a class="empty-link" routerLink="/products">Explorar productos</a>
+            </div>
+        </section>
+
+        <aside class="cart-summary-section">
             <h2 class="summary-title">Resumen</h2>
+            <p class="summary-caption">Revisa tu pedido antes de continuar</p>
 
             <div class="summary-row">
-                <span>Productos</span>
-                <span>{{ totalAmount$ | async }}€</span>
+                <span>Productos ({{ ((cartItems$ | async)?.length ?? 0) }})</span>
+                <strong>{{ totalAmount$ | async | number:'1.2-2' }}€</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Envío</span>
+                <span class="summary-free">Gratis</span>
             </div>
 
             <div class="summary-divider"></div>
 
             <div class="summary-row total-row">
-                <span>Total (con iva)</span>
-                <span>{{ totalAmount$ | async }}€</span>
+                <span>Total (IVA incl.)</span>
+                <strong>{{ totalAmount$ | async | number:'1.2-2' }}€</strong>
             </div>
 
             <button
                 class="continue-btn"
                 type="button"
                 (click)="continueToPayment()"
-                [disabled]="!((cartItems$ | async)?.length)">
-                Continuar
+                [disabled]="((cartItems$ | async)?.length ?? 0) === 0">
+                Continuar al pago
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="arrow-icon">
+                    class="arrow-icon" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
             </button>
-        </div>
+
+            <a class="continue-shopping-link" routerLink="/products">Seguir comprando</a>
+        </aside>
     </div>
 </div>

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { CartService } from '../../../services/cart.service';
 import { CartProduct } from '../../../models/cart.model';
 import { buildProductImageUrl } from '../../../utils/product-image';
@@ -9,7 +9,7 @@ import { AuthService } from '../../../services/auth.service';
 @Component({
     selector: 'app-cart',
     standalone: true,
-    imports: [CommonModule],
+    imports: [CommonModule, RouterLink],
     templateUrl: './cart.component.html',
     styleUrls: ['./cart.component.scss']
 })
@@ -23,6 +23,10 @@ export class CartComponent {
 
     getImageUrl(item: CartProduct): string {
         return buildProductImageUrl(item.product.name, item.product.image, item.product.id);
+    }
+
+    trackByCartItem(_index: number, item: CartProduct): number {
+        return item.id;
     }
 
     increaseQuantity(item: CartProduct): void {
