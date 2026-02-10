@@ -13,7 +13,8 @@
             </div>
 
             <div class="cart-items-list" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
-                <article class="cart-item" *ngFor="let item of (cartItems$ | async) ?? []; trackBy: trackByCartItem">
+                @for (item of (cartItems$ | async) ?? []; track item.id) {
+                <article class="cart-item">
                     <div class="item-image">
                         <img [src]="getImageUrl(item)" [alt]="item.product.name">
                     </div>
@@ -28,7 +29,7 @@
 
                         <div class="item-footer">
                             <div class="quantity-selector" aria-label="Selector de cantidad">
-                                <button class="qty-btn" type="button" (click)="decreaseQuantity(item)" aria-label="Reducir cantidad">−</button>
+                                <button class="qty-btn" type="button" (click)="decreaseQuantity(item)" [disabled]="item.quantity <= 1" aria-label="Reducir cantidad">−</button>
                                 <span class="qty-value">{{ item.quantity }}</span>
                                 <button class="qty-btn" type="button" (click)="increaseQuantity(item)" aria-label="Aumentar cantidad">+</button>
                             </div>
@@ -44,11 +45,11 @@
                                         d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
                                     </path>
                                 </svg>
-                                <span>Eliminar</span>
                             </button>
                         </div>
                     </div>
                 </article>
+                }
             </div>
 
             <div class="cart-empty" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) > 0">

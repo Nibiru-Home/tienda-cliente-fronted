@@ -25,20 +25,16 @@ export class CartComponent {
         return buildProductImageUrl(item.product.name, item.product.image, item.product.id);
     }
 
-    trackByCartItem(_index: number, item: CartProduct): number {
-        return item.id;
-    }
-
     increaseQuantity(item: CartProduct): void {
         this.cartService.updateQuantity(item.id, item.quantity + 1, item.cart.id, item.product.id);
     }
 
     decreaseQuantity(item: CartProduct): void {
-        if (item.quantity > 1) {
-            this.cartService.updateQuantity(item.id, item.quantity - 1, item.cart.id, item.product.id);
-        } else {
-            this.removeItem(item.id);
+        if (item.quantity <= 1) {
+            return;
         }
+
+        this.cartService.updateQuantity(item.id, item.quantity - 1, item.cart.id, item.product.id);
     }
 
     removeItem(id: number): void {
