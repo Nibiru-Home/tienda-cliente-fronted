@@ -1,21 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../models/product.model';
+import { HTTPService } from './http.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    //private readonly apiUrl = 'http://back-nibiru-home.producciondaw.cip.fpmislata.com/api/products';
-    private readonly apiUrl = 'http://localhost:8080/api/products';
-    constructor(private http: HttpClient) { }
+    constructor(private http: HTTPService) { }
 
     getAllProducts(): Observable<Product[]> {
-        return this.http.get<Product[]>(this.apiUrl);
+        return this.http.getAll<Product>('/api/products');
     }
 
     getProductById(id: number): Observable<Product> {
-        return this.http.get<Product>(`${this.apiUrl}/${id}`);
+        return this.http.get<Product>(`/api/products/${id}`);
     }
 }
