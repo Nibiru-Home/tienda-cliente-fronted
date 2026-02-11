@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HTTPService {
-    private readonly baseUrl = this.resolveBaseUrl();
+    //private readonly baseUrl = 'http://back-nibiru-home.producciondaw.cip.fpmislata.com';
+    private readonly baseUrl = 'http://localhost:8080';
 
     constructor(private http: HttpClient) { }
 
@@ -42,21 +43,9 @@ export class HTTPService {
         if (url.startsWith('http')) {
             return url;
         }
-
         if (!url.startsWith('/')) {
             return `${this.baseUrl}/${url}`;
         }
-
         return `${this.baseUrl}${url}`;
-    }
-
-    private resolveBaseUrl(): string {
-        const hostname = window.location.hostname;
-
-        if (hostname === 'localhost' || hostname === '127.0.0.1') {
-            return 'http://localhost:8080';
-        }
-
-        return `${window.location.protocol}//api.nibiruhome.store`;
     }
 }
