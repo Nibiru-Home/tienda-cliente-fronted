@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HTTPService {
     //private readonly baseUrl = 'http://back-nibiru-home.producciondaw.cip.fpmislata.com';
-    private readonly baseUrl = 'http://nibiruhome.store';
+    private readonly baseUrl = 'http://api.nibiruhome.store';
 
     constructor(private http: HttpClient) { }
 
