@@ -36,7 +36,6 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 
 .cart-hero {
     margin-bottom: 1.5rem;
-    animation: fade-in-up 0.45s ease;
 }
 
 .page-title {
@@ -94,7 +93,6 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     border-radius: 18px;
     border: 1px solid $surface-border;
     background: $surface-bg;
-    animation: fade-in-up 0.45s ease;
 }
 
 .item-image {
@@ -175,7 +173,6 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     color: $brand-color;
     font-size: 1.15rem;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
 
     &:hover {
         background: $cart-bg;
@@ -214,7 +211,6 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     padding: 0.4rem 0.7rem;
     font-size: 0.86rem;
     cursor: pointer;
-    transition: all 0.2s ease;
 
     &:hover {
         color: $danger-color;
@@ -254,11 +250,9 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     font-weight: 600;
     background: $brand-color;
     color: $surface-bg;
-    transition: background-color 0.2s ease, transform 0.2s ease;
 
     &:hover {
         background: $brand-color-hover;
-        transform: translateY(-1px);
     }
 }
 
@@ -270,7 +264,6 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     border-radius: 24px;
     padding: 1.4rem;
     box-shadow: $shadow-strong;
-    animation: fade-in-up 0.55s ease;
 }
 
 .summary-title {
@@ -324,18 +317,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     color: $surface-bg;
     background: $primary-button-bg;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
 
     &:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 28px rgba(67, 90, 97, 0.35);
         background: $primary-button-hover;
     }
 
     &:disabled {
         cursor: not-allowed;
-        box-shadow: none;
-        transform: none;
         opacity: 0.6;
     }
 }
@@ -353,22 +341,9 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     text-decoration: none;
     font-size: 0.9rem;
     color: $text-muted;
-    transition: color 0.2s ease;
 
     &:hover {
         color: $text-secondary;
-    }
-}
-
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(14px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
