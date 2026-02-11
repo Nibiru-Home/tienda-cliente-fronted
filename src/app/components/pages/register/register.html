@@ -37,7 +37,9 @@
                 {{ errorMessage }}
             </div>
 
-            <button type="submit" class="form__button">Registrarse</button>
+            <button type="submit" class="form__button" [disabled]="isSubmitting">
+                {{ isSubmitting ? 'Registrando...' : 'Registrarse' }}
+            </button>
 
             <div class="form-footer">
                 <span>¿Ya tienes cuenta? </span>

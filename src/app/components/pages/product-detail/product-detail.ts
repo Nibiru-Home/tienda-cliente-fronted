@@ -1,10 +1,11 @@
-import { Component, inject, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, inject, OnInit, ChangeDetectorRef, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../../../services/product.service';
 import { CartService } from '../../../services/cart.service';
 import { Product, Category } from '../../../models/product.model';
 import { buildProductImageUrl, buildProductImageVariants } from '../../../utils/product-image';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -18,6 +19,7 @@ export class ProductDetailPage implements OnInit {
   private productService = inject(ProductService);
   private cartService = inject(CartService);
   private cd = inject(ChangeDetectorRef);
+  private destroyRef = inject(DestroyRef);
 
   product: Product = {
     id: 0,
@@ -33,6 +35,7 @@ export class ProductDetailPage implements OnInit {
   };
   relatedProducts: Product[] = [];
   private allProducts: Product[] = [];
+  isInCart = false;
 
   get displayImages(): string[] {
     if (this.product?.images?.length) {
@@ -52,6 +55,13 @@ export class ProductDetailPage implements OnInit {
   }
 
   ngOnInit() {
+    this.cartService.cartItems$
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe(() => {
+        this.syncInCartState();
+        this.cd.markForCheck();
+      });
+
     this.route.paramMap.subscribe(params => {
       const idStr = params.get('id');
       const id = Number(idStr);
@@ -73,6 +83,7 @@ export class ProductDetailPage implements OnInit {
       next: (data) => {
         console.log('ProductDetail: Data received:', data);
         this.product = data;
+        this.syncInCartState();
         this.updateRelatedProducts();
         this.cd.markForCheck(); 
       },
@@ -121,8 +132,13 @@ export class ProductDetailPage implements OnInit {
     );
   }
 
+  private syncInCartState(): void {
+    const productId = this.product?.id ?? 0;
+    this.isInCart = productId > 0 && this.cartService.hasProductInCart(productId);
+  }
+
   onAddToCart(): void {
-    if (!this.product?.id) {
+    if (!this.product?.id || this.isInCart) {
       return;
     }
 

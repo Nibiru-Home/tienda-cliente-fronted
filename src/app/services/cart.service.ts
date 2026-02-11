@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, EMPTY, Observable, forkJoin, of, throwError } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, finalize, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Product } from '../models/product.model';
 import { HTTPService } from './http.service';
@@ -13,6 +13,7 @@ import { Cart } from '../models/cart.model';
 export class CartService {
     readonly freeShippingThreshold = 80;
     readonly shippingFee = 6.99;
+    private readonly addingProductIds = new Set<number>();
 
     private cartSubject = new BehaviorSubject<Cart | null>(null);
     cart$ = this.cartSubject.asObservable();
@@ -79,8 +80,19 @@ export class CartService {
         this.fetchActiveCart().subscribe();
     }
 
+    hasProductInCart(productId: number): boolean {
+        if (!productId) {
+            return false;
+        }
+        return (this.cartSubject.value?.items ?? []).some((item) => item.product.id === productId);
+    }
+
     addToCart(product: Product): void {
         if (!product?.id) {
+            return;
+        }
+
+        if (this.addingProductIds.has(product.id)) {
             return;
         }
 
@@ -88,6 +100,12 @@ export class CartService {
             this.redirectToLoginIfNeeded();
             return;
         }
+
+        if (this.hasProductInCart(product.id)) {
+            return;
+        }
+
+        this.addingProductIds.add(product.id);
 
         this.ensureActiveCart().pipe(
             switchMap((cart) => {
@@ -98,13 +116,7 @@ export class CartService {
                 const existingItem = (cart.items ?? []).find((item) => item.product.id === product.id);
 
                 if (existingItem) {
-                    const body = {
-                        id: existingItem.id,
-                        quantity: existingItem.quantity + 1,
-                        cart: { id: existingItem.cart.id },
-                        product: { id: existingItem.product.id }
-                    };
-                    return this.http.put(`/api/cart-products/${existingItem.id}`, body);
+                    return of(null);
                 }
 
                 const body = {
@@ -118,6 +130,9 @@ export class CartService {
             catchError((err) => {
                 console.error('Error adding to cart', err);
                 return EMPTY;
+            }),
+            finalize(() => {
+                this.addingProductIds.delete(product.id);
             })
         ).subscribe();
     }

@@ -147,6 +147,13 @@
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 }
 
+.product-detail__cta:disabled {
+  background: var(--cyb-sys-color-blue-gray-3);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
 .product-detail__cta-icon {
   width: 20px;
   height: 20px;

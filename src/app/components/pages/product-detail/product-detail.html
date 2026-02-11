@@ -38,9 +38,9 @@
         1 año de garantia
       </li>
     </ul>
-    <button class="product-detail__cta" type="button" (click)="onAddToCart()" [disabled]="!product.id">
+    <button class="product-detail__cta" type="button" (click)="onAddToCart()" [disabled]="!product.id || isInCart">
       <img class="product-detail__cta-icon" src="/icons/add-to-cart.png" alt="" aria-hidden="true" />
-      Añadir a la cesta
+      {{ isInCart ? 'Ya está en la cesta' : 'Añadir a la cesta' }}
     </button>
   </div>
 </section>

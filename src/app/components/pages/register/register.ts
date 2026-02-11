@@ -1,8 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { finalize } from 'rxjs';
 
 @Component({
     selector: 'app-register',
@@ -14,6 +16,7 @@ import { AuthService } from '../../../services/auth.service';
 export class Register {
     authService = inject(AuthService);
     router = inject(Router);
+    cdr = inject(ChangeDetectorRef);
 
     name = '';
     email = '';
@@ -21,24 +24,44 @@ export class Register {
     address = '';
     phone = '';
     errorMessage = '';
+    isSubmitting = false;
 
     register() {
+        if (this.isSubmitting) {
+            return;
+        }
+
+        this.errorMessage = '';
+        this.isSubmitting = true;
+
+        const normalizedEmail = this.email.trim().toLowerCase();
+
         this.authService.register({
-            name: this.name,
-            email: this.email,
+            name: this.name.trim(),
+            email: normalizedEmail,
             password: this.password,
-            address: this.address,
-            phone: this.phone
-        }).subscribe({
+            address: this.address.trim(),
+            phone: this.phone.trim()
+        }).pipe(
+            finalize(() => {
+                this.isSubmitting = false;
+                this.cdr.detectChanges();
+            })
+        ).subscribe({
             next: (response) => {
                 console.log('Register response:', response);
                 // On success, redirect to login
                 this.router.navigate(['/login']);
             },
-            error: (error) => {
-                // Backend returns a JSON object with a 'message' field in the 'error' property of the HttpErrorResponse
-                const serverMessage = error.error?.message || error.message || 'Error desconocido';
-                this.errorMessage = `Error: ${serverMessage}`;
+            error: (error: HttpErrorResponse) => {
+                if (error.status === 409) {
+                    this.errorMessage = 'Este correo ya está registrado. Inicia sesión o usa otro correo.';
+                } else if (error.status === 0) {
+                    this.errorMessage = 'No se pudo conectar con el servidor local (http://localhost:8080).';
+                } else {
+                    const serverMessage = error.error?.message || error.message || 'Error desconocido';
+                    this.errorMessage = `Error: ${serverMessage}`;
+                }
             }
         });
     }
