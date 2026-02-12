@@ -7,7 +7,7 @@ import { firstValueFrom } from 'rxjs';
 import { CartProduct } from '../../../models/cart.model';
 import { AuthService } from '../../../services/auth.service';
 import { CartService } from '../../../services/cart.service';
-import { CheckoutPaymentRequest, PaymentService } from '../../../services/payment.service';
+import { CardFundsValidationRequest, CheckoutPaymentRequest, PaymentService } from '../../../services/payment.service';
 import { buildProductImageUrl } from '../../../utils/product-image';
 
 interface PaymentFormModel {
@@ -124,6 +124,20 @@ export class PaymentComponent implements OnInit {
             return;
         }
 
+        const cardFundsValidationRequest: CardFundsValidationRequest = {
+            cardNumber: this.form.cardNumber,
+            expirationMonth: normalizedExpiration,
+            cvv: this.form.cvv,
+            cardHolder: this.form.cardHolder,
+            amount: totalAmount
+        };
+
+        const cardFundsValidation = await firstValueFrom(this.paymentService.validateCardFunds(cardFundsValidationRequest));
+        if (!cardFundsValidation.hasEnoughFunds) {
+            this.errorMessage = cardFundsValidation.message || 'Saldo insuficiente en la tarjeta para completar el pago.';
+            return;
+        }
+
         this.isSubmitting = true;
 
         try {
@@ -177,6 +191,10 @@ export class PaymentComponent implements OnInit {
 
             const backendMessage = this.getBackendErrorMessage(error.error);
             if (backendMessage) {
+                const normalizedMessage = backendMessage.toLowerCase();
+                if (normalizedMessage.includes('insufficient funds') || normalizedMessage.includes('saldo insuficiente')) {
+                    return 'Saldo insuficiente en la tarjeta para completar el pago.';
+                }
                 return backendMessage;
             }
 
@@ -197,7 +215,7 @@ export class PaymentComponent implements OnInit {
 
         if (errorBody && typeof errorBody === 'object') {
             const body = errorBody as Record<string, unknown>;
-            const candidates = [body['error'], body['message']];
+            const candidates = [body['message'], body['error']];
             for (const value of candidates) {
                 if (typeof value === 'string' && value.trim()) {
                     return value;
