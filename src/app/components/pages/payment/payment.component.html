@@ -1,9 +1,13 @@
 <div class="payment-page">
     @if (!paymentSuccessful) {
-        <div class="payment-layout">
+        <header class="payment-hero">
+            <h1 class="page-title">Pago seguro</h1>
+            <p class="page-subtitle">Confirma tus datos bancarios para completar tu pedido.</p>
+        </header>
+
+        <div class="payment-grid">
             <section class="payment-form-section">
-                <h1 class="payment-title">Pago seguro</h1>
-                <p class="payment-subtitle">Introduce tus datos del banco para completar la compra.</p>
+                
 
                 @if (errorMessage) {
                     <div class="payment-alert payment-alert--error">
@@ -11,17 +15,12 @@
                     </div>
                 }
 
-                @if ((cartItemsCount$ | async) === 0) {
-                    <div class="payment-alert payment-alert--info">
-                        Tu carrito esta vacio. Anade productos para poder pagar.
-                    </div>
-                }
+               
 
                 <form class="payment-form" #paymentForm="ngForm" (ngSubmit)="pay()">
-                    <h2 class="section-title">Tarjeta</h2>
                     <div class="form-grid">
-                        <label class="field">
-                            Titular
+                        <label class="field field--full">
+                            <span class="field-label">Titular</span>
                             <input
                                 type="text"
                                 name="cardHolder"
@@ -30,7 +29,7 @@
                         </label>
 
                         <label class="field field--full">
-                            Numero tarjeta
+                            <span class="field-label">Numero tarjeta</span>
                             <input
                                 type="text"
                                 name="cardNumber"
@@ -41,67 +40,93 @@
                                 required />
                         </label>
 
-                        <label class="field">
-                            Caducidad
-                            <input
-                                type="month"
-                                name="expirationMonth"
-                                [(ngModel)]="form.expirationMonth"
-                                required />
-                        </label>
+                        <div class="compact-fields">
+                            <label class="field field--compact">
+                                <span class="field-label">Caducidad (MM/YY)</span>
+                                <input
+                                    type="text"
+                                    name="expirationMonth"
+                                    [ngModel]="form.expirationMonth"
+                                    (ngModelChange)="onExpirationInput($event)"
+                                    inputmode="numeric"
+                                    maxlength="5"
+                                    placeholder="MM/YY"
+                                    autocomplete="cc-exp"
+                                    pattern="^(0[1-9]|1[0-2])\\/\\d{2}$"
+                                    required />
+                            </label>
 
-                        <label class="field">
-                            CVV
-                            <input
-                                type="text"
-                                name="cvv"
-                                [ngModel]="form.cvv"
-                                (ngModelChange)="onCvvInput($event)"
-                                inputmode="numeric"
-                                maxlength="3"
-                                required />
-                        </label>
+                            <label class="field field--compact field--cvv">
+                                <span class="field-label">CVV</span>
+                                <input
+                                    type="text"
+                                    name="cvv"
+                                    [ngModel]="form.cvv"
+                                    (ngModelChange)="onCvvInput($event)"
+                                    inputmode="numeric"
+                                    maxlength="3"
+                                    required />
+                            </label>
+                        </div>
                     </div>
 
                     <button
                         class="pay-button"
                         type="submit"
                         [disabled]="paymentForm.invalid || isSubmitting || (cartItemsCount$ | async) === 0">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
                         {{ isSubmitting ? 'Procesando pago...' : 'Pagar ahora' }}
                     </button>
                 </form>
+
+                <a class="back-link" routerLink="/cart">
+                    <svg class="back-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    Volver al carrito
+                </a>
             </section>
 
             @if ((cartItems$ | async); as items) {
-                <aside class="payment-summary">
-                    <h2 class="summary-title">Resumen de compra</h2>
+                <aside class="payment-summary-section">
+                    <h2 class="summary-title">Resumen</h2>
 
                     @if (items.length === 0) {
                         <p class="summary-empty">No hay productos en el carrito.</p>
                     }
 
                     @for (item of items; track item.id) {
-                        <div class="summary-item">
-                            <img [src]="getImageUrl(item)" [alt]="item.product.name" class="summary-item__image" />
-                            <div class="summary-item__meta">
-                                <strong>{{ item.product.name }}</strong>
-                                <span>{{ item.quantity }} x {{ item.product.price | number: '1.2-2' }}€</span>
+                        <article class="summary-item">
+                            <img [src]="getImageUrl(item)" [alt]="item.product.name" class="summary-item-image" />
+                            <div class="summary-item-meta">
+                                <strong class="summary-item-name">{{ item.product.name }}</strong>
+                                <span class="summary-item-detail">{{ item.quantity }} x {{ item.product.price | number: '1.2-2' }}€</span>
                             </div>
-                            <span class="summary-item__total">{{ item.quantity * item.product.price | number: '1.2-2' }}€</span>
-                        </div>
+                            <span class="summary-item-total">{{ item.quantity * item.product.price | number: '1.2-2' }}€</span>
+                        </article>
                     }
 
-                    <div class="summary-line">
+                    <div class="summary-row">
                         <span>Subtotal</span>
                         <strong>{{ subtotalAmount$ | async | number: '1.2-2' }}€</strong>
                     </div>
 
-                    <div class="summary-line" [hidden]="items.length === 0">
-                        <span>Envío</span>
-                        <strong>{{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number: '1.2-2') + '€' }}</strong>
+                    <div class="summary-row" [hidden]="items.length === 0">
+                        <span>Envio</span>
+                        <strong class="summary-free">{{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number: '1.2-2') + '€' }}</strong>
                     </div>
 
-                    <div class="summary-total">
+                    <div class="summary-divider"></div>
+
+                    <div class="summary-row total-row">
                         <span>Total</span>
                         <strong>{{ totalAmount$ | async | number: '1.2-2' }}€</strong>
                     </div>
@@ -110,8 +135,8 @@
         </div>
     } @else {
         <section class="payment-success">
-            <h1>Pago completado</h1>
-            <p>Se ha procesado correctamente un pago de {{ paidAmount | number: '1.2-2' }}€.</p>
+            <h1 class="success-title">Pago completado</h1>
+            <p class="success-text">Se ha procesado correctamente un pago de {{ paidAmount | number: '1.2-2' }}€.</p>
             <div class="payment-success__actions">
                 <a routerLink="/products" class="success-link">Seguir comprando</a>
                 <a routerLink="/cart" class="success-link success-link--secondary">Ver carrito</a>

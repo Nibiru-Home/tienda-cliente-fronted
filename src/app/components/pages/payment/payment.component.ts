@@ -73,6 +73,24 @@ export class PaymentComponent implements OnInit {
         this.form.cvv = value.replace(/\D/g, '').slice(0, 3);
     }
 
+    onExpirationInput(value: string): void {
+        const digits = value.replace(/\D/g, '').slice(0, 4);
+        if (!digits) {
+            this.form.expirationMonth = '';
+            return;
+        }
+
+        let month = digits.slice(0, 2);
+        const year = digits.slice(2, 4);
+
+        if (month.length === 2) {
+            const normalizedMonth = Math.min(Math.max(Number(month) || 1, 1), 12);
+            month = String(normalizedMonth).padStart(2, '0');
+        }
+
+        this.form.expirationMonth = year ? `${month}/${year}` : month;
+    }
+
     async pay(): Promise<void> {
         if (this.isSubmitting) {
             return;
@@ -92,6 +110,12 @@ export class PaymentComponent implements OnInit {
             return;
         }
 
+        const normalizedExpiration = this.normalizeExpirationForBackend(this.form.expirationMonth);
+        if (!normalizedExpiration) {
+            this.errorMessage = 'La fecha de caducidad no es valida o la tarjeta esta caducada.';
+            return;
+        }
+
         const userId = this.authService.getUserId();
         if (!userId) {
             this.router.navigate(['/login'], {
@@ -103,7 +127,7 @@ export class PaymentComponent implements OnInit {
         this.isSubmitting = true;
 
         try {
-            const paymentRequest = this.buildPaymentRequest(userId);
+            const paymentRequest = this.buildPaymentRequest(userId, normalizedExpiration);
             const paymentResponse = await firstValueFrom(this.paymentService.pay(paymentRequest));
             this.cartService.loadCart();
 
@@ -116,14 +140,33 @@ export class PaymentComponent implements OnInit {
         }
     }
 
-    private buildPaymentRequest(userId: string): CheckoutPaymentRequest {
+    private buildPaymentRequest(userId: string, expirationMonth: string): CheckoutPaymentRequest {
         return {
             userId,
             cardNumber: this.form.cardNumber,
-            expirationMonth: this.form.expirationMonth,
+            expirationMonth,
             cvv: this.form.cvv,
             cardHolder: this.form.cardHolder.trim()
         };
+    }
+
+    private normalizeExpirationForBackend(expiration: string): string | null {
+        const match = expiration.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
+        if (!match) {
+            return null;
+        }
+
+        const month = Number(match[1]);
+        const year = 2000 + Number(match[2]);
+
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentMonth = now.getMonth() + 1;
+        if (year < currentYear || (year === currentYear && month < currentMonth)) {
+            return null;
+        }
+
+        return `${year}-${String(month).padStart(2, '0')}`;
     }
 
     private getErrorMessage(error: unknown): string {
