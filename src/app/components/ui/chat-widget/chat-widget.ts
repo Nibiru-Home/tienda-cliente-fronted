@@ -1,5 +1,4 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import type { ChatMessage } from '../../../services/chat.service';
@@ -24,7 +23,7 @@ interface ChatOption {
 
 @Component({
   selector: 'app-chat-widget',
-  imports: [NgFor, NgIf, FormsModule],
+  imports: [FormsModule],
   templateUrl: './chat-widget.html',
   styleUrl: './chat-widget.scss'
 })
