@@ -133,7 +133,7 @@ export class PaymentComponent implements OnInit {
         };
 
         const cardFundsValidation = await firstValueFrom(this.paymentService.validateCardFunds(cardFundsValidationRequest));
-        if (!cardFundsValidation.hasEnoughFunds) {
+        if (!cardFundsValidation.hasEnoughFunds && this.shouldBlockCheckoutAfterFundsValidation(cardFundsValidation.message)) {
             this.errorMessage = cardFundsValidation.message || 'Saldo insuficiente en la tarjeta para completar el pago.';
             return;
         }
@@ -232,5 +232,11 @@ export class PaymentComponent implements OnInit {
         }
 
         return null;
+    }
+
+    private shouldBlockCheckoutAfterFundsValidation(message?: string): boolean {
+        const normalizedMessage = (message || '').toLowerCase();
+        return normalizedMessage.includes('saldo insuficiente')
+            || normalizedMessage.includes('datos de la tarjeta no son validos');
     }
 }
