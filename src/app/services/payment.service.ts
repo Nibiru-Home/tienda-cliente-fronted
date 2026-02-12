@@ -152,11 +152,31 @@ export class PaymentService {
             return false;
         }
 
-        const sameNumber = (card.number || '').trim() === cardNumber;
-        const sameExpirationMonth = (card.expirationDate || '').startsWith(`${expirationMonth}-`);
+        const normalizedCardNumber = this.normalizeCardNumber(card.number);
+        const sameNumber = normalizedCardNumber === cardNumber;
+        const sameExpirationMonth = this.normalizeBankExpirationMonth(card.expirationDate) === expirationMonth;
         const sameCvv = String(card.cvv).padStart(3, '0') === cvvDigits;
         const sameHolder = this.normalizeCardHolder(card.name) === cardHolder;
 
         return sameNumber && sameExpirationMonth && sameCvv && sameHolder;
+    }
+
+    private normalizeBankExpirationMonth(value: string): string {
+        const rawValue = (value || '').trim();
+        if (!rawValue) {
+            return '';
+        }
+
+        const yyyyMmMatch = rawValue.match(/^(\d{4})-(0[1-9]|1[0-2])(?:-\d{2})?$/);
+        if (yyyyMmMatch) {
+            return `${yyyyMmMatch[1]}-${yyyyMmMatch[2]}`;
+        }
+
+        const mmYyMatch = rawValue.match(/^(0[1-9]|1[0-2])\/(\d{2})$/);
+        if (mmYyMatch) {
+            return `20${mmYyMatch[2]}-${mmYyMatch[1]}`;
+        }
+
+        return '';
     }
 }
