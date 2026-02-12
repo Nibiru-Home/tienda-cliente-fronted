@@ -45,7 +45,7 @@ interface BankAccountResponse {
     providedIn: 'root'
 })
 export class PaymentService {
-    private readonly bankApiBaseUrl = 'https://api.bank.nibiruhome.store';
+    private readonly bankApiBaseUrl = `${window.location.protocol}//api.bank.nibiruhome.store`;
 
     constructor(private readonly http: HTTPService) { }
 
