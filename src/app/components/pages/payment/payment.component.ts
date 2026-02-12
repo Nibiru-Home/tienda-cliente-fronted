@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
@@ -29,6 +29,7 @@ export class PaymentComponent implements OnInit {
     private readonly cartService = inject(CartService);
     private readonly paymentService = inject(PaymentService);
     private readonly router = inject(Router);
+    private readonly cdr = inject(ChangeDetectorRef);
 
     readonly cartItems$ = this.cartService.cartItems$;
     readonly cartItemsCount$ = this.cartService.getTotalItems();
@@ -100,19 +101,19 @@ export class PaymentComponent implements OnInit {
 
         const totalItems = await firstValueFrom(this.cartItemsCount$);
         if (totalItems <= 0) {
-            this.errorMessage = 'Tu carrito esta vacio. Anade productos antes de pagar.';
+            this.showError('Tu carrito esta vacio. Anade productos antes de pagar.');
             return;
         }
 
         const totalAmount = await firstValueFrom(this.totalAmount$);
         if (!Number.isFinite(totalAmount) || totalAmount <= 0) {
-            this.errorMessage = 'El total del carrito no es valido.';
+            this.showError('El total del carrito no es valido.');
             return;
         }
 
         const normalizedExpiration = this.normalizeExpirationForBackend(this.form.expirationMonth);
         if (!normalizedExpiration) {
-            this.errorMessage = 'La fecha de caducidad no es valida o la tarjeta esta caducada.';
+            this.showError('La fecha de caducidad no es valida o la tarjeta esta caducada.');
             return;
         }
 
@@ -134,11 +135,12 @@ export class PaymentComponent implements OnInit {
 
         const cardFundsValidation = await firstValueFrom(this.paymentService.validateCardFunds(cardFundsValidationRequest));
         if (!cardFundsValidation.hasEnoughFunds && this.shouldBlockCheckoutAfterFundsValidation(cardFundsValidation.message)) {
-            this.errorMessage = cardFundsValidation.message || 'Saldo insuficiente en la tarjeta para completar el pago.';
+            this.showError(cardFundsValidation.message || 'Saldo insuficiente en la tarjeta para completar el pago.');
             return;
         }
 
         this.isSubmitting = true;
+        this.cdr.detectChanges();
 
         try {
             const paymentRequest = this.buildPaymentRequest(userId, normalizedExpiration);
@@ -147,10 +149,12 @@ export class PaymentComponent implements OnInit {
 
             this.paidAmount = Number(paymentResponse.amount.toFixed(2));
             this.paymentSuccessful = true;
+            this.cdr.detectChanges();
         } catch (error) {
-            this.errorMessage = this.getErrorMessage(error);
+            this.showError(this.getErrorMessage(error));
         } finally {
             this.isSubmitting = false;
+            this.cdr.detectChanges();
         }
     }
 
@@ -238,5 +242,10 @@ export class PaymentComponent implements OnInit {
         const normalizedMessage = (message || '').toLowerCase();
         return normalizedMessage.includes('saldo insuficiente')
             || normalizedMessage.includes('datos de la tarjeta no son validos');
+    }
+
+    private showError(message: string): void {
+        this.errorMessage = message;
+        this.cdr.detectChanges();
     }
 }
