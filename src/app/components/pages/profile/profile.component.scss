@@ -1,0 +1,197 @@
+$page-bg: var(--cyb-sys-color-white-7);
+$surface-bg: var(--cyb-sys-color-white-9);
+$surface-border: var(--cyb-sys-color-white-6);
+$surface-border-strong: var(--cyb-sys-color-blue-gray-7);
+$text-main: var(--cyb-sys-color-black-2);
+$text-secondary: var(--cyb-sys-color-black-3);
+$text-muted: var(--cyb-sys-color-blue-gray-3);
+$brand-color: var(--cyb-sys-color-blue-gray-2);
+$brand-color-hover: var(--cyb-sys-color-blue-gray-1);
+$primary-button-bg: var(--cyb-sys-color-light-blue-3);
+$primary-button-hover: var(--cyb-sys-color-light-blue-2);
+$success-color: var(--cyb-sys-color-green-2);
+$success-bg: var(--cyb-sys-color-green-8);
+$error-color: var(--cyb-sys-color-red-3);
+$error-bg: var(--cyb-sys-color-red-8);
+$shadow-soft: 0 16px 40px rgba(40, 62, 70, 0.08);
+
+:host {
+    display: block;
+    min-height: 100vh;
+    background: $page-bg;
+    padding-top: 100px;
+    padding-bottom: 2.5rem;
+}
+
+.profile-page {
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.profile-card {
+    background: $surface-bg;
+    border: 1px solid $surface-border;
+    border-radius: 24px;
+    box-shadow: $shadow-soft;
+    padding: 1.5rem;
+}
+
+.profile-hero {
+    margin-bottom: 1.2rem;
+}
+
+.profile-title {
+    margin: 0;
+    font-size: clamp(1.9rem, 3.3vw, 2.7rem);
+    font-weight: 300;
+    color: $text-main;
+}
+
+.profile-subtitle {
+    margin: 0.4rem 0 0;
+    font-size: 0.95rem;
+    color: $text-muted;
+}
+
+.profile-state {
+    margin: 0;
+    font-size: 0.95rem;
+    color: $text-secondary;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.field--full {
+    grid-column: 1 / -1;
+}
+
+.field-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $text-secondary;
+}
+
+.field input {
+    width: 100%;
+    border: 1px solid $surface-border;
+    border-radius: 12px;
+    padding: 0.76rem 0.82rem;
+    font-size: 0.94rem;
+    color: $text-main;
+    background: $surface-bg;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+
+    &:focus {
+        outline: none;
+        border-color: $surface-border-strong;
+        box-shadow: 0 0 0 3px rgba(52, 69, 79, 0.11);
+    }
+}
+
+.alert {
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.9rem;
+}
+
+.alert--error {
+    color: $error-color;
+    border: 1px solid $error-bg;
+    background: $surface-bg;
+}
+
+.alert--success {
+    color: $success-color;
+    border: 1px solid $success-bg;
+    background: $surface-bg;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.save-btn,
+.secondary-btn {
+    border: none;
+    border-radius: 999px;
+    padding: 0.82rem 1.05rem;
+    font-weight: 700;
+    font-family: var(--cyb-sys-font-family-ui);
+    cursor: pointer;
+    transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+}
+
+.save-btn {
+    color: $surface-bg;
+    background: $primary-button-bg;
+
+    &:hover {
+        background: $primary-button-hover;
+    }
+}
+
+.secondary-btn {
+    color: $text-secondary;
+    background: transparent;
+    border: 1px solid $surface-border-strong;
+
+    &:hover {
+        color: $text-main;
+        border-color: $brand-color;
+    }
+}
+
+.back-link {
+    margin-top: 1rem;
+    display: inline-flex;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: $text-muted;
+
+    &:hover {
+        color: $text-secondary;
+    }
+}
+
+@media (max-width: 760px) {
+    :host {
+        padding-top: 88px;
+    }
+
+    .profile-page {
+        padding: 0 1rem;
+    }
+
+    .profile-card {
+        border-radius: 18px;
+        padding: 1rem;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}

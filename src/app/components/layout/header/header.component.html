@@ -29,7 +29,9 @@
       <div class="layout-header__user-container" [class.is-hidden]="!authService.isAuthenticated()">
         <div class="layout-header__user-chip">
           <div class="layout-header__avatar">{{ getUserInitial() }}</div>
-          <span class="layout-header__username">{{ authService.getUserName() }}</span>
+          <a class="layout-header__username" routerLink="/profile" (click)="closeCategories()">
+            {{ authService.getUserName() }}
+          </a>
           <button class="layout-header__logout-btn" (click)="logout()" title="Cerrar sesión">
             <img src="/images/logout.png" alt="Logout" class="layout-header__logout-icon">
           </button>

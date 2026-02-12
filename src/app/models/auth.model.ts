@@ -18,3 +18,10 @@ export interface RegisterRequest {
     address: string;
     phone: string;
 }
+
+export interface UpdateProfileRequest {
+    name: string;
+    email: string;
+    address: string;
+    phone: string;
+}

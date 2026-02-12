@@ -153,9 +153,14 @@
 }
 
 .layout-header__username {
+  text-decoration: none;
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--cyb-sys-color-black-1);
+
+  &:hover {
+    color: var(--cyb-sys-color-blue-gray-2);
+  }
 }
 
 .layout-header__logout-btn {
