@@ -103,6 +103,13 @@ $shadow-soft: 0 16px 40px rgba(40, 62, 70, 0.08);
         border-color: $surface-border-strong;
         box-shadow: 0 0 0 3px rgba(52, 69, 79, 0.11);
     }
+
+    &:disabled {
+        opacity: 1;
+        color: $text-main;
+        background: $surface-bg;
+        cursor: not-allowed;
+    }
 }
 
 .alert {

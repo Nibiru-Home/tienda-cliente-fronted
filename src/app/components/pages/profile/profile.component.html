@@ -5,58 +5,54 @@
             <p class="profile-subtitle">Actualiza tus datos personales para mantener tu cuenta al dia.</p>
         </header>
 
-        @if (isLoading) {
-            <p class="profile-state">Cargando datos del perfil...</p>
-        } @else {
-            <form class="profile-form" #profileForm="ngForm" (ngSubmit)="saveProfile()">
-                <div class="form-grid">
-                    <label class="field">
-                        <span class="field-label">Nombre</span>
-                        <input type="text" name="name" [(ngModel)]="form.name" [placeholder]="placeholders.name" required />
-                    </label>
+        <form class="profile-form" #profileForm="ngForm" (ngSubmit)="saveProfile()">
+            <div class="form-grid">
+                <label class="field">
+                    <span class="field-label">Nombre</span>
+                    <input type="text" name="name" [(ngModel)]="form.name" [placeholder]="placeholders.name" [disabled]="true" required />
+                </label>
 
-                    <label class="field">
-                        <span class="field-label">Correo electronico</span>
-                        <input type="email" name="email" [(ngModel)]="form.email" [placeholder]="placeholders.email" required />
-                    </label>
+                <label class="field">
+                    <span class="field-label">Correo electronico</span>
+                    <input type="email" name="email" [(ngModel)]="form.email" [placeholder]="placeholders.email" [disabled]="isLoading || isSaving" required />
+                </label>
 
-                    <label class="field field--full">
-                        <span class="field-label">Direccion</span>
-                        <input type="text" name="address" [(ngModel)]="form.address" [placeholder]="placeholders.address" required />
-                    </label>
+                <label class="field field--full">
+                    <span class="field-label">Direccion</span>
+                    <input type="text" name="address" [(ngModel)]="form.address" [placeholder]="placeholders.address" [disabled]="isLoading || isSaving" required />
+                </label>
 
-                    <label class="field">
-                        <span class="field-label">Telefono</span>
-                        <input type="tel" name="phone" [(ngModel)]="form.phone" [placeholder]="placeholders.phone" required />
-                    </label>
-                </div>
+                <label class="field">
+                    <span class="field-label">Telefono</span>
+                    <input type="tel" name="phone" [(ngModel)]="form.phone" [placeholder]="placeholders.phone" [disabled]="isLoading || isSaving" required />
+                </label>
+            </div>
 
-                @if (errorMessage) {
-                    <div class="alert alert--error">{{ errorMessage }}</div>
-                }
+            @if (errorMessage) {
+                <div class="alert alert--error">{{ errorMessage }}</div>
+            }
 
-                @if (successMessage) {
-                    <div class="alert alert--success">{{ successMessage }}</div>
-                }
+            @if (successMessage) {
+                <div class="alert alert--success">{{ successMessage }}</div>
+            }
 
-                <div class="profile-actions">
-                    <button
-                        class="save-btn"
-                        type="submit"
-                        [disabled]="profileForm.invalid || isSaving">
-                        {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
-                    </button>
+            <div class="profile-actions">
+                <button
+                    class="save-btn"
+                    type="submit"
+                    [disabled]="profileForm.invalid || isSaving || isLoading">
+                    {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
+                </button>
 
-                    <button
-                        class="secondary-btn"
-                        type="button"
-                        (click)="reloadProfile()"
-                        [disabled]="isSaving">
-                        Restablecer
-                    </button>
-                </div>
-            </form>
-        }
+                <button
+                    class="secondary-btn"
+                    type="button"
+                    (click)="reloadProfile()"
+                    [disabled]="isSaving || isLoading">
+                    Restablecer
+                </button>
+            </div>
+        </form>
 
         <a class="back-link" routerLink="/">Volver al inicio</a>
     </section>

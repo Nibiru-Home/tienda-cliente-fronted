@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { finalize } from 'rxjs/operators';
@@ -25,6 +25,7 @@ interface ProfileFormModel {
 export class ProfileComponent implements OnInit {
     private readonly authService = inject(AuthService);
     private readonly router = inject(Router);
+    private readonly cdr = inject(ChangeDetectorRef);
 
     readonly form: ProfileFormModel = {
         name: '',
@@ -71,6 +72,7 @@ export class ProfileComponent implements OnInit {
         this.authService.getUserById(userId).pipe(
             finalize(() => {
                 this.isLoading = false;
+                this.cdr.detectChanges();
             })
         ).subscribe({
             next: (user) => {
@@ -104,6 +106,7 @@ export class ProfileComponent implements OnInit {
         this.authService.updateProfile(userId, payload).pipe(
             finalize(() => {
                 this.isSaving = false;
+                this.cdr.detectChanges();
             })
         ).subscribe({
             next: (user) => {
