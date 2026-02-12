@@ -12,22 +12,22 @@
                 <div class="form-grid">
                     <label class="field">
                         <span class="field-label">Nombre</span>
-                        <input type="text" name="name" [(ngModel)]="form.name" required />
+                        <input type="text" name="name" [(ngModel)]="form.name" [placeholder]="placeholders.name" required />
                     </label>
 
                     <label class="field">
                         <span class="field-label">Correo electronico</span>
-                        <input type="email" name="email" [(ngModel)]="form.email" required />
+                        <input type="email" name="email" [(ngModel)]="form.email" [placeholder]="placeholders.email" required />
                     </label>
 
                     <label class="field field--full">
                         <span class="field-label">Direccion</span>
-                        <input type="text" name="address" [(ngModel)]="form.address" required />
+                        <input type="text" name="address" [(ngModel)]="form.address" [placeholder]="placeholders.address" required />
                     </label>
 
                     <label class="field">
                         <span class="field-label">Telefono</span>
-                        <input type="tel" name="phone" [(ngModel)]="form.phone" required />
+                        <input type="tel" name="phone" [(ngModel)]="form.phone" [placeholder]="placeholders.phone" required />
                     </label>
                 </div>
 

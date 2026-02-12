@@ -29,11 +29,23 @@
       <div class="layout-header__user-container" [class.is-hidden]="!authService.isAuthenticated()">
         <div class="layout-header__user-chip">
           <div class="layout-header__avatar">{{ getUserInitial() }}</div>
-          <a class="layout-header__username" routerLink="/profile" (click)="closeCategories()">
+          <button
+            class="layout-header__username-btn"
+            type="button"
+            (click)="toggleUserMenu($event)"
+            [attr.aria-expanded]="showUserMenu"
+            aria-haspopup="menu">
             {{ authService.getUserName() }}
-          </a>
-          <button class="layout-header__logout-btn" (click)="logout()" title="Cerrar sesión">
-            <img src="/images/logout.png" alt="Logout" class="layout-header__logout-icon">
+          </button>
+        </div>
+
+        <div class="layout-header__user-menu" role="menu" [class.is-open]="showUserMenu">
+          <button class="layout-header__user-menu-item" type="button" role="menuitem" (click)="goToProfile()">
+            Editar perfil
+          </button>
+          <button class="layout-header__user-menu-item layout-header__user-menu-item--danger" type="button"
+            role="menuitem" (click)="logout()">
+            Log out
           </button>
         </div>
       </div>

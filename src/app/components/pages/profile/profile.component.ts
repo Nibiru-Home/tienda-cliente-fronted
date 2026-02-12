@@ -32,6 +32,12 @@ export class ProfileComponent implements OnInit {
         address: '',
         phone: ''
     };
+    readonly placeholders: ProfileFormModel = {
+        name: '',
+        email: '',
+        address: '',
+        phone: ''
+    };
 
     isLoading = true;
     isSaving = false;
@@ -127,6 +133,11 @@ export class ProfileComponent implements OnInit {
             address: (user?.address ?? '').trim(),
             phone: (user?.phone ?? '').trim()
         };
+
+        this.placeholders.name = normalized.name;
+        this.placeholders.email = normalized.email;
+        this.placeholders.address = normalized.address;
+        this.placeholders.phone = normalized.phone;
 
         this.form.name = normalized.name;
         this.form.email = normalized.email;

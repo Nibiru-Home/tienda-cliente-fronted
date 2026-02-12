@@ -24,6 +24,7 @@ export class LayoutHeaderComponent implements OnInit {
   readonly cartItemsCount$ = this.cartService.getTotalItems();
   showCategories = false;
   showEstancias = false;
+  showUserMenu = false;
 
   private readonly fallbackProductMenu: HeaderMenuItem[] = [
     { label: 'Ver todos', route: '/products' },
@@ -56,6 +57,7 @@ export class LayoutHeaderComponent implements OnInit {
     event.preventDefault();
     this.showCategories = false;
     this.showEstancias = false;
+    this.showUserMenu = false;
 
     const navigatePromise =
       this.router.url === '/' ? Promise.resolve(true) : this.router.navigate(['/']);
@@ -68,6 +70,7 @@ export class LayoutHeaderComponent implements OnInit {
   logout(): void {
     this.showCategories = false;
     this.showEstancias = false;
+    this.showUserMenu = false;
     this.authService.logout();
     this.router.navigate(['/']).then(() => {
       window.scrollTo(0, 0);
@@ -79,12 +82,14 @@ export class LayoutHeaderComponent implements OnInit {
 
   onProductsClick(): void {
     this.showEstancias = false;
+    this.showUserMenu = false;
     this.showCategories = !this.showCategories;
   }
 
   closeCategories(): void {
     this.showCategories = false;
     this.showEstancias = false;
+    this.showUserMenu = false;
   }
 
   onProductMenuSelect(item: HeaderMenuItem): void {
@@ -103,12 +108,25 @@ export class LayoutHeaderComponent implements OnInit {
 
   onEstanciasClick(): void {
     this.showCategories = false;
+    this.showUserMenu = false;
     this.showEstancias = !this.showEstancias;
+  }
+
+  toggleUserMenu(event: MouseEvent): void {
+    event.stopPropagation();
+    this.showCategories = false;
+    this.showEstancias = false;
+    this.showUserMenu = !this.showUserMenu;
+  }
+
+  goToProfile(): void {
+    this.showUserMenu = false;
+    this.router.navigate(['/profile']);
   }
 
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: MouseEvent): void {
-    if (!this.showCategories && !this.showEstancias) {
+    if (!this.showCategories && !this.showEstancias && !this.showUserMenu) {
       return;
     }
 
@@ -120,6 +138,7 @@ export class LayoutHeaderComponent implements OnInit {
     if (!this.elementRef.nativeElement.contains(target)) {
       this.showCategories = false;
       this.showEstancias = false;
+      this.showUserMenu = false;
     }
   }
 

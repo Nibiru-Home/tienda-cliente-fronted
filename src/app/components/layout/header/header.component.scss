@@ -125,6 +125,7 @@
 }
 
 .layout-header__user-container {
+  position: relative;
   display: flex;
   align-items: center;
 }
@@ -152,8 +153,11 @@
   font-size: 1rem;
 }
 
-.layout-header__username {
-  text-decoration: none;
+.layout-header__username-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
   font-weight: 500;
   font-size: 0.95rem;
   color: var(--cyb-sys-color-black-1);
@@ -163,23 +167,41 @@
   }
 }
 
-.layout-header__logout-btn {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  transition: opacity 0.2s;
-  opacity: 0.6;
-  margin-left: 0.25rem;
+.layout-header__user-menu {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  min-width: 170px;
+  background: var(--cyb-sys-color-white-9);
+  border: 1px solid var(--cyb-sys-color-white-6);
+  border-radius: 14px;
+  box-shadow: 0 16px 28px rgba(0, 0, 0, 0.12);
+  padding: 0.35rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.2rem;
 
-  &:hover {
-    opacity: 1;
+  &.is-open {
+    display: flex;
   }
 }
 
-.layout-header__logout-icon {
-  height: 18px;
-  width: auto;
+.layout-header__user-menu-item {
+  width: 100%;
+  border: none;
+  background: transparent;
+  border-radius: 10px;
+  padding: 0.6rem 0.7rem;
+  text-align: left;
+  font-size: 0.88rem;
+  color: var(--cyb-sys-color-black-2);
+  cursor: pointer;
+
+  &:hover {
+    background: var(--cyb-sys-color-white-7);
+  }
+}
+
+.layout-header__user-menu-item--danger {
+  color: var(--cyb-sys-color-red-3);
 }

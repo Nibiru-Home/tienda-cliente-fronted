@@ -1,6 +1,8 @@
 import { Injectable, Inject } from '@angular/core'
-import { Observable } from 'rxjs'
-import { AuthResponse, LoginRequest, RegisterRequest } from '../models/auth.model'
+import { HttpErrorResponse } from '@angular/common/http'
+import { Observable, of, throwError } from 'rxjs'
+import { catchError, map, switchMap } from 'rxjs/operators'
+import { AuthResponse, LoginRequest, RegisterRequest, UpdateProfileRequest } from '../models/auth.model'
 import { User } from '../models/user.model'
 import { HTTPService } from './http.service'
 
@@ -60,5 +62,40 @@ export class AuthService {
 
   getUsers(): Observable<User[]> {
     return this.httpService.getAll<User>(this.authRoute)
+  }
+
+  getUserById(id: string): Observable<User> {
+    return this.httpService.get<User>(`${this.authRoute}/${id}`).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (![404, 405].includes(error.status)) {
+          return throwError(() => error)
+        }
+
+        return this.getUsers().pipe(
+          map((users) => (users ?? []).find((user) => String(user.id) === String(id)) ?? null),
+          switchMap((user) => {
+            if (user) {
+              return of(user)
+            }
+            return throwError(() => error)
+          })
+        )
+      })
+    )
+  }
+
+  updateProfile(id: string, request: UpdateProfileRequest): Observable<User> {
+    return this.httpService.put<User>(`${this.authRoute}/${id}`, request).pipe(
+      catchError((error: HttpErrorResponse) => {
+        if (![404, 405].includes(error.status)) {
+          return throwError(() => error)
+        }
+
+        return this.httpService.put<User>(this.authRoute, {
+          id,
+          ...request
+        })
+      })
+    )
   }
 }
