@@ -51,8 +51,24 @@
       </div>
     </nav>
   </div>
-  <app-header-menu menuId="header-categories" [open]="showCategories" [items]="productMenu"
-    (select)="onProductMenuSelect($event)"></app-header-menu>
-  <app-header-menu menuId="header-estancias" [open]="showEstancias" [items]="estanciasMenu"
-    (select)="onEstanciasMenuSelect($event)"></app-header-menu>
+  <div class="layout-header__categories" [class.is-open]="showCategories" [attr.aria-hidden]="!showCategories"
+    id="header-categories">
+    <div class="layout-header__categories-inner">
+      @for (item of productMenu; track item.label) {
+      <button class="layout-header__category-link" type="button" (click)="onProductMenuSelect(item)">
+        {{ item.label }}
+      </button>
+      }
+    </div>
+  </div>
+  <div class="layout-header__categories" [class.is-open]="showEstancias" [attr.aria-hidden]="!showEstancias"
+    id="header-estancias">
+    <div class="layout-header__categories-inner">
+      @for (item of estanciasMenu; track item.label) {
+      <button class="layout-header__category-link" type="button" (click)="onEstanciasMenuSelect(item)">
+        {{ item.label }}
+      </button>
+      }
+    </div>
+  </div>
 </header>

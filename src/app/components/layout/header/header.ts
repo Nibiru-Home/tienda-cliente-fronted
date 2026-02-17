@@ -6,12 +6,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { AuthService } from '../../../services/auth.service';
 import { CartService } from '../../../services/cart.service';
 import { CategoryService } from '../../../services/category.service';
-import { HeaderMenuComponent, HeaderMenuItem } from '../../ui/c-header-menu/c-header-menu';
+
+interface HeaderMenuItem {
+  label: string;
+  route?: string;
+  queryParams?: Record<string, string | number | boolean>;
+}
 
 @Component({
   selector: 'app-layout-header',
   standalone: true,
-  imports: [RouterLink, CommonModule, HeaderMenuComponent],
+  imports: [RouterLink, CommonModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
