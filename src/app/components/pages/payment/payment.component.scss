@@ -1,27 +1,9 @@
-$page-bg: var(--cyb-sys-color-white-7);
-$surface-bg: var(--cyb-sys-color-white-9);
-$surface-bg-alt: var(--cyb-sys-color-white-8);
-$surface-border: var(--cyb-sys-color-white-6);
-$surface-border-strong: var(--cyb-sys-color-blue-gray-7);
-$divider-color: var(--cyb-sys-color-white-4);
-$text-main: var(--cyb-sys-color-black-2);
-$text-secondary: var(--cyb-sys-color-black-3);
-$text-muted: var(--cyb-sys-color-blue-gray-3);
-$brand-color: var(--cyb-sys-color-blue-gray-2);
-$brand-color-hover: var(--cyb-sys-color-blue-gray-1);
-$primary-button-bg: var(--cyb-sys-color-light-blue-3);
-$primary-button-hover: var(--cyb-sys-color-light-blue-2);
-$danger-color: var(--cyb-sys-color-red-3);
-$danger-soft: var(--cyb-sys-color-red-8);
-$shadow-soft: 0 16px 40px rgba(40, 62, 70, 0.08);
-$shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
-
 :host {
     display: block;
     padding-top: 100px;
     padding-bottom: 2.5rem;
     min-height: 100vh;
-    background: $page-bg;
+    background: var(--cyb-sys-color-white-7);
 }
 
 .payment-page {
@@ -38,13 +20,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 300;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .page-subtitle {
     margin: 0.35rem 0 0;
     font-size: 0.98rem;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 }
 
 .payment-grid {
@@ -55,11 +37,11 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .payment-form-section {
-    background: $surface-bg;
-    border: 1px solid $surface-border;
+    background: var(--cyb-sys-color-white-9);
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
     padding: 1.4rem;
-    box-shadow: $shadow-soft;
+    box-shadow: 0 16px 40px rgba(40, 62, 70, 0.08);
 }
 
 .section-header {
@@ -74,7 +56,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: 1.35rem;
     font-weight: 600;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .payment-alert {
@@ -85,15 +67,15 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .payment-alert--error {
-    color: $danger-color;
-    border: 1px solid $danger-soft;
-    background: $surface-bg;
+    color: var(--cyb-sys-color-red-3);
+    border: 1px solid var(--cyb-sys-color-red-8);
+    background: var(--cyb-sys-color-white-9);
 }
 
 .payment-alert--info {
-    color: $text-secondary;
-    border: 1px solid $surface-border;
-    background: $surface-bg-alt;
+    color: var(--cyb-sys-color-black-3);
+    border: 1px solid var(--cyb-sys-color-white-6);
+    background: var(--cyb-sys-color-white-8);
 }
 
 .payment-form {
@@ -137,28 +119,28 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 
 .field-label {
     font-size: 0.85rem;
-    color: $text-secondary;
+    color: var(--cyb-sys-color-black-3);
     font-weight: 600;
 }
 
 .field-hint {
     font-size: 0.78rem;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 }
 
 .field input {
     width: 100%;
-    border: 1px solid $surface-border;
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 12px;
     padding: 0.76rem 0.82rem;
     font-size: 0.94rem;
-    color: $text-main;
-    background: $surface-bg;
+    color: var(--cyb-sys-color-black-2);
+    background: var(--cyb-sys-color-white-9);
     transition: border-color 0.18s ease, box-shadow 0.18s ease;
 
     &:focus {
         outline: none;
-        border-color: $surface-border-strong;
+        border-color: var(--cyb-sys-color-blue-gray-7);
         box-shadow: 0 0 0 3px rgba(52, 69, 79, 0.11);
     }
 }
@@ -175,12 +157,12 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     font-family: var(--cyb-sys-font-family-ui);
     font-size: 0.98rem;
     font-weight: 700;
-    color: $surface-bg;
-    background: $primary-button-bg;
+    color: var(--cyb-sys-color-white-9);
+    background: var(--cyb-sys-color-light-blue-3);
     cursor: pointer;
 
     &:hover {
-        background: $primary-button-hover;
+        background: var(--cyb-sys-color-light-blue-2);
     }
 
     &:disabled {
@@ -198,17 +180,17 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 600;
-    color: $text-secondary;
-    background: $surface-bg-alt;
-    border: 1px solid $surface-border-strong;
+    color: var(--cyb-sys-color-black-3);
+    background: var(--cyb-sys-color-white-8);
+    border: 1px solid var(--cyb-sys-color-blue-gray-7);
     border-radius: 999px;
     padding: 0.5rem 0.82rem;
     transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 
     &:hover {
-        color: $text-main;
-        border-color: $brand-color;
-        background: $surface-bg;
+        color: var(--cyb-sys-color-black-2);
+        border-color: var(--cyb-sys-color-blue-gray-2);
+        background: var(--cyb-sys-color-white-9);
     }
 
     &:hover .back-link-icon {
@@ -225,23 +207,23 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 .payment-summary-section {
     position: sticky;
     top: 98px;
-    background: $surface-bg;
-    border: 1px solid $surface-border;
+    background: var(--cyb-sys-color-white-9);
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
     padding: 1.4rem;
-    box-shadow: $shadow-strong;
+    box-shadow: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .summary-title {
     margin: 0;
     font-size: 1.65rem;
     font-weight: 500;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .summary-empty {
     margin: 0.95rem 0;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
     font-size: 0.92rem;
 }
 
@@ -252,8 +234,8 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     gap: 0.75rem;
     padding: 0.68rem;
     border-radius: 14px;
-    border: 1px solid $surface-border;
-    background: $surface-bg;
+    border: 1px solid var(--cyb-sys-color-white-6);
+    background: var(--cyb-sys-color-white-9);
     margin-bottom: 0.65rem;
 }
 
@@ -262,7 +244,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     height: 64px;
     border-radius: 10px;
     object-fit: cover;
-    background: $surface-bg-alt;
+    background: var(--cyb-sys-color-white-8);
 }
 
 .summary-item-meta {
@@ -275,7 +257,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 .summary-item-name {
     margin: 0;
     font-size: 0.95rem;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -283,13 +265,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 
 .summary-item-detail {
     font-size: 0.83rem;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 }
 
 .summary-item-total {
     font-size: 0.95rem;
     font-weight: 700;
-    color: $brand-color;
+    color: var(--cyb-sys-color-blue-gray-2);
     white-space: nowrap;
 }
 
@@ -300,34 +282,34 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     gap: 1rem;
     margin-top: 0.95rem;
     font-size: 0.98rem;
-    color: $text-secondary;
+    color: var(--cyb-sys-color-black-3);
 }
 
 .summary-free {
     font-weight: 700;
-    color: $brand-color;
+    color: var(--cyb-sys-color-blue-gray-2);
 }
 
 .summary-divider {
     height: 1px;
-    background: $divider-color;
+    background: var(--cyb-sys-color-white-4);
     margin: 1rem 0 0.15rem;
 }
 
 .total-row {
     font-size: 1.08rem;
     font-weight: 700;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .payment-success {
     max-width: 740px;
     margin: 0 auto;
-    background: $surface-bg;
-    border: 1px solid $surface-border;
+    background: var(--cyb-sys-color-white-9);
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
     padding: 2rem 1.6rem;
-    box-shadow: $shadow-soft;
+    box-shadow: 0 16px 40px rgba(40, 62, 70, 0.08);
     text-align: center;
 }
 
@@ -335,13 +317,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: clamp(1.9rem, 3.2vw, 2.45rem);
     font-weight: 400;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .success-text {
     margin: 0.6rem auto 0;
     max-width: 520px;
-    color: $text-secondary;
+    color: var(--cyb-sys-color-black-3);
 }
 
 .payment-success__actions {
@@ -361,18 +343,18 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     padding: 0.72rem 1.22rem;
     font-weight: 700;
     border: 1px solid transparent;
-    color: $surface-bg;
-    background: $brand-color;
+    color: var(--cyb-sys-color-white-9);
+    background: var(--cyb-sys-color-blue-gray-2);
 
     &:hover {
-        background: $brand-color-hover;
+        background: var(--cyb-sys-color-blue-gray-1);
     }
 }
 
 .success-link--secondary {
-    color: $text-secondary;
-    background: $surface-bg;
-    border-color: $surface-border-strong;
+    color: var(--cyb-sys-color-black-3);
+    background: var(--cyb-sys-color-white-9);
+    border-color: var(--cyb-sys-color-blue-gray-7);
 }
 
 @media (max-width: 1080px) {

@@ -1,27 +1,9 @@
-$cart-bg: var(--cyb-sys-color-white-7);
-$surface-bg: var(--cyb-sys-color-white-9);
-$surface-bg-alt: var(--cyb-sys-color-white-8);
-$surface-border: var(--cyb-sys-color-white-6);
-$surface-border-strong: var(--cyb-sys-color-blue-gray-7);
-$divider-color: var(--cyb-sys-color-white-4);
-$text-main: var(--cyb-sys-color-black-2);
-$text-secondary: var(--cyb-sys-color-black-3);
-$text-muted: var(--cyb-sys-color-blue-gray-3);
-$brand-color: var(--cyb-sys-color-blue-gray-2);
-$brand-color-hover: var(--cyb-sys-color-blue-gray-1);
-$primary-button-bg: var(--cyb-sys-color-light-blue-3);
-$primary-button-hover: var(--cyb-sys-color-light-blue-2);
-$danger-color: var(--cyb-sys-color-red-4);
-$danger-soft: var(--cyb-sys-color-red-8);
-$shadow-soft: 0 16px 40px rgba(40, 62, 70, 0.08);
-$shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
-
 :host {
     display: block;
     padding-top: 100px;
     padding-bottom: 2.5rem;
     min-height: 100vh;
-    background: $cart-bg;
+    background: var(--cyb-sys-color-white-7);
 }
 
 .cart-page {
@@ -42,7 +24,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 300;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .cart-grid {
@@ -53,11 +35,11 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .cart-items-section {
-    background: $surface-bg;
-    border: 1px solid $surface-border;
+    background: var(--cyb-sys-color-white-9);
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
     padding: 1.4rem;
-    box-shadow: $shadow-soft;
+    box-shadow: 0 16px 40px rgba(40, 62, 70, 0.08);
 }
 
 .section-header {
@@ -75,7 +57,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .items-count {
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
     font-size: 0.92rem;
 }
 
@@ -91,8 +73,8 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     gap: 1rem;
     padding: 0.85rem;
     border-radius: 18px;
-    border: 1px solid $surface-border;
-    background: $surface-bg;
+    border: 1px solid var(--cyb-sys-color-white-6);
+    background: var(--cyb-sys-color-white-9);
 }
 
 .item-image {
@@ -100,7 +82,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     height: 132px;
     border-radius: 14px;
     overflow: hidden;
-    background: $surface-bg-alt;
+    background: var(--cyb-sys-color-white-8);
 
     img {
         width: 100%;
@@ -127,13 +109,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: 1.15rem;
     font-weight: 600;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .item-subtotal {
     font-size: 1.08rem;
     font-weight: 700;
-    color: $brand-color;
+    color: var(--cyb-sys-color-blue-gray-2);
     white-space: nowrap;
 }
 
@@ -141,7 +123,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: 0.92rem;
     line-height: 1.5;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -160,8 +142,8 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     display: inline-flex;
     align-items: center;
     border-radius: 999px;
-    border: 1px solid $surface-border-strong;
-    background: $surface-bg;
+    border: 1px solid var(--cyb-sys-color-blue-gray-7);
+    background: var(--cyb-sys-color-white-9);
     overflow: hidden;
 }
 
@@ -170,20 +152,20 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     height: 32px;
     border: none;
     background: transparent;
-    color: $brand-color;
+    color: var(--cyb-sys-color-blue-gray-2);
     font-size: 1.15rem;
     cursor: pointer;
 
     &:hover {
-        background: $cart-bg;
-        color: $text-main;
+        background: var(--cyb-sys-color-white-7);
+        color: var(--cyb-sys-color-black-2);
     }
 
     &:disabled {
         cursor: not-allowed;
         opacity: 0.45;
         background: transparent;
-        color: $text-muted;
+        color: var(--cyb-sys-color-blue-gray-3);
     }
 }
 
@@ -196,7 +178,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
 
 .item-unit-price {
     font-size: 0.86rem;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 }
 
 .delete-btn {
@@ -207,22 +189,22 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     border: 1px solid transparent;
     border-radius: 999px;
     background: transparent;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
     padding: 0.4rem 0.7rem;
     font-size: 0.86rem;
     cursor: pointer;
 
     &:hover {
-        color: $danger-color;
-        border-color: $danger-soft;
-        background: $cart-bg;
+        color: var(--cyb-sys-color-red-4);
+        border-color: var(--cyb-sys-color-red-8);
+        background: var(--cyb-sys-color-white-7);
     }
 }
 
 .cart-empty {
     border-radius: 18px;
-    border: 1px dashed $surface-border-strong;
-    background: $surface-bg;
+    border: 1px dashed var(--cyb-sys-color-blue-gray-7);
+    background: var(--cyb-sys-color-white-9);
     padding: 2.25rem 1.25rem;
     text-align: center;
 }
@@ -231,13 +213,13 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin: 0;
     font-size: 1.35rem;
     font-weight: 600;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .empty-text {
     margin: 0.65rem auto 1.2rem;
     max-width: 460px;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 }
 
 .empty-link {
@@ -248,29 +230,29 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     text-decoration: none;
     padding: 0.7rem 1.25rem;
     font-weight: 600;
-    background: $brand-color;
-    color: $surface-bg;
+    background: var(--cyb-sys-color-blue-gray-2);
+    color: var(--cyb-sys-color-white-9);
 
     &:hover {
-        background: $brand-color-hover;
+        background: var(--cyb-sys-color-blue-gray-1);
     }
 }
 
 .cart-summary-section {
     position: sticky;
     top: 98px;
-    background: $surface-bg;
-    border: 1px solid $surface-border;
+    background: var(--cyb-sys-color-white-9);
+    border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
     padding: 1.4rem;
-    box-shadow: $shadow-strong;
+    box-shadow: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
 .summary-title {
     margin: 0;
     font-size: 1.65rem;
     font-weight: 500;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .summary-row {
@@ -280,17 +262,17 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     gap: 1rem;
     margin-bottom: 0.95rem;
     font-size: 0.98rem;
-    color: $text-secondary;
+    color: var(--cyb-sys-color-black-3);
 }
 
 .summary-free {
     font-weight: 700;
-    color: $brand-color;
+    color: var(--cyb-sys-color-blue-gray-2);
 }
 
 .summary-divider {
     height: 1px;
-    background: $divider-color;
+    background: var(--cyb-sys-color-white-4);
     margin: 1rem 0 1.15rem;
 }
 
@@ -298,7 +280,7 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     margin-bottom: 1.3rem;
     font-size: 1.08rem;
     font-weight: 700;
-    color: $text-main;
+    color: var(--cyb-sys-color-black-2);
 }
 
 .continue-btn {
@@ -314,12 +296,12 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     font-size: 0.98rem;
     font-weight: 700;
     letter-spacing: 0.01em;
-    color: $surface-bg;
-    background: $primary-button-bg;
+    color: var(--cyb-sys-color-white-9);
+    background: var(--cyb-sys-color-light-blue-3);
     cursor: pointer;
 
     &:hover {
-        background: $primary-button-hover;
+        background: var(--cyb-sys-color-light-blue-2);
     }
 
     &:disabled {
@@ -340,10 +322,10 @@ $shadow-strong: 0 20px 42px rgba(30, 41, 48, 0.11);
     width: 100%;
     text-decoration: none;
     font-size: 0.9rem;
-    color: $text-muted;
+    color: var(--cyb-sys-color-blue-gray-3);
 
     &:hover {
-        color: $text-secondary;
+        color: var(--cyb-sys-color-black-3);
     }
 }
 
