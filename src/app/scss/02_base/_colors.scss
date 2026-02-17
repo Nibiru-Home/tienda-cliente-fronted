@@ -1,14 +1,19 @@
 @use "sass:list";
 @use "../01_utilities/index" as utilities;
 
+$beige-color: utilities.$beige-color;
 $black-color: utilities.$black-color;
 $blue-gray-color: utilities.$blue-gray-color;
+$green-color: utilities.$green-color;
 $light-blue-color: utilities.$light-blue-color;
-$beige-color: utilities.$beige-color;
-$white-color: utilities.$white-color;
 $red-color: utilities.$red-color;
+$white-color: utilities.$white-color;
 
 :root {
+  @for $i from 1 through list.length($beige-color) {
+    --cyb-sys-color-beige-#{$i}: #{list.nth($beige-color, $i)};
+  }
+
   @for $i from 1 through list.length($black-color) {
     --cyb-sys-color-black-#{$i}: #{list.nth($black-color, $i)};
   }
@@ -17,19 +22,19 @@ $red-color: utilities.$red-color;
     --cyb-sys-color-blue-gray-#{$i}: #{list.nth($blue-gray-color, $i)};
   }
 
+  @for $i from 1 through list.length($green-color) {
+    --cyb-sys-color-green-#{$i}: #{list.nth($green-color, $i)};
+  }
+
   @for $i from 1 through list.length($light-blue-color) {
     --cyb-sys-color-light-blue-#{$i}: #{list.nth($light-blue-color, $i)};
   }
 
-  @for $i from 1 through list.length($beige-color) {
-    --cyb-sys-color-beige-#{$i}: #{list.nth($beige-color, $i)};
+  @for $i from 1 through list.length($red-color) {
+    --cyb-sys-color-red-#{$i}: #{list.nth($red-color, $i)};
   }
 
   @for $i from 1 through list.length($white-color) {
     --cyb-sys-color-white-#{$i}: #{list.nth($white-color, $i)};
-  }
-
-  @for $i from 1 through list.length($red-color) {
-    --cyb-sys-color-red-#{$i}: #{list.nth($red-color, $i)};
   }
 }

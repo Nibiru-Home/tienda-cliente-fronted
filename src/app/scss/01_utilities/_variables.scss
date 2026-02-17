@@ -1,3 +1,15 @@
+$beige-color: (
+    "#5A4A36",
+    "#7A6348",
+    "#9A7D5C",
+    "#B89A74",
+    "#D3B58D",
+    "#E5CFAF",
+    "#F2E8DA",
+    "#F7F1E8",
+    "#FBF8F3"
+);
+
 $black-color: (
     "#0F0F0F",
     "#1A1A1A",
@@ -22,6 +34,18 @@ $blue-gray-color: (
     "#ECF3F6"
 );
 
+$green-color: (
+    "#103A22",
+    "#1A5232",
+    "#246A41",
+    "#2E8251",
+    "#3B9B62",
+    "#5BB47D",
+    "#84CCA0",
+    "#B7E2C8",
+    "#E8F6EC"
+);
+
 $light-blue-color: (
     "#355E6B",
     "#4E7C8A",
@@ -32,30 +56,6 @@ $light-blue-color: (
     "#D6EAF2",
     "#E7F2F7",
     "#F3F9FB"
-);
-
-$beige-color: (
-    "#5A4A36",
-    "#7A6348",
-    "#9A7D5C",
-    "#B89A74",
-    "#D3B58D",
-    "#E5CFAF",
-    "#F2E8DA",
-    "#F7F1E8",
-    "#FBF8F3"
-);
-
-$white-color: (
-    "#BDBDBB",
-    "#D0D0CE",
-    "#E1E1DF",
-    "#ECECEA",
-    "#F2F2F0",
-    "#F5F5F3",
-    "#F8F8F6",
-    "#FBFBFA",
-    "#FFFFFF"
 );
 
 $red-color: (
@@ -70,7 +70,30 @@ $red-color: (
     "#F4D6D6"
 );
 
+$white-color: (
+    "#BDBDBB",
+    "#D0D0CE",
+    "#E1E1DF",
+    "#ECECEA",
+    "#F2F2F0",
+    "#F5F5F3",
+    "#F8F8F6",
+    "#FBFBFA",
+    "#FFFFFF"
+);
 
+$border-radius-sizes: (
+    0px,
+    2px,
+    4px,
+    6px,
+    8px,
+    12px,
+    16px,
+    20px,
+    24px,
+    32px
+);
 
 $font-sizes: (
     10px,
@@ -98,6 +121,24 @@ $font-weights: (
     900
 );
 
+$height-sizes: (
+    0px,
+    50px,
+    100px,
+    150px,
+    200px,
+    250px,
+    300px,
+    400px,
+    500px,
+    600px,
+    800px,
+    1000px,
+    50%,
+    100%,
+    100vw,
+    100vh
+);
 
 $margin-sizes: (
     0px,
@@ -131,17 +172,13 @@ $padding-sizes: (
     64px
 );
 
-$gap-sizes: (
-    0px,
-    2px,
-    4px,
-    6px,
-    8px,
-    12px,
-    16px,
-    20px,
-    24px,
-    32px
+$shadows: (
+    0 1px 2px 0 rgba(0, 0, 0, 0.05),
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 25px 50px -12px rgba(0, 0, 0, 0.25)
 );
 
 $width-sizes: (
@@ -161,45 +198,4 @@ $width-sizes: (
     100%,
     100vw,
     100vh
-);
-
-$height-sizes: (
-    0px,
-    50px,
-    100px,
-    150px,
-    200px,
-    250px,
-    300px,
-    400px,
-    500px,
-    600px,
-    800px,
-    1000px,
-    50%,
-    100%,
-    100vw,
-    100vh
-);
-
-$border-radius-sizes: (
-    0px,
-    2px,
-    4px,
-    6px,
-    8px,
-    12px,
-    16px,
-    20px,
-    24px,
-    32px
-);
-
-$shadows: (
-    0 1px 2px 0 rgba(0, 0, 0, 0.05),
-    0 1px 3px 0 rgba(0, 0, 0, 0.1),
-    0 4px 6px -1px rgba(0, 0, 0, 0.1),
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 20px 25px -5px rgba(0, 0, 0, 0.1),
-    0 25px 50px -12px rgba(0, 0, 0, 0.25)
 );

@@ -6,9 +6,3 @@
         --cyb-sys-height-#{$i}: #{list.nth(utilities.$height-sizes, $i)};
     }
 }
-
-@for $i from 1 through list.length(utilities.$height-sizes) {
-    .g--height-#{$i} {
-        height: var(--cyb-sys-height-#{$i});
-    }
-}

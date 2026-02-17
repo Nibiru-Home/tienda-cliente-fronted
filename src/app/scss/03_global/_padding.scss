@@ -6,26 +6,3 @@
         --cyb-sys-padding-#{$i}: #{list.nth(utilities.$padding-sizes, $i)};
     }
 }
-
-@for $i from 1 through list.length(utilities.$padding-sizes) {
-
-    .g--padding-#{$i} {
-        padding: var(--cyb-sys-padding-#{$i});
-    }
-
-    .g--padding-top-#{$i} {
-        padding-top: var(--cyb-sys-padding-#{$i});
-    }
-
-    .g--padding-right-#{$i} {
-        padding-right: var(--cyb-sys-padding-#{$i});
-    }
-
-    .g--padding-bottom-#{$i} {
-        padding-bottom: var(--cyb-sys-padding-#{$i});
-    }
-
-    .g--padding-left-#{$i} {
-        padding-left: var(--cyb-sys-padding-#{$i});
-    }
-}

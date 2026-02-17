@@ -229,7 +229,7 @@ textarea {
 }
 
 button,
-input:where([type='button'], [type='<span class="search_hit">reset</span>'], [type='submit']),
+input:where([type='button'], [type='reset'], [type='submit']),
 ::file-selector-button {
   appearance: button;
 }

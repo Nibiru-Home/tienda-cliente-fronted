@@ -6,9 +6,3 @@
         --cyb-sys-border-radius-#{$i}: #{list.nth(utilities.$border-radius-sizes, $i)};
     }
 }
-
-@for $i from 1 through list.length(utilities.$border-radius-sizes) {
-    .g--border-radius-#{$i} {
-        border-radius: var(--cyb-sys-border-radius-#{$i});
-    }
-}
