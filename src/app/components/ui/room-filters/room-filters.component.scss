@@ -2,12 +2,10 @@
     display: flex;
     gap: 20px;
     justify-content: flex-start;
-    /* Align left or center as preferred, usually left for pills */
     padding: 1rem 0;
     flex-wrap: wrap;
     position: relative;
     z-index: 20;
-    /* Ensure above product grid */
 }
 
 .filter-group {
@@ -22,7 +20,6 @@
     background: white;
     border: 1px solid #E5E7EB;
     border-radius: 9999px;
-    /* Full pill shape */
     color: #374151;
     font-size: 0.95rem;
     font-weight: 500;
@@ -36,14 +33,12 @@
     border-color: #D1D5DB;
 }
 
-/* Active state (filter selected) */
 .filter-pill.active {
     background: #F3F4F6;
     border-color: #9CA3AF;
     color: #111827;
 }
 
-/* Open state */
 .filter-pill.open {
     border-color: #3B82F6;
     box-shadow: 0 0 0 2px #BFDBFE;
@@ -105,7 +100,6 @@
     width: 100vw;
     height: 100vh;
     z-index: 10;
-    /* Below dropdown (50) and pill (parent z-index 20 + context) but above page content */
     background: transparent;
     cursor: default;
 }

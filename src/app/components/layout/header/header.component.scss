@@ -37,10 +37,11 @@
   text-decoration: none;
 }
 
-.layout-header__brand {
-  font-size: 1.35rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.layout-header__logo-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
 }
 
 .layout-header__nav {

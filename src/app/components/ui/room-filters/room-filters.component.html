@@ -1,5 +1,4 @@
 <div class="filters-container">
-    <!-- Style Filter -->
     <div class="filter-group">
         <button class="filter-pill" [class.active]="selectedStyle" [class.open]="openDropdown === 'style'"
             (click)="toggleDropdown('style', $event)">
@@ -21,7 +20,6 @@
         }
     </div>
 
-    <!-- Budget Filter -->
     <div class="filter-group">
         <button class="filter-pill" [class.active]="selectedBudget" [class.open]="openDropdown === 'budget'"
             (click)="toggleDropdown('budget', $event)">
@@ -44,7 +42,6 @@
         }
     </div>
 
-    <!-- Category Filter -->
     <div class="filter-group">
         <button class="filter-pill" [class.active]="selectedCategory" [class.open]="openDropdown === 'category'"
             (click)="toggleDropdown('category', $event)">
@@ -66,7 +63,6 @@
         }
     </div>
 
-    <!-- Backdrop to close dropdowns when clicking outside -->
     @if (openDropdown) {
     <div class="backdrop" (click)="closeDropdown()"></div>
     }

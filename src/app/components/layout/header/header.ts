@@ -58,12 +58,8 @@ export class LayoutHeaderComponent implements OnInit {
     this.loadCategories();
   }
 
-  onHomeClick(event: MouseEvent): void {
-    event.preventDefault();
-    this.showCategories = false;
-    this.showEstancias = false;
-    this.showUserMenu = false;
-
+  onHomeClick(): void {
+    this.closeMenus();
     const navigatePromise =
       this.router.url === '/' ? Promise.resolve(true) : this.router.navigate(['/']);
 
@@ -73,9 +69,7 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   logout(): void {
-    this.showCategories = false;
-    this.showEstancias = false;
-    this.showUserMenu = false;
+    this.closeMenus();
     this.authService.logout();
     this.router.navigate(['/']).then(() => {
       window.scrollTo(0, 0);
@@ -86,12 +80,12 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   onProductsClick(): void {
-    this.showEstancias = false;
-    this.showUserMenu = false;
-    this.showCategories = !this.showCategories;
+    const nextState = !this.showCategories;
+    this.closeMenus();
+    this.showCategories = nextState;
   }
 
-  closeCategories(): void {
+  closeMenus(): void {
     this.showCategories = false;
     this.showEstancias = false;
     this.showUserMenu = false;
@@ -101,27 +95,27 @@ export class LayoutHeaderComponent implements OnInit {
     if (item.route) {
       this.router.navigate([item.route], { queryParams: item.queryParams ?? {} });
     }
-    this.closeCategories();
+    this.closeMenus();
   }
 
   onEstanciasMenuSelect(item: HeaderMenuItem): void {
     if (item.route) {
       this.router.navigate([item.route], { queryParams: item.queryParams ?? {} });
     }
-    this.closeCategories();
+    this.closeMenus();
   }
 
   onEstanciasClick(): void {
-    this.showCategories = false;
-    this.showUserMenu = false;
-    this.showEstancias = !this.showEstancias;
+    const nextState = !this.showEstancias;
+    this.closeMenus();
+    this.showEstancias = nextState;
   }
 
   toggleUserMenu(event: MouseEvent): void {
     event.stopPropagation();
-    this.showCategories = false;
-    this.showEstancias = false;
-    this.showUserMenu = !this.showUserMenu;
+    const nextState = !this.showUserMenu;
+    this.closeMenus();
+    this.showUserMenu = nextState;
   }
 
   goToProfile(): void {
@@ -141,9 +135,7 @@ export class LayoutHeaderComponent implements OnInit {
     }
 
     if (!this.elementRef.nativeElement.contains(target)) {
-      this.showCategories = false;
-      this.showEstancias = false;
-      this.showUserMenu = false;
+      this.closeMenus();
     }
   }
 

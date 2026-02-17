@@ -41,7 +41,7 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 0 auto; // Added for centering
+        margin: 0 auto;
     }
 
     &__title {
@@ -59,12 +59,12 @@
         font-size: var(--form-label-font-size);
         font-weight: var(--form-label-font-weight);
         color: var(--form-label-color);
-        display: block; // Ensure it behaves like a label
+        display: block;
         font-family: var(--cyb-sys-font-family-ui);
     }
 
     &__input {
-        width: 100%; // Ensure it fills container
+        width: 100%;
         box-sizing: border-box;
         padding: var(--form-input-padding);
         background-color: var(--form-input-bg-color);

@@ -50,7 +50,7 @@ export class Register {
         ).subscribe({
             next: (response) => {
                 console.log('Register response:', response);
-                // On success, redirect to login
+                
                 this.router.navigate(['/login']);
             },
             error: (error: HttpErrorResponse) => {

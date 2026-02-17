@@ -1,10 +1,10 @@
 <header class="layout-header">
   <div class="layout-header__inner">
-    <a class="layout-header__logo" href="/" (click)="onHomeClick($event)">
+    <button class="layout-header__logo layout-header__logo-btn" type="button" (click)="onHomeClick()">
       <img src="/images/logoHeader.png" alt="Logo">
-    </a>
+    </button>
     <nav class="layout-header__nav">
-      <a class="layout-header__link" href="/" (click)="onHomeClick($event)">Inicio</a>
+      <button class="layout-header__link layout-header__link--button" type="button" (click)="onHomeClick()">Inicio</button>
       <button class="layout-header__link layout-header__link--button" type="button" (click)="onProductsClick()"
         [attr.aria-expanded]="showCategories" aria-controls="header-categories">
         Productos
@@ -13,7 +13,7 @@
         [attr.aria-expanded]="showEstancias" aria-controls="header-estancias">
         Estancias
       </button>
-      <a class="layout-header__link" routerLink="/login" (click)="closeCategories()"
+      <a class="layout-header__link" routerLink="/login" (click)="closeMenus()"
         [class.is-hidden]="authService.isAuthenticated()">
         Login
       </a>

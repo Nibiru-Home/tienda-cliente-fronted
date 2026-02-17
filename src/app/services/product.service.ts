@@ -7,7 +7,6 @@ import { Product } from '../models/product.model';
     providedIn: 'root'
 })
 export class ProductService {
-    //private readonly apiUrl = 'http://back-nibiru-home.producciondaw.cip.fpmislata.com/api/products';
     private readonly apiUrl = 'http://api.nibiruhome.store/api/products';
     constructor(private http: HttpClient) { }
 

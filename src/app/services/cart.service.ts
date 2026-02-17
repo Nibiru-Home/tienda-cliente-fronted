@@ -158,7 +158,7 @@ export class CartService {
         };
 
         this.http.put<any>(`/api/cart-products/${cartProductId}`, body).subscribe({
-            next: () => this.loadCart(), // Reload to get updated totals
+            next: () => this.loadCart(),
             error: (err) => console.error('Error updating quantity', err)
         });
     }

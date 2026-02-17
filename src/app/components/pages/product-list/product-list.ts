@@ -26,7 +26,6 @@ export class ProductListComponent implements OnInit {
     totalPages = 1;
     paginationRoute = '/products';
 
-    // Filters
     selectedStyle = '';
     selectedBudget = '';
     selectedFilterCategory = '';
@@ -45,7 +44,6 @@ export class ProductListComponent implements OnInit {
             const categoryParam = params.get('category');
             const roomParam = params.get('room');
 
-            // New Filter Params
             const styleParam = params.get('style');
             const budgetParam = params.get('budget');
             const filterCategoryParam = params.get('filterCategory');
@@ -55,13 +53,9 @@ export class ProductListComponent implements OnInit {
             this.selectedCategory = categoryParam?.trim() ?? '';
             this.selectedRoom = roomParam?.trim() ?? '';
 
-            // Initialize new filters
             this.selectedStyle = styleParam?.trim() ?? '';
             this.selectedBudget = budgetParam?.trim() ?? '';
             this.selectedFilterCategory = filterCategoryParam?.trim() ?? '';
-
-            // We don't reset filters here anymore because we want them to persist from URL
-            // this.resetFilters(); 
 
             this.applyPagination();
         });
@@ -84,7 +78,6 @@ export class ProductListComponent implements OnInit {
         this.selectedBudget = filters.budget;
         this.selectedFilterCategory = filters.category;
 
-        // Update URL with new filters, resetting page to 1
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: {
@@ -115,13 +108,10 @@ export class ProductListComponent implements OnInit {
             return;
         }
 
-        // Apply Room Filter first
         let filtered = this.filterProductsByRoom(this.allProducts, this.selectedRoom);
 
-        // Apply Main Category Filter (from URL)
         filtered = this.filterProductsByCategory(filtered, this.selectedCategory);
 
-        // Apply Extra Filters (Style, Budget, Category)
         if (this.selectedStyle) {
             const normalizedStyle = this.normalizeFilter(this.selectedStyle);
             filtered = filtered.filter(p => (p.styles ?? []).some(s => this.normalizeFilter(s) === normalizedStyle));

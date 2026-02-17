@@ -35,7 +35,7 @@ export class RoomFiltersComponent {
     openDropdown: string | null = null;
 
     toggleDropdown(name: string, event: Event) {
-        event.stopPropagation(); // Prevent bubbling to backdrop immediately
+        event.stopPropagation();
         if (this.openDropdown === name) {
             this.openDropdown = null;
         } else {
