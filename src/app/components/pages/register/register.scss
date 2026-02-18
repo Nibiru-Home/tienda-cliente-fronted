@@ -1,4 +1,4 @@
-.login-container {
+.c-login-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,11 +8,11 @@
     padding-bottom: 100px;
 }
 
-.form-group {
+.c-form-group {
     margin-bottom: var(--cyb-sys-margin-6);
 }
 
-.error-message {
+.c-error-message {
     color: var(--cyb-sys-color-red-5);
     font-size: var(--cyb-sys-font-size-3);
     margin-bottom: var(--cyb-sys-margin-4);
@@ -20,14 +20,14 @@
     font-family: var(--cyb-sys-font-family-body);
 }
 
-.form-footer {
+.c-form-footer {
     margin-top: 2rem;
     text-align: center;
     font-size: var(--cyb-sys-font-size-3);
     font-family: var(--cyb-sys-font-family-body);
     color: var(--cyb-sys-color-black-5);
 
-    .form-link {
+    .c-form-link {
         color: var(--cyb-sys-color-blue-gray-6);
         text-decoration: none;
         font-weight: var(--cyb-sys-font-weight-6);
@@ -38,7 +38,7 @@
     }
 }
 
-.form__button:disabled {
+.c-form__button:disabled {
     opacity: 0.7;
     cursor: not-allowed;
 }

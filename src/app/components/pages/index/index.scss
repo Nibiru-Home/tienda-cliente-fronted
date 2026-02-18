@@ -1,4 +1,4 @@
-.section {
+.c-section {
   padding: var(--cyb-sys-padding-11) var(--cyb-sys-padding-13);
   margin: var(--cyb-sys-margin-1);
   display: flex;
@@ -9,7 +9,7 @@
   min-height: 50vh;
 }
 
-.categories-title {
+.c-categories-title {
   margin: var(--cyb-sys-margin-1);
   text-align: center;
   opacity: 0;
@@ -20,12 +20,12 @@
   color: var(--cyb-sys-color-black-6);
 }
 
-.categories-title.is-visible {
+.c-categories-title.g--is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.categories-nav {
+.c-categories-nav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -33,7 +33,7 @@
   width: var(--cyb-sys-width-14);
   max-width: 1400px;
 
-  .category-item {
+  .c-category-item {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@
     gap: var(--cyb-sys-padding-8);
     cursor: pointer;
 
-    .category-img {
+    .c-category-img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
@@ -64,7 +64,7 @@
       }
     }
 
-    .category-label {
+    .c-category-label {
       font-size: var(--cyb-sys-font-size-4);
       font-weight: var(--cyb-sys-font-weight-6);
       color: var(--cyb-sys-color-black-6);
@@ -74,12 +74,12 @@
   }
 }
 
-.armario-features-section {
+.c-armario-features-section {
   padding: 0 var(--cyb-sys-padding-13) var(--cyb-sys-padding-11);
   background: var(--cyb-sys-color-white-9);
 }
 
-.armario-features {
+.c-armario-features {
   width: var(--cyb-sys-width-14);
   max-width: 1400px;
   margin: 0 auto;
@@ -88,7 +88,7 @@
   gap: var(--cyb-sys-padding-10);
 }
 
-.armario-feature {
+.c-armario-feature {
   background: var(--cyb-sys-color-white-9);
   border-radius: var(--cyb-sys-border-radius-8);
   border: 1px solid var(--cyb-sys-color-white-6);
@@ -101,7 +101,7 @@
   color: var(--cyb-sys-color-black-6);
 }
 
-.armario-feature__icon {
+.c-armario-feature__icon {
   width: 44px;
   height: 44px;
   border-radius: 50%;
@@ -112,38 +112,38 @@
   position: relative;
 }
 
-.armario-feature__icon::before,
-.armario-feature__icon::after {
+.c-armario-feature__icon::before,
+.c-armario-feature__icon::after {
   content: '';
   position: absolute;
   background: var(--cyb-sys-color-blue-gray-4);
 }
 
-.armario-feature__icon::before {
+.c-armario-feature__icon::before {
   width: 18px;
   height: 2px;
 }
 
-.armario-feature__icon::after {
+.c-armario-feature__icon::after {
   width: 2px;
   height: 18px;
 }
 
-.armario-feature:nth-child(2) .armario-feature__icon::after {
+.c-armario-feature:nth-child(2) .c-armario-feature__icon::after {
   transform: rotate(45deg);
 }
 
-.armario-feature:nth-child(3) .armario-feature__icon::after {
+.c-armario-feature:nth-child(3) .c-armario-feature__icon::after {
   height: 0;
 }
 
-.armario-feature__title {
+.c-armario-feature__title {
   margin: 0;
   font-size: var(--cyb-sys-font-size-5);
   font-weight: var(--cyb-sys-font-weight-6);
 }
 
-.armario-feature__text {
+.c-armario-feature__text {
   margin: 0;
   font-size: var(--cyb-sys-font-size-3);
   line-height: 1.6;
@@ -151,17 +151,17 @@
 }
 
 @media (max-width: 980px) {
-  .armario-features {
+  .c-armario-features {
     grid-template-columns: 1fr;
   }
 }
 
-.recommended-products-section {
+.c-recommended-products-section {
   padding: var(--cyb-sys-padding-11) var(--cyb-sys-padding-13);
   background: var(--cyb-sys-color-white-9);
 }
 
-.recommended-products {
+.c-recommended-products {
   width: var(--cyb-sys-width-14);
   max-width: 1400px;
   margin: 0 auto;
@@ -170,7 +170,7 @@
   gap: var(--cyb-sys-padding-9);
 }
 
-.recommended-products__title {
+.c-recommended-products__title {
   margin: var(--cyb-sys-margin-1);
   text-align: center;
   font-size: var(--cyb-sys-font-size-11);
@@ -180,24 +180,24 @@
   width: 100%;
 }
 
-.recommended-products__grid {
+.c-recommended-products__grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--cyb-sys-padding-9);
 }
 
 @media (max-width: 980px) {
-  .armario-features {
+  .c-armario-features {
     grid-template-columns: 1fr;
   }
 
-  .recommended-products__grid {
+  .c-recommended-products__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 640px) {
-  .recommended-products__grid {
+  .c-recommended-products__grid {
     grid-template-columns: 1fr;
   }
 }

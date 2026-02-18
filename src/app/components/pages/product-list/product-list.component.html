@@ -1,14 +1,14 @@
-<section class="product-list">
-    <header class="product-list__hero">
-        <div class="product-list__hero-content">
-            <span class="product-list__chip">{{ categoryChip }}</span>
-            <h2 class="product-list__title">{{ categoryTitle }}</h2>
-            <p class="product-list__subtitle">{{ categorySubtitle }}</p>
+<section class="c-product-list">
+    <header class="c-product-list__hero">
+        <div class="c-product-list__hero-content">
+            <span class="c-product-list__chip">{{ categoryChip }}</span>
+            <h2 class="c-product-list__title">{{ categoryTitle }}</h2>
+            <p class="c-product-list__subtitle">{{ categorySubtitle }}</p>
         </div>
-        <div class="product-list__hero-meta">
-            <div class="product-list__stat">
-                <span class="product-list__stat-value">{{ filteredTotal }}</span>
-                <span class="product-list__stat-label">Productos disponibles</span>
+        <div class="c-product-list__hero-meta">
+            <div class="c-product-list__stat">
+                <span class="c-product-list__stat-value">{{ filteredTotal }}</span>
+                <span class="c-product-list__stat-label">Productos disponibles</span>
             </div>
         </div>
     </header>
@@ -17,13 +17,13 @@
         <app-room-filters (filterChange)="onFilterChange($event)"></app-room-filters>
     }
 
-    <div class="product-grid">
+    <div class="c-product-grid">
         @for (product of products; track product.id) {
-        <app-product-card [product]="product" class="product-card-wrapper"></app-product-card>
+        <app-product-card [product]="product" class="c-product-card-wrapper"></app-product-card>
         }
     </div>
 </section>
-<div class="product-pagination" [class.product-pagination--hidden]="totalPages <= 1">
+<div class="c-product-pagination" [class.c-product-pagination--hidden]="totalPages <= 1">
     <c-pagination
         [currentPage]="currentPage"
         [totalPages]="totalPages"

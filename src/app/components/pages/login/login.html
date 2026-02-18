@@ -1,25 +1,25 @@
-<div class="login-container">
-    <div class="form">
-        <form class="form__card" (ngSubmit)="login()">
-            <h2 class="form__title">Inicia sesión</h2>
-            <div class="form-group">
-                <label for="email" class="form__label">Correo electrónico</label>
-                <input type="email" id="email" class="form__input" placeholder="Ingresa tu correo" [(ngModel)]="email"
+<div class="c-login-container">
+    <div class="c-form">
+        <form class="c-form__card" (ngSubmit)="login()">
+            <h2 class="c-form__title">Inicia sesión</h2>
+            <div class="c-form-group">
+                <label for="email" class="c-form__label">Correo electrónico</label>
+                <input type="email" id="email" class="c-form__input" placeholder="Ingresa tu correo" [(ngModel)]="email"
                     name="email">
             </div>
-            <div class="form-group">
-                <label for="password" class="form__label">Contraseña</label>
-                <input type="password" id="password" class="form__input" placeholder="Ingresa tu contraseña"
+            <div class="c-form-group">
+                <label for="password" class="c-form__label">Contraseña</label>
+                <input type="password" id="password" class="c-form__input" placeholder="Ingresa tu contraseña"
                     [(ngModel)]="password" name="password">
             </div>
-            <div [hidden]="!errorMessage" class="error-message">
+            <div [hidden]="!errorMessage" class="c-error-message">
                 {{ errorMessage }}
             </div>
-            <button type="submit" class="form__button">Ingresar</button>
+            <button type="submit" class="c-form__button">Ingresar</button>
 
-            <div class="form-footer">
+            <div class="c-form-footer">
                 <span>¿No tienes cuenta? </span>
-                <a routerLink="/register" class="form-link">Regístrate</a>
+                <a routerLink="/register" class="c-form-link">Regístrate</a>
             </div>
         </form>
     </div>

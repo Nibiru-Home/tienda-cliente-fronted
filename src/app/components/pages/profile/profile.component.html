@@ -1,51 +1,51 @@
-<div class="profile-page">
-    <section class="profile-card">
-        <header class="profile-hero">
-            <h1 class="profile-title">Mi perfil</h1>
-            <p class="profile-subtitle">Actualiza tus datos personales para mantener tu cuenta al dia.</p>
+<div class="c-profile-page">
+    <section class="c-profile-card">
+        <header class="c-profile-hero">
+            <h1 class="c-profile-title">Mi perfil</h1>
+            <p class="c-profile-subtitle">Actualiza tus datos personales para mantener tu cuenta al dia.</p>
         </header>
 
-        <form class="profile-form" #profileForm="ngForm" (ngSubmit)="saveProfile()">
-            <div class="form-grid">
-                <label class="field">
-                    <span class="field-label">Nombre</span>
+        <form class="c-profile-form" #profileForm="ngForm" (ngSubmit)="saveProfile()">
+            <div class="c-form-grid">
+                <label class="c-field">
+                    <span class="c-field-label">Nombre</span>
                     <input type="text" name="name" [(ngModel)]="form.name" [placeholder]="placeholders.name" [disabled]="true" required />
                 </label>
 
-                <label class="field">
-                    <span class="field-label">Correo electronico</span>
+                <label class="c-field">
+                    <span class="c-field-label">Correo electronico</span>
                     <input type="email" name="email" [(ngModel)]="form.email" [placeholder]="placeholders.email" [disabled]="isLoading || isSaving" required />
                 </label>
 
-                <label class="field field--full">
-                    <span class="field-label">Direccion</span>
+                <label class="c-field c-field--full">
+                    <span class="c-field-label">Direccion</span>
                     <input type="text" name="address" [(ngModel)]="form.address" [placeholder]="placeholders.address" [disabled]="isLoading || isSaving" required />
                 </label>
 
-                <label class="field">
-                    <span class="field-label">Telefono</span>
+                <label class="c-field">
+                    <span class="c-field-label">Telefono</span>
                     <input type="tel" name="phone" [(ngModel)]="form.phone" [placeholder]="placeholders.phone" [disabled]="isLoading || isSaving" required />
                 </label>
             </div>
 
             @if (errorMessage) {
-                <div class="alert alert--error">{{ errorMessage }}</div>
+                <div class="c-alert c-alert--error">{{ errorMessage }}</div>
             }
 
             @if (successMessage) {
-                <div class="alert alert--success">{{ successMessage }}</div>
+                <div class="c-alert c-alert--success">{{ successMessage }}</div>
             }
 
-            <div class="profile-actions">
+            <div class="c-profile-actions">
                 <button
-                    class="save-btn"
+                    class="c-save-btn"
                     type="submit"
                     [disabled]="profileForm.invalid || isSaving || isLoading">
                     {{ isSaving ? 'Guardando...' : 'Guardar cambios' }}
                 </button>
 
                 <button
-                    class="secondary-btn"
+                    class="c-secondary-btn"
                     type="button"
                     (click)="reloadProfile()"
                     [disabled]="isSaving || isLoading">
@@ -54,6 +54,6 @@
             </div>
         </form>
 
-        <a class="back-link" routerLink="/">Volver al inicio</a>
+        <a class="c-back-link" routerLink="/">Volver al inicio</a>
     </section>
 </div>

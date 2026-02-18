@@ -1,42 +1,42 @@
-<div class="cart-page">
-    <header class="cart-hero">
-        <h1 class="page-title">Carrito</h1>
+<div class="c-cart-page">
+    <header class="c-cart-hero">
+        <h1 class="c-page-title">Carrito</h1>
     </header>
 
-    <div class="cart-grid">
-        <section class="cart-items-section">
-            <div class="section-header">
-                <h2 class="section-title">Productos</h2>
-                <span class="items-count">
+    <div class="c-cart-grid">
+        <section class="c-cart-items-section">
+            <div class="c-section-header">
+                <h2 class="c-section-title">Productos</h2>
+                <span class="c-items-count">
                     {{ ((cartItems$ | async)?.length ?? 0) }} artículo{{ ((cartItems$ | async)?.length ?? 0) === 1 ? '' : 's' }}
                 </span>
             </div>
 
-            <div class="cart-items-list" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
+            <div class="c-cart-items-list" [class.g--is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
                 @for (item of (cartItems$ | async) ?? []; track item.id) {
-                <article class="cart-item">
-                    <div class="item-image">
+                <article class="c-cart-item">
+                    <div class="c-item-image">
                         <img [src]="getImageUrl(item)" [alt]="item.product.name">
                     </div>
 
-                    <div class="item-content">
-                        <div class="item-header">
-                            <h3 class="item-name">{{ item.product.name }}</h3>
-                            <strong class="item-subtotal">{{ item.product.price * item.quantity | number:'1.2-2' }}€</strong>
+                    <div class="c-item-content">
+                        <div class="c-item-header">
+                            <h3 class="c-item-name">{{ item.product.name }}</h3>
+                            <strong class="c-item-subtotal">{{ item.product.price * item.quantity | number:'1.2-2' }}€</strong>
                         </div>
 
-                        <p class="item-description">{{ item.product.description }}</p>
+                        <p class="c-item-description">{{ item.product.description }}</p>
 
-                        <div class="item-footer">
-                            <div class="quantity-selector" aria-label="Selector de cantidad">
-                                <button class="qty-btn" type="button" (click)="decreaseQuantity(item)" [disabled]="item.quantity <= 1" aria-label="Reducir cantidad">−</button>
-                                <span class="qty-value">{{ item.quantity }}</span>
-                                <button class="qty-btn" type="button" (click)="increaseQuantity(item)" aria-label="Aumentar cantidad">+</button>
+                        <div class="c-item-footer">
+                            <div class="c-quantity-selector" aria-label="Selector de cantidad">
+                                <button class="c-qty-btn" type="button" (click)="decreaseQuantity(item)" [disabled]="item.quantity <= 1" aria-label="Reducir cantidad">−</button>
+                                <span class="c-qty-value">{{ item.quantity }}</span>
+                                <button class="c-qty-btn" type="button" (click)="increaseQuantity(item)" aria-label="Aumentar cantidad">+</button>
                             </div>
 
-                            <span class="item-unit-price">{{ item.product.price | number:'1.2-2' }}€ / unidad</span>
+                            <span class="c-item-unit-price">{{ item.product.price | number:'1.2-2' }}€ / unidad</span>
 
-                            <button class="delete-btn" type="button" title="Eliminar" (click)="removeItem(item.id)">
+                            <button class="c-delete-btn" type="button" title="Eliminar" (click)="removeItem(item.id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                     fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round" aria-hidden="true">
@@ -52,50 +52,50 @@
                 }
             </div>
 
-            <div class="cart-empty" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) > 0">
-                <p class="empty-title">Tu carrito está vacío</p>
-                <p class="empty-text">Descubre nuevas piezas para crear un espacio con personalidad.</p>
-                <a class="empty-link" routerLink="/products">Explorar productos</a>
+            <div class="c-cart-empty" [class.g--is-hidden]="((cartItems$ | async)?.length ?? 0) > 0">
+                <p class="c-empty-title">Tu carrito está vacío</p>
+                <p class="c-empty-text">Descubre nuevas piezas para crear un espacio con personalidad.</p>
+                <a class="c-empty-link" routerLink="/products">Explorar productos</a>
             </div>
         </section>
 
-        <aside class="cart-summary-section">
-            <h2 class="summary-title">Resumen</h2>
+        <aside class="c-cart-summary-section">
+            <h2 class="c-summary-title">Resumen</h2>
 
-            <div class="summary-row">
+            <div class="c-summary-row">
                 <span>Productos ({{ ((cartItems$ | async)?.length ?? 0) }})</span>
                 <strong>{{ subtotalAmount$ | async | number:'1.2-2' }}€</strong>
             </div>
 
-            <div class="summary-row" [class.is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
+            <div class="c-summary-row" [class.g--is-hidden]="((cartItems$ | async)?.length ?? 0) === 0">
                 <span>Envío</span>
-                <span class="summary-free">
+                <span class="c-summary-free">
                     {{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number:'1.2-2') + '€' }}
                 </span>
             </div>
 
-            <div class="summary-divider"></div>
+            <div class="c-summary-divider"></div>
 
-            <div class="summary-row total-row">
+            <div class="c-summary-row c-summary-row--total-row">
                 <span>Total (IVA incl.)</span>
                 <strong>{{ totalAmount$ | async | number:'1.2-2' }}€</strong>
             </div>
 
             <button
-                class="continue-btn"
+                class="c-continue-btn"
                 type="button"
                 (click)="continueToPayment()"
                 [disabled]="((cartItems$ | async)?.length ?? 0) === 0">
                 Continuar al pago
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    class="arrow-icon" aria-hidden="true">
+                    class="c-arrow-icon" aria-hidden="true">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                 </svg>
             </button>
 
-            <a class="continue-shopping-link" routerLink="/products">Seguir comprando</a>
+            <a class="c-continue-shopping-link" routerLink="/products">Seguir comprando</a>
         </aside>
     </div>
 </div>

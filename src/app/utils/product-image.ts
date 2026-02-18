@@ -3,7 +3,7 @@ const reusedImageForProduct = (productId?: number, image?: string): string | und
         return image;
     }
 
-    const match = image.match(/^(\d+)(\.\d+)?(\.[a-zA-Z0-9]+)$/);
+    const match = image.match(/^(\d+)(\.\d+)?(\.[a-z0-9]+)$/);
     if (!match) {
         return image;
     }

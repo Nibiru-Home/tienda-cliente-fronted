@@ -1,26 +1,26 @@
-<div class="payment-page">
+<div class="c-payment-page">
     @if (!paymentSuccessful) {
-        <header class="payment-hero">
-            <h1 class="page-title">Pago seguro</h1>
-            <p class="page-subtitle">Confirma tus datos bancarios para completar tu pedido.</p>
+        <header class="c-payment-hero">
+            <h1 class="c-page-title">Pago seguro</h1>
+            <p class="c-page-subtitle">Confirma tus datos bancarios para completar tu pedido.</p>
         </header>
 
-        <div class="payment-grid">
-            <section class="payment-form-section">
+        <div class="c-payment-grid">
+            <section class="c-payment-form-section">
                 
 
                 @if (errorMessage) {
-                    <div class="payment-alert payment-alert--error">
+                    <div class="c-payment-alert c-payment-alert--error">
                         {{ errorMessage }}
                     </div>
                 }
 
                
 
-                <form class="payment-form" #paymentForm="ngForm" (ngSubmit)="pay()">
-                    <div class="form-grid">
-                        <label class="field field--full">
-                            <span class="field-label">Titular</span>
+                <form class="c-payment-form" #paymentForm="ngForm" (ngSubmit)="pay()">
+                    <div class="c-form-grid">
+                        <label class="c-field c-field--full">
+                            <span class="c-field-label">Titular</span>
                             <input
                                 type="text"
                                 name="cardHolder"
@@ -29,8 +29,8 @@
                                 required />
                         </label>
 
-                        <label class="field field--full">
-                            <span class="field-label">Numero tarjeta</span>
+                        <label class="c-field c-field--full">
+                            <span class="c-field-label">Numero tarjeta</span>
                             <input
                                 type="text"
                                 name="cardNumber"
@@ -43,9 +43,9 @@
                                 required />
                         </label>
 
-                        <div class="compact-fields">
-                            <label class="field field--compact">
-                                <span class="field-label">Caducidad (MM/YY)</span>
+                        <div class="c-compact-fields">
+                            <label class="c-field c-field--compact">
+                                <span class="c-field-label">Caducidad (MM/YY)</span>
                                 <input
                                     type="text"
                                     name="expirationMonth"
@@ -59,8 +59,8 @@
                                     required />
                             </label>
 
-                            <label class="field field--compact field--cvv">
-                                <span class="field-label">CVV</span>
+                            <label class="c-field c-field--compact c-field--cvv">
+                                <span class="c-field-label">CVV</span>
                                 <input
                                     type="text"
                                     name="cvv"
@@ -76,7 +76,7 @@
                     </div>
 
                     <button
-                        class="pay-button"
+                        class="c-pay-button"
                         type="submit"
                         [disabled]="paymentForm.invalid || isSubmitting || (cartItemsCount$ | async) === 0">
                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
@@ -89,8 +89,8 @@
                     </button>
                 </form>
 
-                <a class="back-link" routerLink="/cart">
-                    <svg class="back-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                <a class="c-back-link" routerLink="/cart">
+                    <svg class="c-back-link-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                         viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                         stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                         <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -101,37 +101,37 @@
             </section>
 
             @if ((cartItems$ | async); as items) {
-                <aside class="payment-summary-section">
-                    <h2 class="summary-title">Resumen</h2>
+                <aside class="c-payment-summary-section">
+                    <h2 class="c-summary-title">Resumen</h2>
 
                     @if (items.length === 0) {
-                        <p class="summary-empty">No hay productos en el carrito.</p>
+                        <p class="c-summary-empty">No hay productos en el carrito.</p>
                     }
 
                     @for (item of items; track item.id) {
-                        <article class="summary-item">
-                            <img [src]="getImageUrl(item)" [alt]="item.product.name" class="summary-item-image" />
-                            <div class="summary-item-meta">
-                                <strong class="summary-item-name">{{ item.product.name }}</strong>
-                                <span class="summary-item-detail">{{ item.quantity }} x {{ item.product.price | number: '1.2-2' }}€</span>
+                        <article class="c-summary-item">
+                            <img [src]="getImageUrl(item)" [alt]="item.product.name" class="c-summary-item-image" />
+                            <div class="c-summary-item-meta">
+                                <strong class="c-summary-item-name">{{ item.product.name }}</strong>
+                                <span class="c-summary-item-detail">{{ item.quantity }} x {{ item.product.price | number: '1.2-2' }}€</span>
                             </div>
-                            <span class="summary-item-total">{{ item.quantity * item.product.price | number: '1.2-2' }}€</span>
+                            <span class="c-summary-item-total">{{ item.quantity * item.product.price | number: '1.2-2' }}€</span>
                         </article>
                     }
 
-                    <div class="summary-row">
+                    <div class="c-summary-row">
                         <span>Subtotal</span>
                         <strong>{{ subtotalAmount$ | async | number: '1.2-2' }}€</strong>
                     </div>
 
-                    <div class="summary-row" [hidden]="items.length === 0">
+                    <div class="c-summary-row" [hidden]="items.length === 0">
                         <span>Envio</span>
-                        <strong class="summary-free">{{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number: '1.2-2') + '€' }}</strong>
+                        <strong class="c-summary-free">{{ (((shippingCost$ | async) ?? 0) === 0) ? 'Gratis' : (((shippingCost$ | async) ?? 0) | number: '1.2-2') + '€' }}</strong>
                     </div>
 
-                    <div class="summary-divider"></div>
+                    <div class="c-summary-divider"></div>
 
-                    <div class="summary-row total-row">
+                    <div class="c-summary-row c-summary-row--total-row">
                         <span>Total</span>
                         <strong>{{ totalAmount$ | async | number: '1.2-2' }}€</strong>
                     </div>
@@ -139,12 +139,12 @@
             }
         </div>
     } @else {
-        <section class="payment-success">
-            <h1 class="success-title">Pago completado</h1>
-            <p class="success-text">Se ha procesado correctamente un pago de {{ paidAmount | number: '1.2-2' }}€.</p>
-            <div class="payment-success__actions">
-                <a routerLink="/products" class="success-link">Seguir comprando</a>
-                <a routerLink="/cart" class="success-link success-link--secondary">Ver carrito</a>
+        <section class="c-payment-success">
+            <h1 class="c-success-title">Pago completado</h1>
+            <p class="c-success-text">Se ha procesado correctamente un pago de {{ paidAmount | number: '1.2-2' }}€.</p>
+            <div class="c-payment-success__actions">
+                <a routerLink="/products" class="c-success-link">Seguir comprando</a>
+                <a routerLink="/cart" class="c-success-link c-success-link--secondary">Ver carrito</a>
             </div>
         </section>
     }

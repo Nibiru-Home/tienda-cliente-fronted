@@ -6,13 +6,13 @@
     padding-bottom: 2.5rem;
 }
 
-.profile-page {
+.c-profile-page {
     max-width: 920px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.profile-card {
+.c-profile-card {
     background: var(--cyb-sys-color-white-9);
     border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
@@ -20,58 +20,58 @@
     padding: 1.5rem;
 }
 
-.profile-hero {
+.c-profile-hero {
     margin-bottom: 1.2rem;
 }
 
-.profile-title {
+.c-profile-title {
     margin: 0;
     font-size: clamp(1.9rem, 3.3vw, 2.7rem);
     font-weight: 300;
     color: var(--cyb-sys-color-black-2);
 }
 
-.profile-subtitle {
+.c-profile-subtitle {
     margin: 0.4rem 0 0;
     font-size: 0.95rem;
     color: var(--cyb-sys-color-blue-gray-3);
 }
 
-.profile-state {
+.c-profile-state {
     margin: 0;
     font-size: 0.95rem;
     color: var(--cyb-sys-color-black-3);
 }
 
-.profile-form {
+.c-profile-form {
     display: flex;
     flex-direction: column;
     gap: 0.9rem;
 }
 
-.form-grid {
+.c-form-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem;
 }
 
-.field {
+.c-field {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
 }
 
-.field--full {
+.c-field--full {
     grid-column: 1 / -1;
 }
 
-.field-label {
+.c-field-label {
     font-size: 0.85rem;
     font-weight: 600;
     color: var(--cyb-sys-color-black-3);
 }
 
-.field input {
+.c-field input {
     width: 100%;
     border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 12px;
@@ -95,32 +95,32 @@
     }
 }
 
-.alert {
+.c-alert {
     border-radius: 12px;
     padding: 0.7rem 0.9rem;
     font-size: 0.9rem;
 }
 
-.alert--error {
+.c-alert--error {
     color: var(--cyb-sys-color-red-3);
     border: 1px solid var(--cyb-sys-color-red-8);
     background: var(--cyb-sys-color-white-9);
 }
 
-.alert--success {
+.c-alert--success {
     color: var(--cyb-sys-color-green-2);
     border: 1px solid var(--cyb-sys-color-green-8);
     background: var(--cyb-sys-color-white-9);
 }
 
-.profile-actions {
+.c-profile-actions {
     display: flex;
     gap: 0.7rem;
     flex-wrap: wrap;
 }
 
-.save-btn,
-.secondary-btn {
+.c-save-btn,
+.c-secondary-btn {
     border: none;
     border-radius: 999px;
     padding: 0.82rem 1.05rem;
@@ -135,7 +135,7 @@
     }
 }
 
-.save-btn {
+.c-save-btn {
     color: var(--cyb-sys-color-white-9);
     background: var(--cyb-sys-color-light-blue-3);
 
@@ -144,7 +144,7 @@
     }
 }
 
-.secondary-btn {
+.c-secondary-btn {
     color: var(--cyb-sys-color-black-3);
     background: transparent;
     border: 1px solid var(--cyb-sys-color-blue-gray-7);
@@ -155,7 +155,7 @@
     }
 }
 
-.back-link {
+.c-back-link {
     margin-top: 1rem;
     display: inline-flex;
     text-decoration: none;
@@ -172,16 +172,16 @@
         padding-top: 88px;
     }
 
-    .profile-page {
+    .c-profile-page {
         padding: 0 1rem;
     }
 
-    .profile-card {
+    .c-profile-card {
         border-radius: 18px;
         padding: 1rem;
     }
 
-    .form-grid {
+    .c-form-grid {
         grid-template-columns: 1fr;
     }
 }

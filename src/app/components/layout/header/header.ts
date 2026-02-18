@@ -164,7 +164,7 @@ export class LayoutHeaderComponent implements OnInit {
   }
 
   private scrollToBentoEnd(attempt = 0): void {
-    const triggerElement = document.querySelector<HTMLElement>('#gallery-8');
+    const triggerElement = document.querySelector<HTMLElement>('#c-gallery-8');
     const trigger =
       triggerElement &&
       ScrollTrigger.getAll().find((item) => item.trigger === triggerElement);
@@ -180,7 +180,7 @@ export class LayoutHeaderComponent implements OnInit {
     }
 
 
-    const fallback = document.querySelector('#gallery-end');
+    const fallback = document.querySelector('#c-gallery-end');
     if (fallback) {
       fallback.scrollIntoView({ behavior: 'smooth' });
     }

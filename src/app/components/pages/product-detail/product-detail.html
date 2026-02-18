@@ -1,64 +1,64 @@
-<section class="product-detail">
-  <div class="product-detail__gallery">
-    <div class="product-detail__media">
+<section class="c-product-detail">
+  <div class="c-product-detail__gallery">
+    <div class="c-product-detail__media">
       <img [src]="productImageUrl(product)" [alt]="product.name" />
     </div>
-    <div class="product-detail__thumbs" [hidden]="displayImages.length === 0">
+    <div class="c-product-detail__thumbs" [hidden]="displayImages.length === 0">
       @for (img of displayImages; track $index) {
-      <button class="product-detail__thumb" type="button"
+      <button class="c-product-detail__thumb" type="button"
         [attr.aria-label]="'Vista alternativa ' + ($index + 1)" (click)="product.image = img">
         <img [src]="productImageUrl(product, img)" [alt]="product.name" />
       </button>
       }
     </div>
   </div>
-  <div class="product-detail__content">
-    <h1 class="product-detail__title">{{ product.name }}</h1>
-    <p class="product-detail__price">{{ product.price }}€</p>
-    <p class="product-detail__description">
+  <div class="c-product-detail__content">
+    <h1 class="c-product-detail__title">{{ product.name }}</h1>
+    <p class="c-product-detail__price">{{ product.price }}€</p>
+    <p class="c-product-detail__description">
       {{ product.description }}
     </p>
-    <ul class="product-detail__benefits">
-      <li class="product-detail__benefit">
-        <span class="product-detail__benefit-icon" aria-hidden="true">
+    <ul class="c-product-detail__benefits">
+      <li class="c-product-detail__benefit">
+        <span class="c-product-detail__benefit-icon" aria-hidden="true">
           <img src="/icons/entrega.png" alt="" />
         </span>
         Envio gratis a partir de 80€
       </li>
-      <li class="product-detail__benefit">
-        <span class="product-detail__benefit-icon" aria-hidden="true">
+      <li class="c-product-detail__benefit">
+        <span class="c-product-detail__benefit-icon" aria-hidden="true">
           <img src="/icons/devolucion.png" alt="" />
         </span>
         Garantia de devolucion de 30 dias
       </li>
-      <li class="product-detail__benefit">
-        <span class="product-detail__benefit-icon" aria-hidden="true">
+      <li class="c-product-detail__benefit">
+        <span class="c-product-detail__benefit-icon" aria-hidden="true">
           <img src="/icons/garantia.png" alt="" />
         </span>
         1 año de garantia
       </li>
     </ul>
-    <button class="product-detail__cta" type="button" (click)="onAddToCart()" [disabled]="!product.id || isInCart">
-      <img class="product-detail__cta-icon" src="/icons/add-to-cart.png" alt="" aria-hidden="true" />
+    <button class="c-product-detail__cta" type="button" (click)="onAddToCart()" [disabled]="!product.id || isInCart">
+      <img class="c-product-detail__cta-icon" src="/icons/add-to-cart.png" alt="" aria-hidden="true" />
       {{ isInCart ? 'Ya está en la cesta' : 'Añadir a la cesta' }}
     </button>
   </div>
 </section>
 
-<section class="product-recommended" [hidden]="relatedProducts.length === 0">
-  <h3 class="product-recommended__title">Productos relacionados</h3>
-  <div class="product-recommended__grid">
+<section class="c-product-recommended" [hidden]="relatedProducts.length === 0">
+  <h3 class="c-product-recommended__title">Productos relacionados</h3>
+  <div class="c-product-recommended__grid">
     @for (related of relatedProducts; track related.id) {
-    <article class="product-recommended__card" [routerLink]="['/products', related.id]">
-      <div class="product-recommended__media">
+    <article class="c-product-recommended__card" [routerLink]="['/products', related.id]">
+      <div class="c-product-recommended__media">
           <img [src]="productImageUrl(related)" [alt]="related.name" />
       </div>
-      <div class="product-recommended__body">
-        <p class="product-recommended__eyebrow">
+      <div class="c-product-recommended__body">
+        <p class="c-product-recommended__eyebrow">
           {{ related.category[0]?.name || 'Sin categoria' }}
         </p>
-        <h4 class="product-recommended__name">{{ related.name }}</h4>
-        <p class="product-recommended__price">{{ related.price }}€</p>
+        <h4 class="c-product-recommended__name">{{ related.name }}</h4>
+        <p class="c-product-recommended__price">{{ related.price }}€</p>
       </div>
     </article>
     }

@@ -1,55 +1,55 @@
-<div class="chat-widget" [class.is-open]="isOpen">
+<div class="c-chat-widget" [class.g--is-open]="isOpen">
   <button
-    class="chat-widget__fab"
+    class="c-chat-widget__fab"
     type="button"
     (click)="toggleOpen()"
     [attr.aria-expanded]="isOpen"
     aria-label="Abrir chat"
   >
-    <span class="chat-widget__fab-icon" aria-hidden="true">?</span>
-    <span class="chat-widget__fab-text">Chat</span>
+    <span class="c-chat-widget__fab-icon" aria-hidden="true">?</span>
+    <span class="c-chat-widget__fab-text">Chat</span>
   </button>
 
   <section
-    class="chat-widget__panel"
+    class="c-chat-widget__panel"
     role="dialog"
     [attr.aria-hidden]="!isOpen"
     aria-label="Asistente de Nibiru"
   >
-    <header class="chat-widget__header">
-      <div class="chat-widget__brand">
-        <span class="chat-widget__badge">Nibiru</span>
+    <header class="c-chat-widget__header">
+      <div class="c-chat-widget__brand">
+        <span class="c-chat-widget__badge">Nibiru</span>
         <div>
-          <p class="chat-widget__title">Asistente</p>
-          <p class="chat-widget__subtitle">Ideas con estilo</p>
+          <p class="c-chat-widget__title">Asistente</p>
+          <p class="c-chat-widget__subtitle">Ideas con estilo</p>
         </div>
       </div>
-      <div class="chat-widget__actions">
-        <button class="chat-widget__action" type="button" (click)="clear()">
+      <div class="c-chat-widget__actions">
+        <button class="c-chat-widget__action" type="button" (click)="clear()">
           Limpiar
         </button>
-        <button class="chat-widget__close" type="button" (click)="close()" aria-label="Cerrar chat">
+        <button class="c-chat-widget__close" type="button" (click)="close()" aria-label="Cerrar chat">
           x
         </button>
       </div>
     </header>
 
-    <div class="chat-widget__messages" #scrollContainer role="log" aria-live="polite">
+    <div class="c-chat-widget__messages" #scrollContainer role="log" aria-live="polite">
       @for (message of messages; track $index) {
         <div
-          class="chat-widget__bubble"
-          [class.is-user]="message.role === 'user'"
+          class="c-chat-widget__bubble"
+          [class.g--is-user]="message.role === 'user'"
         >
-          <p class="chat-widget__text">{{ message.content }}</p>
+          <p class="c-chat-widget__text">{{ message.content }}</p>
         </div>
       }
     </div>
 
     @if (options.length) {
-      <div class="chat-widget__options">
+      <div class="c-chat-widget__options">
         @for (option of options; track option.id) {
           <button
-            class="chat-widget__option"
+            class="c-chat-widget__option"
             type="button"
             (click)="onOptionSelect(option)"
           >
@@ -59,9 +59,9 @@
       </div>
     }
 
-    <form class="chat-widget__composer" (submit)="onSubmit($event)">
+    <form class="c-chat-widget__composer" (submit)="onSubmit($event)">
       <textarea
-        class="chat-widget__input"
+        class="c-chat-widget__input"
         name="message"
         rows="2"
         [placeholder]="inputPlaceholder"
@@ -70,7 +70,7 @@
         [disabled]="!isInputEnabled"
       ></textarea>
       <button
-        class="chat-widget__send"
+        class="c-chat-widget__send"
         type="submit"
         [disabled]="!isInputEnabled || !input.trim()"
       >

@@ -29,18 +29,18 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
   }
 
   private createTween(): void {
-    const galleryElement = this.elementRef.nativeElement.querySelector<HTMLElement>('#gallery-8');
+    const galleryElement = this.elementRef.nativeElement.querySelector<HTMLElement>('#c-gallery-8');
     if (!galleryElement) {
       return;
     }
 
-    const galleryItems = galleryElement.querySelectorAll('.gallery__item');
-    const header = document.querySelector<HTMLElement>('.layout-header');
-    const categoriesTitle = document.querySelector<HTMLElement>('.categories-title');
+    const galleryItems = galleryElement.querySelectorAll('.c-gallery__item');
+    const header = document.querySelector<HTMLElement>('.c-layout-header');
+    const categoriesTitle = document.querySelector<HTMLElement>('.c-categories-title');
 
     this.flipCtx?.revert();
-    galleryElement.classList.remove('gallery--final');
-    categoriesTitle?.classList.remove('is-visible');
+    galleryElement.classList.remove('c-gallery--final');
+    categoriesTitle?.classList.remove('g--is-visible');
 
     this.flipCtx = gsap.context(() => {
       if (header) {
@@ -48,16 +48,16 @@ export class BentoGalleryComponent implements AfterViewInit, OnDestroy {
       }
 
       const showCategoriesTitle = () => {
-        categoriesTitle?.classList.add('is-visible');
+        categoriesTitle?.classList.add('g--is-visible');
       };
 
       const hideCategoriesTitle = () => {
-        categoriesTitle?.classList.remove('is-visible');
+        categoriesTitle?.classList.remove('g--is-visible');
       };
 
-      galleryElement.classList.add('gallery--final');
+      galleryElement.classList.add('c-gallery--final');
       const flipState = Flip.getState(galleryItems);
-      galleryElement.classList.remove('gallery--final');
+      galleryElement.classList.remove('c-gallery--final');
 
       const flip = Flip.to(flipState, {
         simple: true,

@@ -1,18 +1,18 @@
-<div class="filters-container">
-    <div class="filter-group">
-        <button class="filter-pill" [class.active]="selectedStyle" [class.open]="openDropdown === 'style'"
+<div class="c-filters-container">
+    <div class="c-filter-group">
+        <button class="c-filter-pill" [class.g--active]="selectedStyle" [class.g--open]="openDropdown === 'style'"
             (click)="toggleDropdown('style', $event)">
             {{ selectedStyle || 'Estilo' }}
-            <span class="chevron">▼</span>
+            <span class="c-chevron">▼</span>
         </button>
 
         @if (openDropdown === 'style') {
-        <div class="dropdown-menu">
-            <button class="dropdown-item" [class.selected]="!selectedStyle" (click)="selectStyle('')">
+        <div class="c-dropdown-menu">
+            <button class="c-dropdown-item" [class.g--selected]="!selectedStyle" (click)="selectStyle('')">
                 Cualquiera
             </button>
             @for (style of styles; track style) {
-            <button class="dropdown-item" [class.selected]="selectedStyle === style" (click)="selectStyle(style)">
+            <button class="c-dropdown-item" [class.g--selected]="selectedStyle === style" (click)="selectStyle(style)">
                 {{ style }}
             </button>
             }
@@ -20,20 +20,20 @@
         }
     </div>
 
-    <div class="filter-group">
-        <button class="filter-pill" [class.active]="selectedBudget" [class.open]="openDropdown === 'budget'"
+    <div class="c-filter-group">
+        <button class="c-filter-pill" [class.g--active]="selectedBudget" [class.g--open]="openDropdown === 'budget'"
             (click)="toggleDropdown('budget', $event)">
             {{ getBudgetLabel(selectedBudget) || 'Presupuesto' }}
-            <span class="chevron">▼</span>
+            <span class="c-chevron">▼</span>
         </button>
 
         @if (openDropdown === 'budget') {
-        <div class="dropdown-menu">
-            <button class="dropdown-item" [class.selected]="!selectedBudget" (click)="selectBudget('')">
+        <div class="c-dropdown-menu">
+            <button class="c-dropdown-item" [class.g--selected]="!selectedBudget" (click)="selectBudget('')">
                 Cualquiera
             </button>
             @for (option of budgetOptions; track option.value) {
-            <button class="dropdown-item" [class.selected]="selectedBudget === option.value"
+            <button class="c-dropdown-item" [class.g--selected]="selectedBudget === option.value"
                 (click)="selectBudget(option.value)">
                 {{ option.label }}
             </button>
@@ -42,20 +42,20 @@
         }
     </div>
 
-    <div class="filter-group">
-        <button class="filter-pill" [class.active]="selectedCategory" [class.open]="openDropdown === 'category'"
+    <div class="c-filter-group">
+        <button class="c-filter-pill" [class.g--active]="selectedCategory" [class.g--open]="openDropdown === 'category'"
             (click)="toggleDropdown('category', $event)">
             {{ selectedCategory || 'Categoría' }}
-            <span class="chevron">▼</span>
+            <span class="c-chevron">▼</span>
         </button>
 
         @if (openDropdown === 'category') {
-        <div class="dropdown-menu">
-            <button class="dropdown-item" [class.selected]="!selectedCategory" (click)="selectCategory('')">
+        <div class="c-dropdown-menu">
+            <button class="c-dropdown-item" [class.g--selected]="!selectedCategory" (click)="selectCategory('')">
                 Cualquiera
             </button>
             @for (cat of categories; track cat) {
-            <button class="dropdown-item" [class.selected]="selectedCategory === cat" (click)="selectCategory(cat)">
+            <button class="c-dropdown-item" [class.g--selected]="selectedCategory === cat" (click)="selectCategory(cat)">
                 {{ cat }}
             </button>
             }
@@ -64,6 +64,6 @@
     </div>
 
     @if (openDropdown) {
-    <div class="backdrop" (click)="closeDropdown()"></div>
+    <div class="c-backdrop" (click)="closeDropdown()"></div>
     }
 </div>

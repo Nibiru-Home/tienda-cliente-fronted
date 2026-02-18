@@ -24,7 +24,7 @@ export class ChatService {
       fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'c-content-type': 'application/json',
           Accept: 'text/event-stream'
         },
         body: JSON.stringify({ message, history }),

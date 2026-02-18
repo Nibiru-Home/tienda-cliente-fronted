@@ -6,37 +6,37 @@
     background: var(--cyb-sys-color-white-7);
 }
 
-.payment-page {
+.c-payment-page {
     max-width: 1240px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-.payment-hero {
+.c-payment-hero {
     margin-bottom: 1.5rem;
 }
 
-.page-title {
+.c-page-title {
     margin: 0;
     font-size: clamp(2rem, 3.5vw, 3rem);
     font-weight: 300;
     color: var(--cyb-sys-color-black-2);
 }
 
-.page-subtitle {
+.c-page-subtitle {
     margin: 0.35rem 0 0;
     font-size: 0.98rem;
     color: var(--cyb-sys-color-blue-gray-3);
 }
 
-.payment-grid {
+.c-payment-grid {
     display: grid;
     grid-template-columns: minmax(0, 1.45fr) minmax(320px, 0.8fr);
     gap: 1.5rem;
     align-items: start;
 }
 
-.payment-form-section {
+.c-payment-form-section {
     background: var(--cyb-sys-color-white-9);
     border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 24px;
@@ -44,7 +44,7 @@
     box-shadow: 0 16px 40px rgba(40, 62, 70, 0.08);
 }
 
-.section-header {
+.c-section-header {
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -52,52 +52,52 @@
     margin-bottom: 1rem;
 }
 
-.section-title {
+.c-section-title {
     margin: 0;
     font-size: 1.35rem;
     font-weight: 600;
     color: var(--cyb-sys-color-black-2);
 }
 
-.payment-alert {
+.c-payment-alert {
     border-radius: 14px;
     padding: 0.75rem 0.9rem;
     margin-bottom: 0.8rem;
     font-size: 0.92rem;
 }
 
-.payment-alert--error {
+.c-payment-alert--error {
     color: var(--cyb-sys-color-red-3);
     border: 1px solid var(--cyb-sys-color-red-8);
     background: var(--cyb-sys-color-white-9);
 }
 
-.payment-alert--info {
+.c-payment-alert--info {
     color: var(--cyb-sys-color-black-3);
     border: 1px solid var(--cyb-sys-color-white-6);
     background: var(--cyb-sys-color-white-8);
 }
 
-.payment-form {
+.c-payment-form {
     display: flex;
     flex-direction: column;
     gap: 0.85rem;
 }
 
-.form-grid {
+.c-form-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 0.85rem;
     margin-bottom: 0.2rem;
 }
 
-.field {
+.c-field {
     display: flex;
     flex-direction: column;
     gap: 0.4rem;
 }
 
-.compact-fields {
+.c-compact-fields {
     grid-column: 1 / -1;
     display: flex;
     align-items: flex-start;
@@ -105,30 +105,30 @@
     gap: 0.6rem;
 }
 
-.field--full {
+.c-field--full {
     grid-column: 1 / -1;
 }
 
-.field--compact {
+.c-field--compact {
     width: min(100%, 170px);
 }
 
-.field--cvv {
+.c-field--cvv {
     width: min(100%, 120px);
 }
 
-.field-label {
+.c-field-label {
     font-size: 0.85rem;
     color: var(--cyb-sys-color-black-3);
     font-weight: 600;
 }
 
-.field-hint {
+.c-field-hint {
     font-size: 0.78rem;
     color: var(--cyb-sys-color-blue-gray-3);
 }
 
-.field input {
+.c-field input {
     width: 100%;
     border: 1px solid var(--cyb-sys-color-white-6);
     border-radius: 12px;
@@ -145,7 +145,7 @@
     }
 }
 
-.pay-button {
+.c-pay-button {
     width: 100%;
     border: none;
     border-radius: 999px;
@@ -171,7 +171,7 @@
     }
 }
 
-.back-link {
+.c-back-link {
     margin-top: 0.75rem;
     display: inline-flex;
     align-items: center;
@@ -193,18 +193,18 @@
         background: var(--cyb-sys-color-white-9);
     }
 
-    &:hover .back-link-icon {
+    &:hover .c-back-link-icon {
         transform: translateX(-2px);
     }
 }
 
-.back-link-icon {
+.c-back-link-icon {
     width: 14px;
     height: 14px;
     transition: transform 0.18s ease;
 }
 
-.payment-summary-section {
+.c-payment-summary-section {
     position: sticky;
     top: 98px;
     background: var(--cyb-sys-color-white-9);
@@ -214,20 +214,20 @@
     box-shadow: 0 20px 42px rgba(30, 41, 48, 0.11);
 }
 
-.summary-title {
+.c-summary-title {
     margin: 0;
     font-size: 1.65rem;
     font-weight: 500;
     color: var(--cyb-sys-color-black-2);
 }
 
-.summary-empty {
+.c-summary-empty {
     margin: 0.95rem 0;
     color: var(--cyb-sys-color-blue-gray-3);
     font-size: 0.92rem;
 }
 
-.summary-item {
+.c-summary-item {
     display: grid;
     grid-template-columns: 64px 1fr auto;
     align-items: center;
@@ -239,7 +239,7 @@
     margin-bottom: 0.65rem;
 }
 
-.summary-item-image {
+.c-summary-item-image {
     width: 64px;
     height: 64px;
     border-radius: 10px;
@@ -247,14 +247,14 @@
     background: var(--cyb-sys-color-white-8);
 }
 
-.summary-item-meta {
+.c-summary-item-meta {
     display: flex;
     flex-direction: column;
     gap: 0.16rem;
     min-width: 0;
 }
 
-.summary-item-name {
+.c-summary-item-name {
     margin: 0;
     font-size: 0.95rem;
     color: var(--cyb-sys-color-black-2);
@@ -263,19 +263,19 @@
     text-overflow: ellipsis;
 }
 
-.summary-item-detail {
+.c-summary-item-detail {
     font-size: 0.83rem;
     color: var(--cyb-sys-color-blue-gray-3);
 }
 
-.summary-item-total {
+.c-summary-item-total {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--cyb-sys-color-blue-gray-2);
     white-space: nowrap;
 }
 
-.summary-row {
+.c-summary-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -285,24 +285,24 @@
     color: var(--cyb-sys-color-black-3);
 }
 
-.summary-free {
+.c-summary-free {
     font-weight: 700;
     color: var(--cyb-sys-color-blue-gray-2);
 }
 
-.summary-divider {
+.c-summary-divider {
     height: 1px;
     background: var(--cyb-sys-color-white-4);
     margin: 1rem 0 0.15rem;
 }
 
-.total-row {
+.c-total-row {
     font-size: 1.08rem;
     font-weight: 700;
     color: var(--cyb-sys-color-black-2);
 }
 
-.payment-success {
+.c-payment-success {
     max-width: 740px;
     margin: 0 auto;
     background: var(--cyb-sys-color-white-9);
@@ -313,20 +313,20 @@
     text-align: center;
 }
 
-.success-title {
+.c-success-title {
     margin: 0;
     font-size: clamp(1.9rem, 3.2vw, 2.45rem);
     font-weight: 400;
     color: var(--cyb-sys-color-black-2);
 }
 
-.success-text {
+.c-success-text {
     margin: 0.6rem auto 0;
     max-width: 520px;
     color: var(--cyb-sys-color-black-3);
 }
 
-.payment-success__actions {
+.c-payment-success__actions {
     margin-top: 1.4rem;
     display: flex;
     justify-content: center;
@@ -334,7 +334,7 @@
     flex-wrap: wrap;
 }
 
-.success-link {
+.c-success-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -351,19 +351,19 @@
     }
 }
 
-.success-link--secondary {
+.c-success-link--secondary {
     color: var(--cyb-sys-color-black-3);
     background: var(--cyb-sys-color-white-9);
     border-color: var(--cyb-sys-color-blue-gray-7);
 }
 
 @media (max-width: 1080px) {
-    .payment-grid {
+    .c-payment-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
 
-    .payment-summary-section {
+    .c-payment-summary-section {
         position: static;
     }
 }
@@ -373,41 +373,41 @@
         padding-top: 88px;
     }
 
-    .payment-page {
+    .c-payment-page {
         padding: 0 1rem;
     }
 
-    .payment-form-section,
-    .payment-summary-section,
-    .payment-success {
+    .c-payment-form-section,
+    .c-payment-summary-section,
+    .c-payment-success {
         border-radius: 18px;
         padding: 1rem;
     }
 
-    .form-grid {
+    .c-form-grid {
         grid-template-columns: 1fr;
     }
 
-    .field--compact,
-    .field--cvv {
+    .c-field--compact,
+    .c-field--cvv {
         width: 100%;
     }
 
-    .compact-fields {
+    .c-compact-fields {
         flex-wrap: wrap;
     }
 
-    .summary-item {
+    .c-summary-item {
         grid-template-columns: 54px 1fr;
         align-items: start;
     }
 
-    .summary-item-image {
+    .c-summary-item-image {
         width: 54px;
         height: 54px;
     }
 
-    .summary-item-total {
+    .c-summary-item-total {
         grid-column: 1 / -1;
         margin-left: auto;
     }

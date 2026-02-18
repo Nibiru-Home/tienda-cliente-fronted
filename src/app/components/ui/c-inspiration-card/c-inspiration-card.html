@@ -1,12 +1,12 @@
-<a class="inspiration-card" [attr.href]="href">
-  <div class="inspiration-card__media">
+<a class="c-inspiration-card" [attr.href]="href">
+  <div class="c-inspiration-card__media">
     <img [src]="imageSrc" [attr.alt]="alt || title" loading="lazy" />
   </div>
-  <div class="inspiration-card__body">
+  <div class="c-inspiration-card__body">
     @if (eyebrow) {
-    <p class="inspiration-card__eyebrow">{{ eyebrow }}</p>
+    <p class="c-inspiration-card__eyebrow">{{ eyebrow }}</p>
     }
-    <h4 class="inspiration-card__title">{{ title }}</h4>
-    <p class="inspiration-card__text">{{ description }}</p>
+    <h4 class="c-inspiration-card__title">{{ title }}</h4>
+    <p class="c-inspiration-card__text">{{ description }}</p>
   </div>
 </a>

@@ -1,15 +1,15 @@
-<div class="product-card" [routerLink]="['/products', product.id]">
-    <div class="product-image-container">
-        <img [src]="imageUrl" [alt]="product.name" class="product-image"
+<div class="c-product-card" [routerLink]="['/products', product.id]">
+    <div class="c-product-image-container">
+        <img [src]="imageUrl" [alt]="product.name" class="c-product-image"
             onerror="this.src='https://via.placeholder.com/300?text=Product'">
     </div>
-    <div class="product-info">
-        <h3 class="product-name">{{ product.name }}</h3>
-        <p class="product-description">{{ product.description }}</p>
-        <div class="product-footer">
-            <div class="product-price-line">
-                <span class="product-price">{{ product.price | number:'1.2-2' }} €</span>
-                <span class="product-price-meta">IVA incl.</span>
+    <div class="c-product-info">
+        <h3 class="c-product-name">{{ product.name }}</h3>
+        <p class="c-product-description">{{ product.description }}</p>
+        <div class="c-product-footer">
+            <div class="c-product-price-line">
+                <span class="c-product-price">{{ product.price | number:'1.2-2' }} €</span>
+                <span class="c-product-price-meta">IVA incl.</span>
             </div>
         </div>
     </div>

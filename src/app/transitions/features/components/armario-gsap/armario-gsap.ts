@@ -52,7 +52,7 @@ export class ArmarioGsapComponent implements AfterViewInit, OnDestroy {
   private setupScrollScrub(): void {
     const host = this.hostRef.nativeElement;
     const video = this.videoRef.nativeElement;
-    const section = host.querySelector<HTMLElement>('.armario-section');
+    const section = host.querySelector<HTMLElement>('.c-armario-section');
 
     if (!section) {
       return;

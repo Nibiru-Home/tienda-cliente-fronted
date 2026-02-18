@@ -1,11 +1,11 @@
-.product-list {
+.c-product-list {
     position: relative;
     padding: 120px 2.5rem 0;
 
     background: var(--cyb-sys-color-white-9);
 }
 
-.product-list__hero {
+.c-product-list__hero {
     position: relative;
     z-index: 1;
     display: flex;
@@ -21,14 +21,14 @@
     box-shadow: var(--cyb-sys-shadow-2);
 }
 
-.product-list__hero-content {
+.c-product-list__hero-content {
     max-width: 520px;
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
 }
 
-.product-list__chip {
+.c-product-list__chip {
     align-self: flex-start;
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
@@ -40,7 +40,7 @@
     text-transform: uppercase;
 }
 
-.product-list__title {
+.c-product-list__title {
     margin: 0;
     font-size: clamp(2rem, 2.5vw, 3rem);
     font-weight: 700;
@@ -50,7 +50,7 @@
     text-transform: none;
 }
 
-.product-list__subtitle {
+.c-product-list__subtitle {
     margin: 0;
     font-size: 1rem;
     line-height: 1.6;
@@ -58,13 +58,13 @@
     font-family: var(--cyb-sys-font-family-body);
 }
 
-.product-list__hero-meta {
+.c-product-list__hero-meta {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
 
-.product-list__stat {
+.c-product-list__stat {
     min-width: 140px;
     padding: 0.75rem 1rem;
     border-radius: 16px;
@@ -78,13 +78,13 @@
     text-align: center;
 }
 
-.product-list__stat-value {
+.c-product-list__stat-value {
     font-size: 1.6rem;
     font-weight: 700;
     color: var(--cyb-sys-color-black-3);
 }
 
-.product-list__stat-label {
+.c-product-list__stat-label {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.08em;
@@ -92,31 +92,31 @@
 }
 
 
-.product-grid {
+.c-product-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 4rem;
 }
 
-.product-pagination--hidden {
+.c-product-pagination--hidden {
     display: none;
 }
 
-.product-card-wrapper {
+.c-product-card-wrapper {
     display: block;
     cursor: pointer;
 }
 
 @media (max-width: 900px) {
-    .product-list {
+    .c-product-list {
         padding: 110px 1.5rem 0;
     }
 
-    .product-list__hero {
+    .c-product-list__hero {
         padding: 2rem;
     }
 
-    .product-list__hero-meta {
+    .c-product-list__hero-meta {
         width: 100%;
         justify-content: flex-start;
     }
@@ -124,16 +124,16 @@
 }
 
 @media (max-width: 600px) {
-    .product-list__hero {
+    .c-product-list__hero {
         padding: 1.75rem;
     }
 
-    .product-grid {
+    .c-product-grid {
         gap: 2rem;
     }
 }
 
-.product-pagination {
+.c-product-pagination {
     display: flex;
     justify-content: center;
     padding: 1rem 2rem 3rem;

@@ -1,36 +1,36 @@
-<header class="layout-header">
-  <div class="layout-header__inner">
-    <button class="layout-header__logo layout-header__logo-btn" type="button" (click)="onHomeClick()">
+<header class="c-layout-header">
+  <div class="c-layout-header__inner">
+    <button class="c-layout-header__logo c-layout-header__logo--btn" type="button" (click)="onHomeClick()">
       <img src="/images/logoHeader.png" alt="Logo">
     </button>
-    <nav class="layout-header__nav">
-      <button class="layout-header__link layout-header__link--button" type="button" (click)="onHomeClick()">Inicio</button>
-      <button class="layout-header__link layout-header__link--button" type="button" (click)="onProductsClick()"
+    <nav class="c-layout-header__nav">
+      <button class="c-layout-header__link c-layout-header__link--button" type="button" (click)="onHomeClick()">Inicio</button>
+      <button class="c-layout-header__link c-layout-header__link--button" type="button" (click)="onProductsClick()"
         [attr.aria-expanded]="showCategories" aria-controls="header-categories">
         Productos
       </button>
-      <button class="layout-header__link layout-header__link--button" type="button" (click)="onEstanciasClick()"
+      <button class="c-layout-header__link c-layout-header__link--button" type="button" (click)="onEstanciasClick()"
         [attr.aria-expanded]="showEstancias" aria-controls="header-estancias">
         Estancias
       </button>
-      <a class="layout-header__link" routerLink="/login" (click)="closeMenus()"
-        [class.is-hidden]="authService.isAuthenticated()">
+      <a class="c-layout-header__link" routerLink="/login" (click)="closeMenus()"
+        [class.g--is-hidden]="authService.isAuthenticated()">
         Login
       </a>
-      <a class="layout-header__cart-btn" routerLink="/cart" title="Carrito de compras"
-        [class.is-hidden]="!authService.isAuthenticated()">
-        <img src="/icons/carro-de-la-compra.png" alt="Carrito" class="layout-header__cart-icon">
+      <a class="c-layout-header__cart-btn" routerLink="/cart" title="Carrito de compras"
+        [class.g--is-hidden]="!authService.isAuthenticated()">
+        <img src="/icons/carro-de-la-compra.png" alt="Carrito" class="c-layout-header__cart-icon">
         @if ((cartItemsCount$ | async); as cartCount) {
-          <span class="layout-header__cart-badge">
+          <span class="c-layout-header__cart-badge">
             {{ cartCount > 99 ? '99+' : cartCount }}
           </span>
         }
       </a>
-      <div class="layout-header__user-container" [class.is-hidden]="!authService.isAuthenticated()">
-        <div class="layout-header__user-chip">
-          <div class="layout-header__avatar">{{ getUserInitial() }}</div>
+      <div class="c-layout-header__user-container" [class.g--is-hidden]="!authService.isAuthenticated()">
+        <div class="c-layout-header__user-chip">
+          <div class="c-layout-header__avatar">{{ getUserInitial() }}</div>
           <button
-            class="layout-header__username-btn"
+            class="c-layout-header__username-btn"
             type="button"
             (click)="toggleUserMenu($event)"
             [attr.aria-expanded]="showUserMenu"
@@ -39,11 +39,11 @@
           </button>
         </div>
 
-        <div class="layout-header__user-menu" role="menu" [class.is-open]="showUserMenu">
-          <button class="layout-header__user-menu-item" type="button" role="menuitem" (click)="goToProfile()">
+        <div class="c-layout-header__user-menu" role="menu" [class.g--is-open]="showUserMenu">
+          <button class="c-layout-header__user-menu-item" type="button" role="menuitem" (click)="goToProfile()">
             Editar perfil
           </button>
-          <button class="layout-header__user-menu-item layout-header__user-menu-item--danger" type="button"
+          <button class="c-layout-header__user-menu-item c-layout-header__user-menu-item--danger" type="button"
             role="menuitem" (click)="logout()">
             Log out
           </button>
@@ -51,21 +51,21 @@
       </div>
     </nav>
   </div>
-  <div class="layout-header__categories" [class.is-open]="showCategories" [attr.aria-hidden]="!showCategories"
+  <div class="c-layout-header__categories" [class.g--is-open]="showCategories" [attr.aria-hidden]="!showCategories"
     id="header-categories">
-    <div class="layout-header__categories-inner">
+    <div class="c-layout-header__categories-inner">
       @for (item of productMenu; track item.label) {
-      <button class="layout-header__category-link" type="button" (click)="onProductMenuSelect(item)">
+      <button class="c-layout-header__category-link" type="button" (click)="onProductMenuSelect(item)">
         {{ item.label }}
       </button>
       }
     </div>
   </div>
-  <div class="layout-header__categories" [class.is-open]="showEstancias" [attr.aria-hidden]="!showEstancias"
+  <div class="c-layout-header__categories" [class.g--is-open]="showEstancias" [attr.aria-hidden]="!showEstancias"
     id="header-estancias">
-    <div class="layout-header__categories-inner">
+    <div class="c-layout-header__categories-inner">
       @for (item of estanciasMenu; track item.label) {
-      <button class="layout-header__category-link" type="button" (click)="onEstanciasMenuSelect(item)">
+      <button class="c-layout-header__category-link" type="button" (click)="onEstanciasMenuSelect(item)">
         {{ item.label }}
       </button>
       }

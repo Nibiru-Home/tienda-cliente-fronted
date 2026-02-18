@@ -1,14 +1,14 @@
 <app-bento-gallery />
 
-<div class="section" id="gallery-end">
-  <p class="categories-title">Explora nuestras categorías</p>
-  <div class="categories-nav">
+<div class="c-section" id="c-gallery-end">
+  <p class="c-categories-title">Explora nuestras categorías</p>
+  <div class="c-categories-nav">
     @for (category of categoryCards; track category.name) {
-    <a class="category-item" [routerLink]="['/products']" [queryParams]="{ category: category.name, page: 1 }">
-      <div class="category-img">
+    <a class="c-category-item" [routerLink]="['/products']" [queryParams]="{ category: category.name, page: 1 }">
+      <div class="c-category-img">
         <img [src]="category.image" [alt]="category.name" />
       </div>
-      <span class="category-label">{{ category.name }}</span>
+      <span class="c-category-label">{{ category.name }}</span>
     </a>
     }
   </div>
@@ -18,36 +18,36 @@
 
 <app-armario-gsap />
 
-<section class="armario-features-section">
-  <div class="armario-features">
-    <article class="armario-feature">
-      <span class="armario-feature__icon" aria-hidden="true"></span>
-      <h4 class="armario-feature__title">Modularidad real</h4>
-      <p class="armario-feature__text">
+<section class="c-armario-features-section">
+  <div class="c-armario-features">
+    <article class="c-armario-feature">
+      <span class="c-armario-feature__icon" aria-hidden="true"></span>
+      <h4 class="c-armario-feature__title">Modularidad real</h4>
+      <p class="c-armario-feature__text">
         Cada espacio es unico. Nuestros sistemas se adaptan, no al reves.
       </p>
     </article>
-    <article class="armario-feature">
-      <span class="armario-feature__icon" aria-hidden="true"></span>
-      <h4 class="armario-feature__title">Materiales duraderos</h4>
-      <p class="armario-feature__text">
+    <article class="c-armario-feature">
+      <span class="c-armario-feature__icon" aria-hidden="true"></span>
+      <h4 class="c-armario-feature__title">Materiales duraderos</h4>
+      <p class="c-armario-feature__text">
         Maderas seleccionadas, herrajes silenciosos y acabados atemporales.
       </p>
     </article>
-    <article class="armario-feature">
-      <span class="armario-feature__icon" aria-hidden="true"></span>
-      <h4 class="armario-feature__title">Pensado para el uso diario</h4>
-      <p class="armario-feature__text">
+    <article class="c-armario-feature">
+      <span class="c-armario-feature__icon" aria-hidden="true"></span>
+      <h4 class="c-armario-feature__title">Pensado para el uso diario</h4>
+      <p class="c-armario-feature__text">
         Todo esta donde debe estar, sin esfuerzo.
       </p>
     </article>
   </div>
 </section>
 
-<section class="recommended-products-section">
-  <div class="recommended-products">
-    <h3 class="recommended-products__title">Productos recomendados</h3>
-    <div class="recommended-products__grid">
+<section class="c-recommended-products-section">
+  <div class="c-recommended-products">
+    <h3 class="c-recommended-products__title">Productos recomendados</h3>
+    <div class="c-recommended-products__grid">
       @for (product of products; track product.id) {
       <app-inspiration-card [eyebrow]="product.category[0]?.name || 'Producto'" [title]="product.name"
         [description]="product.description" [imageSrc]="productImageUrl(product)" [alt]="product.name"

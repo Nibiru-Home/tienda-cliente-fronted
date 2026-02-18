@@ -1,4 +1,4 @@
-.filters-container {
+.c-filters-container {
     display: flex;
     gap: 20px;
     justify-content: flex-start;
@@ -8,11 +8,11 @@
     z-index: 20;
 }
 
-.filter-group {
+.c-filter-group {
     position: relative;
 }
 
-.filter-pill {
+.c-filter-pill {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
@@ -28,32 +28,32 @@
     white-space: nowrap;
 }
 
-.filter-pill:hover {
+.c-filter-pill:hover {
     background: #F9FAFB;
     border-color: #D1D5DB;
 }
 
-.filter-pill.active {
+.c-filter-pill.g--active {
     background: #F3F4F6;
     border-color: #9CA3AF;
     color: #111827;
 }
 
-.filter-pill.open {
+.c-filter-pill.g--open {
     border-color: #3B82F6;
     box-shadow: 0 0 0 2px #BFDBFE;
 }
 
-.chevron {
+.c-chevron {
     font-size: 0.7rem;
     transition: transform 0.2s;
 }
 
-.filter-pill.open .chevron {
+.c-filter-pill.g--open .c-chevron {
     transform: rotate(180deg);
 }
 
-.dropdown-menu {
+.c-dropdown-menu {
     position: absolute;
     top: calc(100% + 0.5rem);
     left: 0;
@@ -70,7 +70,7 @@
     animation: fadeIn 0.15s ease-out;
 }
 
-.dropdown-item {
+.c-dropdown-item {
     text-align: left;
     padding: 0.5rem 0.75rem;
     background: transparent;
@@ -82,18 +82,18 @@
     transition: background 0.1s;
 }
 
-.dropdown-item:hover {
+.c-dropdown-item:hover {
     background: #F3F4F6;
     color: #111827;
 }
 
-.dropdown-item.selected {
+.c-dropdown-item.g--selected {
     background: #EFF6FF;
     color: #2563EB;
     font-weight: 500;
 }
 
-.backdrop {
+.c-backdrop {
     position: fixed;
     top: 0;
     left: 0;

@@ -2,7 +2,7 @@
   display: block;
 }
 
-.armario-section {
+.c-armario-section {
   margin: var(--cyb-sys-margin-1);
   padding: var(--cyb-sys-padding-11) var(--cyb-sys-padding-13);
   min-height: 100vh;
@@ -12,7 +12,7 @@
   background: var(--cyb-sys-color-white-9);
 }
 
-.armario-card {
+.c-armario-card {
   width: var(--cyb-sys-width-14);
   max-width: 1400px;
   display: grid;
@@ -30,7 +30,7 @@
   box-shadow: var(--cyb-sys-shadow-2);
 }
 
-.armario-media {
+.c-armario-media {
   width: var(--cyb-sys-width-14);
   aspect-ratio: 4 / 3;
   border-radius: var(--cyb-sys-border-radius-8);
@@ -39,14 +39,14 @@
   box-shadow: var(--cyb-sys-shadow-1);
 }
 
-.armario-video {
+.c-armario-video {
   width: var(--cyb-sys-width-14);
   height: var(--cyb-sys-height-14);
   object-fit: cover;
   background: #000;
 }
 
-.armario-content {
+.c-armario-content {
   display: flex;
   flex-direction: column;
   gap: var(--cyb-sys-padding-6);
@@ -54,14 +54,14 @@
   color: var(--cyb-sys-color-black-6);
 }
 
-.armario-title {
+.c-armario-title {
   margin: 0;
   font-size: var(--cyb-sys-font-size-10);
   font-weight: var(--cyb-sys-font-weight-6);
   color: var(--cyb-sys-color-black-6);
 }
 
-.armario-text {
+.c-armario-text {
   margin: 0;
   font-size: var(--cyb-sys-font-size-4);
   line-height: 1.6;
@@ -70,10 +70,10 @@
 }
 
 @media (max-width: 980px) {
-  .armario-card {
+  .c-armario-card {
     grid-template-columns: 1fr;
   }
-  .armario-text {
+  .c-armario-text {
     max-width: none;
   }
 }
