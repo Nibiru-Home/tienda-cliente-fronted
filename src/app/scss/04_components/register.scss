@@ -1,0 +1,44 @@
+.c-login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: var(--cyb-sys-color-white-7);
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+.c-form-group {
+    margin-bottom: var(--cyb-sys-margin-6);
+}
+
+.c-error-message {
+    color: var(--cyb-sys-color-red-5);
+    font-size: var(--cyb-sys-font-size-3);
+    margin-bottom: var(--cyb-sys-margin-4);
+    text-align: center;
+    font-family: var(--cyb-sys-font-family-body);
+}
+
+.c-form-footer {
+    margin-top: 2rem;
+    text-align: center;
+    font-size: var(--cyb-sys-font-size-3);
+    font-family: var(--cyb-sys-font-family-body);
+    color: var(--cyb-sys-color-black-5);
+
+    .c-form-link {
+        color: var(--cyb-sys-color-blue-gray-6);
+        text-decoration: none;
+        font-weight: var(--cyb-sys-font-weight-6);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.c-form__button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
