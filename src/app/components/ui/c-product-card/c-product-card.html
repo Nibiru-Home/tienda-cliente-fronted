@@ -1,7 +1,6 @@
 <div class="c-product-card" [routerLink]="['/products', product.id]">
     <div class="c-product-image-container">
-        <img [src]="imageUrl" [alt]="product.name" class="c-product-image"
-            onerror="this.src='https://via.placeholder.com/300?text=Product'">
+        <img [src]="imageUrl" [alt]="product.name" class="c-product-image">
     </div>
     <div class="c-product-info">
         <h3 class="c-product-name">{{ product.name }}</h3>
